@@ -5,8 +5,8 @@
   粒子を剛体とみなし粒子同士の異常接近を防止する
   Last update: Feb 11, 2021
 =======================================================================*/
-#include "../inputs.hpp"
-#include "../functions.hpp"
+#include "../../include/functions.hpp"
+#include "../../include/inputs.hpp"
 
 void collision(void)
 {

@@ -5,8 +5,8 @@
   初期粒子数密度の算出
   Last update: Feb 11, 2021
 =======================================================================*/
-#include "../inputs.hpp"
-#include "../functions.hpp"
+#include "../../include/functions.hpp"
+#include "../../include/inputs.hpp"
 
 void calNZeroAndLambda(void)
 {

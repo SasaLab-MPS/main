@@ -5,8 +5,8 @@
   計算結果の出力(独自ファイル形式)
   Last update: Feb 12, 2021
 =======================================================================*/
-#include "../inputs.hpp"
-#include "../functions.hpp"
+#include "../../include/functions.hpp"
+#include "../../include/inputs.hpp"
 
 void writeData_inProfFormat(void)
 {

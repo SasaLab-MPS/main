@@ -5,8 +5,8 @@
   三次元での計算を始める前の初期化
   Last update: Feb 12, 2021
 =======================================================================*/
-#include "../inputs.hpp"
-#include "../functions.hpp"
+#include "../../include/functions.hpp"
+#include "../../include/inputs.hpp"
 
 double Acceleration[3 * ARRAY_SIZE]; // 加速度
 int ParticleType[ARRAY_SIZE];        // 粒子のタイプ

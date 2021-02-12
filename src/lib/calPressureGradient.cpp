@@ -5,8 +5,8 @@
   圧力勾配による加速度ベクトル(右辺第二項)の計算
   Last update: Feb 12, 2021
 =======================================================================*/
-#include "../inputs.hpp"
-#include "../functions.hpp"
+#include "../../include/functions.hpp"
+#include "../../include/inputs.hpp"
 
 // グラディエントモデル
 void calPressureGradient(void)

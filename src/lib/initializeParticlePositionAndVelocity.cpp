@@ -5,8 +5,8 @@
   粒子の位置と速度の初期化する関数
   Last update: Feb 10, 2021
 =======================================================================*/
-#include "../inputs.hpp"
-#include "../functions.hpp"
+#include "../../include/functions.hpp"
+#include "../../include/inputs.hpp"
 
 void initializeParticlePositionAndVelocity_for2dim(void)
 {

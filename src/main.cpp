@@ -1,5 +1,5 @@
-#include "inputs.hpp"
-#include "functions.hpp"
+#include "../include/inputs.hpp"
+#include "../include/functions.hpp"
 
 int main(int argc, char **argv)
 {

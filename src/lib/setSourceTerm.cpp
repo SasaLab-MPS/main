@@ -5,8 +5,8 @@
   圧力に関する連立一次方程式のソースタームを設定
   Last update: Feb 11, 2021
 =======================================================================*/
-#include "../inputs.hpp"
-#include "../functions.hpp"
+#include "../../include/functions.hpp"
+#include "../../include/inputs.hpp"
 
 void setSourceTerm(void)
 {

@@ -5,8 +5,8 @@
   0 Pa未満の圧力が発生した場合0 Paに修正
   Last update: Feb 12, 2021
 =======================================================================*/
-#include "../inputs.hpp"
-#include "../functions.hpp"
+#include "../../include/functions.hpp"
+#include "../../include/inputs.hpp"
 
 void removeNegativePressure(void)
 {

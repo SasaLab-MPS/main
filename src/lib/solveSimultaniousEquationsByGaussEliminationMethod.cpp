@@ -5,8 +5,8 @@
   掃き出し法を用いて圧力に関する連立方程式の解を計算
   Last update: Feb 12, 2021
 =======================================================================*/
-#include "../inputs.hpp"
-#include "../functions.hpp"
+#include "../../include/functions.hpp"
+#include "../../include/inputs.hpp"
 
 void solveSimultaniousEquationsByGaussEliminationMethod(void)
 {
