@@ -11,5 +11,20 @@ OBJS := $(addprefix $(OUTDIR)/,$(patsubst %.cpp,%.o,$(SRCS)))
 #$(warning $(OBJS))
 
 CC = g++
-CFLAGS = -Wall -O2
+CFLAGS = -Wall -O2 -I $(INCDIR)
 
+#.PHONY: all clean
+#all: $(TARGET)
+
+# 実行ファイルの生成
+#$(TARGET): $(OBJS)
+#	$(CC) $(CFLAGS) -o $@ $^
+
+# 出力先フォルダの作成(無い場合作成)
+$(OUTDIR): 
+	@if not exist $(OUTDIR) mkdir $(OUTDIR)
+
+# オブジェクトファイルの作成
+# $(OUTDIR)/%.o : $(SRCS)
+#	if [ ! -e `dirname $@` ]; then mkdir -p `dirname $@`; fi
+#	$(CC) $(CFLAGS) $^ $(HEADERS)
