@@ -33,7 +33,7 @@ double Lambda;
 double collisionDistance, collisionDistance2;
 double FluidDensity;
 
-void initializeParticlePositionAndVelocity_for2di(void)
+void initializeParticlePositionAndVelocity_for2dim(void)
 {
     int iX, iY;
     int nX, nY;
