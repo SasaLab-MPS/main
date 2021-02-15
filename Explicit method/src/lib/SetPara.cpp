@@ -1,6 +1,7 @@
 #include "inputs.hpp"
 #include "functions.hpp"
 
+// パラメータの設定
 void SetPara(void)
 {
     double tn0 = 0.0;

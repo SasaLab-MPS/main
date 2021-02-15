@@ -1,6 +1,7 @@
 #include "inputs.hpp"
 #include "functions.hpp"
 
+// 粒子の剛体衝突を行う関数
 void ChkCol(void)
 {
     for (int i = 0; i < nP; i++)
@@ -36,7 +37,7 @@ void ChkCol(void)
                             double v1 = Pos[j * 3 + 1] - pos_iy;
                             double v2 = Pos[j * 3 + 2] - pos_iz;
                             double dist2 = v0 * v0 + v1 * v1 + v2 * v2;
-                            if (dist2 < rlim2)
+                            if (dist2 < rlim2)  // 粒子自身の半径の二乗を条件判定に用いる
                             {
                                 if (j != i && Typ[j] != GST)
                                 {
@@ -44,7 +45,7 @@ void ChkCol(void)
                                     if (fDT > 0.0)
                                     {
                                         double mj = Dns[Typ[j]];
-                                        fDT *= COL * mj / (mi + mj) / dist2;
+                                        fDT *= COL * mj / (mi + mj) / dist2;    // 運動量の交換：完全弾性体としている
                                         vec_ix2 -= v0 * fDT;
                                         vec_iy2 -= v1 * fDT;
                                         vec_iz2 -= v2 * fDT;

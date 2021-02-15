@@ -1,6 +1,7 @@
 #include "inputs.hpp"
 #include "functions.hpp"
 
+// 粒子をバケットに格納する関数
 void MkBkt(void)
 {
     for (int i = 0; i < nBxyz; i++)
@@ -19,8 +20,8 @@ void MkBkt(void)
     {
         if (Typ[i] == GST)
             continue;
-        int ix = (int)((Pos[i * 3] - MIN_X) * DBinv) + 1; // DB:バケット一辺の長さ，DBinv:バケット一辺の長さの逆数
-        int iy = (int)((Pos[i * 3 + 1] - MIN_Y) * DBinv) + 1;
+        int ix = (int)((Pos[i * 3] - MIN_X) * DBinv) + 1;       // DB:バケット一辺の長さ，DBinv:バケット一辺の長さの逆数
+        int iy = (int)((Pos[i * 3 + 1] - MIN_Y) * DBinv) + 1;   // 解析領域を広げた分の補正
         int iz = (int)((Pos[i * 3 + 2] - MIN_Z) * DBinv) + 1;
         int ib = iz * nBxy + iy * nBx + ix; // ib:粒子iが属するバケットの通し番号
         int j = blst[ib];                   // blstの最初の粒子番号を上書きしないように避難

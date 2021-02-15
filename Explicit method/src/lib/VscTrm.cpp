@@ -1,11 +1,12 @@
 #include "inputs.hpp"
 #include "functions.hpp"
 
+// 粘性項と重力から仮の加速度を計算
 void VscTrm(void)
 {
     for (int i = 0; i < nP; i++)
     {
-        if (Typ[i] == FLD)
+        if (Typ[i] == FLD)  // 流体粒子のみを計算の対象に
         {
             double Acc_x = 0.0;
             double Acc_y = 0.0;
@@ -35,7 +36,7 @@ void VscTrm(void)
                             double v1 = Pos[j * 3 + 1] - pos_iy;
                             double v2 = Pos[j * 3 + 2] - pos_iz;
                             double dist2 = v0 * v0 + v1 * v1 + v2 * v2;
-                            if (dist2 < r2)
+                            if (dist2 < r2)     // 影響半径内での粒子のみの影響を計算，r2=r^2
                             {
                                 if (j != i && Typ[j] != GST)
                                 {
@@ -53,6 +54,7 @@ void VscTrm(void)
                     }
                 }
             }
+            // 重力加速度を追加
             Acc[i * 3] = Acc_x * A1 + G_X;
             Acc[i * 3 + 1] = Acc_y * A1 + G_Y;
             Acc[i * 3 + 2] = Acc_z * A1 + G_Z;

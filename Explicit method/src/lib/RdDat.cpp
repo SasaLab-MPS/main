@@ -21,7 +21,8 @@ void RdDat(void)
 {
     fp = fopen(IN_FILE, "r");
     fscanf(fp, "%d", &nP);
-    printf("nP: %d\n", nP);
+    printf("nP: %d\n", nP);     // np:粒子数を入力
+    // 諸条件を設定 メモリを確保
     Acc = (double *)malloc(sizeof(double) * nP * 3); //粒子の加速度
     Pos = (double *)malloc(sizeof(double) * nP * 3); //粒子の座標
     Vel = (double *)malloc(sizeof(double) * nP * 3); //粒子の速度

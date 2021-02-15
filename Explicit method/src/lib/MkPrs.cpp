@@ -1,6 +1,7 @@
 #include "inputs.hpp"
 #include "functions.hpp"
 
+// 仮の圧力を計算
 void MkPrs(void)
 {
     for (int i = 0; i < nP; i++)
@@ -48,7 +49,7 @@ void MkPrs(void)
                 }
             }
             double mi = Dns[Typ[i]];
-            double pressure = (ni > n0) * (ni - n0) * A2 * mi;
+            double pressure = (ni > n0) * (ni - n0) * A2 * mi;  // 粒子数密度か基準より大きければ内部粒子，そうでなければ表面の粒子とする
             Prs[i] = pressure;
         }
     }

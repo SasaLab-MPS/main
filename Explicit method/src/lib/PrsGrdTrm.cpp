@@ -1,6 +1,7 @@
 #include "inputs.hpp"
 #include "functions.hpp"
 
+// 圧力勾配を計算する
 void PrsGrdTrm(void)
 {
     for (int i = 0; i < nP; i++)

@@ -7,7 +7,7 @@ void ChkPcl(int i)
         Pos[i * 3 + 1] > MAX_Y || Pos[i * 3 + 1] < MIN_Y ||
         Pos[i * 3 + 2] > MAX_Z || Pos[i * 3 + 2] < MIN_Z)
     {
-        Typ[i] = GST;
+        Typ[i] = GST;   // 計算の範囲外に出た粒子をゴースト粒子に
         Prs[i] = Vel[i * 3] = Vel[i * 3 + 1] = Vel[i * 3 + 2] = 0.0;
     }
 }

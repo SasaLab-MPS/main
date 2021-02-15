@@ -40,16 +40,16 @@ using namespace std;
 /* グローバル変数定義 */
 extern FILE *fp;
 extern char filename[256];
-extern int iLP, iF;
-extern double TIM;
-extern int nP;
+extern int iLP, iF;         // iLP:反復数，iF:ファイル番号
+extern double TIM;          // 時刻
+extern int nP;              // 粒子数
 extern double *Acc, *Pos, *Vel, *Prs, *pav;
-extern int *Typ;
-extern double r, r2;
-extern double DB, DB2, DBinv;
-extern int nBx, nBy, nBz, nBxy, nBxyz;
-extern int *bfst, *blst, *nxt;
-extern double n0, lmd, A1, A2, A3, rlim, rlim2, COL;
-extern double Dns[NUM_TYP], invDns[NUM_TYP];
+extern int *Typ;            // 粒子の種類
+extern double r, r2;        // 影響半径とその二乗
+extern double DB, DB2, DBinv;           // バケット一辺の長さとその二乗と逆数
+extern int nBx, nBy, nBz, nBxy, nBxyz;  // x, y, z方向のバケット数とその積
+extern int *bfst, *blst, *nxt;          // バケットに格納された粒子の番号
+extern double n0, lmd, A1, A2, A3, rlim, rlim2, COL;    // これ以上の粒子間の接近を許さない距離とその二乗，COL:接近した粒子の反発率 +1.0
+extern double Dns[NUM_TYP], invDns[NUM_TYP];            // 粒子の密度
 
 #endif // INPUTS_HPP_20210215_160210_
