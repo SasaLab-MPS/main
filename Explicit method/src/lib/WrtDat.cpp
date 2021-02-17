@@ -3,9 +3,9 @@
 
 void WrtDat(void)
 {
-    char outout_filename[256];
-    sprintf(outout_filename, "output%05d.prof", iF);    // iF:ファイル番号，ファイル番号⇒%05dに代入
-    fp = fopen(outout_filename, "w");
+    char output_filename[256];
+    sprintf(output_filename, "output%05d.prof", iF); // iF:ファイル番号，ファイル番号⇒%05dに代入
+    fp = fopen(output_filename, "w");
     fprintf(fp, "%d\n", nP);
     for (int i = 0; i < nP; i++)
     {

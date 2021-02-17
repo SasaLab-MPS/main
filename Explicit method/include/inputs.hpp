@@ -8,7 +8,7 @@
 using namespace std;
 
 /* 変数定義 */
-#define IN_FILE "../mk_particle/dambreak.prof"
+#define IN_FILE "../mk_particle/dambreak.prof"  // 入力ファイルのパス
 #define PCL_DST 0.02               //平均粒子間距離
 #define MIN_X (0.0 - PCL_DST * 3)  //解析領域のx方向の最小値
 #define MIN_Y (0.0 - PCL_DST * 3)  //解析領域のy方向の最小値
