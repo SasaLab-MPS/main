@@ -8,6 +8,10 @@
 #include "../../include/functions.hpp"
 #include "../../include/inputs.hpp"
 
+int N = ARRAY_SIZE;
+MatrixXd A(N, N);       // 行列係数
+VectorXd b(N), x(N); // b:右辺係数，x:圧力の列ベクトル
+
 void setMatrix(void)
 {
     double xij, yij, zij;

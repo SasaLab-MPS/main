@@ -1,7 +1,7 @@
 #include "../../include/functions.hpp"
 #include "../../include/inputs.hpp"
 
-int iMAX = ARRAY_SIZE*1.5;
+int iMAX = ARRAY_SIZE*2;
 int N_size = ARRAY_SIZE;     // 行列サイズ
 
 // CG法：共役勾配法

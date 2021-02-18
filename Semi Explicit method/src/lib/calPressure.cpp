@@ -8,9 +8,6 @@
 #include "../../include/functions.hpp"
 #include "../../include/inputs.hpp"
 
-MatrixXd A;     // 行列係数
-VectorXd b, x;  // b:右辺係数，x:圧力の列ベクトル
-
 void calPressure(void)
 {
     calNumberDensity();         // 粒子数密度を計算
