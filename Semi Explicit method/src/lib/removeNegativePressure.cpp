@@ -14,7 +14,7 @@ void removeNegativePressure(void)
 
     for (i = 0; i < NumberOfParticles; i++)
     {
-        if (Pressure[i] < 0.0)
-            Pressure[i] = 0.0;
+        if (pressure(i) < 0.0)
+            pressure(i) = 0.0;
     }
 }
