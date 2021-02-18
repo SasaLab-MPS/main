@@ -7,7 +7,7 @@
 //#include "functions.hpp"
 #ifndef FUNCTIONS_HPP_20210211_202753_
 #define FUNCTIONS_HPP_20210211_202753_
-#include "inputs.hpp"
+//#include "Eigen/Dense"
 
 void initializeParticlePositionAndVelocity_for2dim(void);         // t = 0sでの粒子の速度と位置を決定 (2次元)
 void initializeParticlePositionAndVelocity_for3dim(void);         // t = 0sでの粒子の速度と位置を決定 (3次元)
