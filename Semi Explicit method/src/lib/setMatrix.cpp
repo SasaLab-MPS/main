@@ -27,6 +27,8 @@ void setMatrix(void)
     }
 
     a = 2.0 * DIM / (n0 * Lambda);
+    
+    // NxNの正方行列を設定，N:粒子数
     for (i = 0; i < NumberOfParticles; i++)
     {
         if (BoundaryCondition[i] != INNER_PARTICLE)

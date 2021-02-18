@@ -33,5 +33,6 @@ void calPressureGradient(void);                                   // 圧力勾�
 void moveParticleUsingPressureGradient(void);                     // 圧力勾配による加速度ベクトルの計算を元に粒子を移動
 void writeData_inProfFormat(void);                                // 計算結果の出力(独自ファイル形式)
 void writeData_inVtuFormat(void);                                 // 計算結果をファイル出力(ParaViewのvtuファイル形式)
+VectorXd CG_method(MatrixXd A, VectorXd b, VectorXd x);           // CG法による高速解法
 
 #endif // FUNCTIONS_HPP_20210211_202753_

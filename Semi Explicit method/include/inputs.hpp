@@ -9,7 +9,9 @@
 #define INPUTS_HPP_20210211_200210_
 
 #include <bits/stdc++.h>
+#include "Eigen/Dense"
 using namespace std;
+using namespace Eigen;
 
 /* 変数予約 */
 #define DIM 2                   // 次元
@@ -40,6 +42,7 @@ using namespace std;
 #define COEFFICIENT_OF_RESTITUTION 0.2
 #define COMPRESSIBILITY (0.45E-9)
 #define EPS (0.01 * PARTICLE_DISTANCE)  // 粒子間隔の100分の1を誤差の判定に利用
+#define cgEPS 1.0e-8                    // CG法での許される誤差の上限
 #define ON 1
 #define OFF 0
 #define RELAXATION_COEFFICIENT_FOR_PRESSURE 0.2     // 計算を安定させるための緩和係数
@@ -80,5 +83,7 @@ extern double N0_forLaplacian;
 extern double Lambda;
 extern double collisionDistance, collisionDistance2;
 extern double FluidDensity;
+extern MatrixXd A;                    // 行列係数
+extern VectorXd b, x;                 // b:右辺係数，x:圧力の列ベクトル
 
 #endif // INPUTS_HPP_20210211_200210_
