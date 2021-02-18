@@ -10,7 +10,7 @@
 
 int N = NumberOfParticles;
 MatrixXd A(N, N);    // 行列係数 = CoefficientMatrix
-VectorXd b(N), x(N); // b:右辺係数，x:圧力の列ベクトル
+VectorXd sourceTerm(N), pressure(N); // b:右辺係数，x:圧力の列ベクトル
 
 void setMatrix(void)
 {
