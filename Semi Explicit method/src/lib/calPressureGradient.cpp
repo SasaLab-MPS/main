@@ -42,7 +42,7 @@ void calPressureGradient(void)
             if (distance < Re_forGradient)
             {
                 w = weight(distance, Re_forGradient);
-                pij = (Pressure[j] - MinimumPressure[i]) / distance2;   // グラディエントモデル(最小圧力を用いることで値を正に保つ)
+                pij = (pressure(j) - MinimumPressure[i]) / distance2;   // グラディエントモデル(最小圧力を用いることで値を正に保つ)
                 // 総和計算
                 gradient_x += xij * pij * w;
                 gradient_y += yij * pij * w;

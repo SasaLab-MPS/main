@@ -17,7 +17,7 @@ void setMinimumPressure(void)
     {
         if (ParticleType[i] == GHOST || ParticleType[i] == DUMMY_WALL)
             continue;
-        MinimumPressure[i] = Pressure[i];
+        MinimumPressure[i] = pressure(i);
         for (j = 0; j < NumberOfParticles; j++)
         {
             if ((j == i) || (ParticleType[j] == GHOST))
@@ -30,9 +30,9 @@ void setMinimumPressure(void)
             distance2 = (xij * xij) + (yij * yij) + (zij * zij);
             if (distance2 >= Re2_forGradient)
                 continue;
-            if (MinimumPressure[i] > Pressure[j])
+            if (MinimumPressure[i] > pressure(j))
             {
-                MinimumPressure[i] = Pressure[j];
+                MinimumPressure[i] = pressure(j);
             }
         }
     }

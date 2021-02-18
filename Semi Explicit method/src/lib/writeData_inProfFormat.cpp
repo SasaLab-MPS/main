@@ -20,7 +20,7 @@ void writeData_inProfFormat(void)
     fprintf(fp, "%d\n", NumberOfParticles);
     for (i = 0; i < NumberOfParticles; i++)
     {
-        fprintf(fp, "%d %lf %lf %lf %lf %lf %lf %lf %lf\n", ParticleType[i], Position[i * 3], Position[i * 3 + 1], Position[i * 3 + 2], Velocity[i * 3], Velocity[i * 3 + 1], Velocity[i * 3 + 2], Pressure[i], NumberDensity[i]);
+        fprintf(fp, "%d %lf %lf %lf %lf %lf %lf %lf %lf\n", ParticleType[i], Position[i * 3], Position[i * 3 + 1], Position[i * 3 + 2], Velocity[i * 3], Velocity[i * 3 + 1], Velocity[i * 3 + 2], pressure(i), NumberDensity[i]);
     }
     fclose(fp);
     FileNumber++;
