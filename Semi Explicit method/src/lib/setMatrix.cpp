@@ -20,15 +20,11 @@ void setMatrix(void)
     double n0 = N0_forLaplacian;
     int i, j;
     double a;
-    int n = NumberOfParticles;
 
-    for (i = 0; i < NumberOfParticles; i++)
-    {
-        for (j = 0; j < NumberOfParticles; j++)
-        {
-            A(i*n, j);
-        }
-    }
+    // 行列，ベクトルの初期化
+    A.setZero();
+    sourceTerm.setZero();
+    pressure.setZero();
 
     a = 2.0 * DIM / (n0 * Lambda);
     
@@ -50,10 +46,10 @@ void setMatrix(void)
                 continue;
             coefficientIJ = a * weight(distance, Re_forLaplacian) / FluidDensity;
             // 係数行列の中身aijを計算
-            A(i*n, j) = (-1.0) * coefficientIJ;
-            A(i*n, i) += coefficientIJ;
+            A(i, j) = (-1.0) * coefficientIJ;
+            A(i, i) += coefficientIJ;
         }
-        A(i*n, i) += (COMPRESSIBILITY) / (DT * DT);
+        A(i, i) += (COMPRESSIBILITY) / (DT * DT);
     }
     exceptionalProcessingForBoundaryCondition();        // ディリクレ境界条件を満たさない粒子の例外処理
 }

@@ -301,3 +301,5 @@ Semi Explicit method/include/Eigen/StdVector
 Semi Explicit method/include/Eigen/SuperLUSupport
 Semi Explicit method/include/Eigen/SVD
 Semi Explicit method/include/Eigen/UmfPackSupport
+Semi Explicit method/include/inputs.hpp.gch
+*.gch

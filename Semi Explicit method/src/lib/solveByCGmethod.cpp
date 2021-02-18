@@ -8,8 +8,6 @@ int N_size = NumberOfParticles;     // 行列サイズ
 void solveByCGmethod(MatrixXd A, VectorXd b, VectorXd x)
 {
     VectorXd p(N_size), r(N_size), Ax(N_size), Ap(N_size);
-    // xを初期化
-    x.setZero();
     // Axを計算
     Ax = A * x;
     // pとrを計算 p = r := b - Ax

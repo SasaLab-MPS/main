@@ -7,6 +7,8 @@
 //#include "functions.hpp"
 #ifndef FUNCTIONS_HPP_20210211_202753_
 #define FUNCTIONS_HPP_20210211_202753_
+#include "Eigen/Dense"
+using namespace Eigen;
 
 // t = 0sでの粒子の速度と位置を決定 (2次元)
 void initializeParticlePositionAndVelocity_for2dim(double x_width, double y_height);
