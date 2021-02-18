@@ -16,16 +16,16 @@ void setSourceTerm(void)
 
     for (i = 0; i < NumberOfParticles; i++)
     {
-        SourceTerm[i] = 0.0;
+        sourceTerm(i) = 0.0;
         if (ParticleType[i] == GHOST || ParticleType[i] == DUMMY_WALL)
             continue;
         if (BoundaryCondition[i] == INNER_PARTICLE)
         {
-            SourceTerm[i] = gamma * (1.0 / (DT * DT)) * ((NumberDensity[i] - n0) / n0);
+            sourceTerm(i) = gamma * (1.0 / (DT * DT)) * ((NumberDensity[i] - n0) / n0);
         }
         else if (BoundaryCondition[i] == SURFACE_PARTICLE)
         {
-            SourceTerm[i] = 0.0;
+            sourceTerm(i) = 0.0;
         }
     }
 }
