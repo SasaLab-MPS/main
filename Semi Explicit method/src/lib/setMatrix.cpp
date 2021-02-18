@@ -9,7 +9,7 @@
 #include "../../include/inputs.hpp"
 
 int N = ARRAY_SIZE;
-MatrixXd A(N, N);       // 行列係数
+MatrixXd A(N, N);    // 行列係数 = CoefficientMatrix
 VectorXd b(N), x(N); // b:右辺係数，x:圧力の列ベクトル
 
 void setMatrix(void)
@@ -26,7 +26,7 @@ void setMatrix(void)
     {
         for (j = 0; j < NumberOfParticles; j++)
         {
-            CoefficientMatrix[i * n + j] = 0.0;
+            A(i*n, j);
         }
     }
 
@@ -49,10 +49,11 @@ void setMatrix(void)
             if (distance >= Re_forLaplacian)
                 continue;
             coefficientIJ = a * weight(distance, Re_forLaplacian) / FluidDensity;
-            CoefficientMatrix[i * n + j] = (-1.0) * coefficientIJ;      // 係数行列の中身aijを計算
-            CoefficientMatrix[i * n + i] += coefficientIJ;
+            // 係数行列の中身aijを計算
+            A(i*n, j) = (-1.0) * coefficientIJ;
+            A(i*n, i) += coefficientIJ;
         }
-        CoefficientMatrix[i * n + i] += (COMPRESSIBILITY) / (DT * DT);  // 流体の圧縮率に関する計算
+        A(i*n, i) += (COMPRESSIBILITY) / (DT * DT);
     }
     exceptionalProcessingForBoundaryCondition();        // ディリクレ境界条件を満たさない粒子の例外処理
 }

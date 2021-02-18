@@ -83,7 +83,7 @@ extern double N0_forLaplacian;
 extern double Lambda;
 extern double collisionDistance, collisionDistance2;
 extern double FluidDensity;
-extern MatrixXd A;                    // 行列係数
+extern MatrixXd A;                    // 行列係数 = CoefficientMatrix
 extern VectorXd b, x;                 // b:右辺係数，x:圧力の列ベクトル
 
 #endif // INPUTS_HPP_20210211_200210_
