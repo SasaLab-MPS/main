@@ -32,6 +32,9 @@ double N0_forLaplacian;
 double Lambda;
 double collisionDistance, collisionDistance2;
 double FluidDensity;
+int N = NumberOfParticles;
+MatrixXd A(N, N);                    // 行列係数 = CoefficientMatrix
+VectorXd sourceTerm(N), pressure(N); // b:右辺係数，x:圧力の列ベクトル
 
 // 領域の最大値
 double x_MAX = 1.0, y_MAX = 0.6, z_MAX = 0.3;

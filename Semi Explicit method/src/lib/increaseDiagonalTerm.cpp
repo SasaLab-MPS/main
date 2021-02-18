@@ -10,15 +10,12 @@
 
 void increaseDiagonalTerm(void)
 {
-    int i;
-    int n = NumberOfParticles;
-
-    for (i = 0; i < n; i++)
+    for (int i = 0; i < NumberOfParticles; i++)
     {
         // 自由表面を持たない粒子同士の接近が発生した場合に備えた例外処理，計算を収束させるため
         if (FlagForCheckingBoundaryCondition[i] == DIRICHLET_BOUNDARY_IS_NOT_CONNECTED)
         {
-            A(i*n, i) = 2.0*A(i*n, i);
+            A(i, i) = 2.0*A(i, i);
         }
     }
 }

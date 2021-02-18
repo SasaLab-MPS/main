@@ -8,10 +8,6 @@
 #include "../../include/functions.hpp"
 #include "../../include/inputs.hpp"
 
-int N = NumberOfParticles;
-MatrixXd A(N, N);    // 行列係数 = CoefficientMatrix
-VectorXd sourceTerm(N), pressure(N); // b:右辺係数，x:圧力の列ベクトル
-
 void setMatrix(void)
 {
     double xij, yij, zij;

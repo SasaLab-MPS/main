@@ -10,9 +10,7 @@
 
 void moveParticleUsingPressureGradient(void)
 {
-    int i;
-
-    for (i = 0; i < NumberOfParticles; i++)
+    for (int i = 0; i < NumberOfParticles; i++)
     {
         if (ParticleType[i] == FLUID)
         {

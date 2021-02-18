@@ -47,7 +47,7 @@ void writeData_inVtuFormat(void)
     fprintf(fp, "<DataArray NumberOfComponents='1' type='Float32' Name='pressure' format='ascii'>\n");
     for (i = 0; i < NumberOfParticles; i++)
     {
-        fprintf(fp, "%f\n", (float)Pressure[i]);
+        fprintf(fp, "%f\n", (float)pressure(i));
     }
     fprintf(fp, "</DataArray>\n");
     fprintf(fp, "</PointData>\n");

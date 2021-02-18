@@ -50,9 +50,6 @@ void collision(void)
                         velocity_ix -= (forceDT / mi) * (xij / distance);
                         velocity_iy -= (forceDT / mi) * (yij / distance);
                         velocity_iz -= (forceDT / mi) * (zij / distance);
-                        /*
-	    if(j>i){ fprintf(stderr,"WARNING: Collision occured between %d and %d particles.\n",i,j); }
-	    */
                     }
                 }
             }

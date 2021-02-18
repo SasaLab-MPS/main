@@ -10,9 +10,7 @@
 
 void moveParticle(void)
 {
-    int i;  // 粒子番号
-
-    for (i = 0; i < NumberOfParticles; i++)
+    for (int i = 0; i < NumberOfParticles; i++)
     {
         if (ParticleType[i] == FLUID)
         {

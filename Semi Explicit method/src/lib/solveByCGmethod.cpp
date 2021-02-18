@@ -1,14 +1,14 @@
 #include "../../include/functions.hpp"
 #include "../../include/inputs.hpp"
 
-int iMAX = ARRAY_SIZE*2;
-int N_size = NumberOfParticles;     // 行列サイズ
-
 // CG法：共役勾配法
 void solveByCGmethod(MatrixXd A, VectorXd b, VectorXd x)
 {
+    int iMAX = ARRAY_SIZE * 2;
+    int N_size = NumberOfParticles; // 行列サイズ
     VectorXd p(N_size), r(N_size), Ax(N_size), Ap(N_size);
     // Axを計算
+    cout << "call solve CG method" << endl;
     Ax = A * x;
     // pとrを計算 p = r := b - Ax
     p = b - Ax; // p:初期勾配ベクトル
