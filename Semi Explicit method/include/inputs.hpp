@@ -29,20 +29,20 @@ using namespace Eigen;
 
 #define ARRAY_SIZE 5000 // 粒子数の上限
 #define FINISH_TIME 2.0 // シミュレーションの終了時刻
-#define KINEMATIC_VISCOSITY (1.0E-6)
+#define KINEMATIC_VISCOSITY (1.0E-6)  // 動粘性係数
 #define FLUID_DENSITY 1000.0
 #define G_X 0.0
-#define G_Y -9.8
+#define G_Y -9.8        // 重力加速度
 #define G_Z 0.0
 #define RADIUS_FOR_NUMBER_DENSITY (2.1 * PARTICLE_DISTANCE)
 #define RADIUS_FOR_GRADIENT (2.1 * PARTICLE_DISTANCE)
 #define RADIUS_FOR_LAPLACIAN (3.1 * PARTICLE_DISTANCE)
 #define COLLISION_DISTANCE (0.5 * PARTICLE_DISTANCE)
-#define THRESHOLD_RATIO_OF_NUMBER_DENSITY 0.97
-#define COEFFICIENT_OF_RESTITUTION 0.2
-#define COMPRESSIBILITY (0.45E-9)
+#define THRESHOLD_RATIO_OF_NUMBER_DENSITY 0.97    // 自由表面かを判定する係数β
+#define COEFFICIENT_OF_RESTITUTION 0.2            // 剛体衝突の反発係数
+#define COMPRESSIBILITY (0.45E-9)       // 流体の圧縮率
 #define EPS (0.01 * PARTICLE_DISTANCE)  // 粒子間隔の100分の1を誤差の判定に利用
-#define cgEPS 1.0e-8                    // CG法での許される誤差の上限
+#define cgEPS 1.0e-8                    // CG法で許容する誤差の上限
 #define ON 1
 #define OFF 0
 #define RELAXATION_COEFFICIENT_FOR_PRESSURE 0.2     // 計算を安定させるための緩和係数
@@ -73,17 +73,19 @@ extern double MinimumPressure[ARRAY_SIZE];                  // ある粒子近�
 /* 変数定義 */
 extern int FileNumber;
 extern double Time;
-extern int NumberOfParticles;         // 全粒子数
+extern int NumberOfParticles;                 // 全粒子数
 extern double Re_forNumberDensity, Re2_forNumberDensity;
 extern double Re_forGradient, Re2_forGradient;
 extern double Re_forLaplacian, Re2_forLaplacian;
-extern double N0_forNumberDensity;    // 粒子数密度
+extern double N0_forNumberDensity;            // 粒子数密度
 extern double N0_forGradient;
 extern double N0_forLaplacian;
 extern double Lambda;
 extern double collisionDistance, collisionDistance2;
 extern double FluidDensity;
-extern MatrixXd A;                    // 行列係数 = CoefficientMatrix
-extern VectorXd sourceTerm, pressure;        // b:右辺係数，x:圧力の列ベクトル
+extern double x_width, y_height, z_depth;     // 幅，高さ，奥行(流体領域)
+extern double x_MAX, y_MAX, z_MAX;            // 計算領域の最大値
+extern MatrixXd A;                            // 行列係数 = CoefficientMatrix
+extern VectorXd sourceTerm, pressure;         // b:右辺係数，x:圧力の列ベクトル
 
 #endif // INPUTS_HPP_20210211_200210_

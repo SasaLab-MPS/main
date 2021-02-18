@@ -2,7 +2,7 @@
 #include "../../include/inputs.hpp"
 
 int iMAX = ARRAY_SIZE*2;
-int N_size = ARRAY_SIZE;     // 行列サイズ
+int N_size = NumberOfParticles;     // 行列サイズ
 
 // CG法：共役勾配法
 void solveByCGmethod(MatrixXd A, VectorXd b, VectorXd x)
