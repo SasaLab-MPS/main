@@ -8,7 +8,7 @@
 #include "../../include/functions.hpp"
 #include "../../include/inputs.hpp"
 
-int N = ARRAY_SIZE;
+int N = NumberOfParticles;
 MatrixXd A(N, N);    // 行列係数 = CoefficientMatrix
 VectorXd b(N), x(N); // b:右辺係数，x:圧力の列ベクトル
 
