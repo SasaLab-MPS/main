@@ -9,9 +9,7 @@
 #define INPUTS_HPP_20210211_200210_
 
 #include <bits/stdc++.h>
-#include "Eigen/Dense"
 using namespace std;
-using namespace Eigen;
 
 /* 変数予約 */
 #define DIM 2                   // 次元
