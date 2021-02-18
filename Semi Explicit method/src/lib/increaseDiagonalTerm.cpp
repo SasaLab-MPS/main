@@ -17,7 +17,7 @@ void increaseDiagonalTerm(void)
     {
         if (FlagForCheckingBoundaryCondition[i] == DIRICHLET_BOUNDARY_IS_NOT_CONNECTED)
         {
-            CoefficientMatrix[i * n + i] = 2.0 * CoefficientMatrix[i * n + i];
+            A(i*n, i) = 2.0*A(i*n, i);
         }
     }
 }
