@@ -73,6 +73,7 @@ extern double MinimumPressure[ARRAY_SIZE];                  // ある粒子近�
 // 以下追加配列
 extern MatrixXd A;                                          // 行列係数 = CoefficientMatrix
 extern VectorXd sourceTerm, pressure;                       // b:右辺係数，x:圧力の列ベクトル
+extern vector<vector<int> > bktid;                          // バケットid，structBktで定義
 
 /* 変数定義 */
 extern int FileNumber;
@@ -92,7 +93,7 @@ extern double x_width, y_height, z_depth;     // 幅，高さ，奥行(流体領
 extern double x_MAX, y_MAX, z_MAX;            // 計算領域の最大値:main.cppで設定
 extern double x_MIN, y_MIN, z_MIN;            // 計算領域の最小値:struktBktで設定
 // バケット構築のための変数
-extern double DB, DB2, DBinv;                  // バケット一辺の長さ，その二乗，逆数
+extern double DB, DB2, DBinv;                 // バケット一辺の長さ，その二乗，逆数
 extern int nBx, nBy, nBz, nBxy, nBxyz;        // x, y, z方向のバケット数とその積
 extern double re, re2;                        // 影響半径，影響半径の二乗
 
