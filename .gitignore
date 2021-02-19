@@ -305,3 +305,5 @@ Semi Explicit method/include/inputs.hpp.gch
 *.gch
 *.vtu
 *.prof
+*.exe
+*.o
