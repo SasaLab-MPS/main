@@ -15,7 +15,7 @@ void increaseDiagonalTerm(void)
         // 自由表面を持たない粒子同士の接近が発生した場合に備えた例外処理，計算を収束させるため
         if (FlagForCheckingBoundaryCondition[i] == DIRICHLET_BOUNDARY_IS_NOT_CONNECTED)
         {
-            A(i, i) = 2.0*A(i, i);
+            A(i, i) = 2*A(i, i);
         }
     }
 }

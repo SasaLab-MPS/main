@@ -2,11 +2,13 @@
 #include "../../include/inputs.hpp"
 
 // CG法：共役勾配法
-void solveByCGmethod(MatrixXd A, VectorXd b, VectorXd x)
+void solveByCGmethod(void)
 {
     int iMAX = ARRAY_SIZE * 2;
     int N_size = NumberOfParticles; // 行列サイズ
-    VectorXd p(N_size), r(N_size), Ax(N_size), Ap(N_size);
+    VectorXd p(N_size), r(N_size), Ax(N_size), Ap(N_size), x(N_size), b(N_size);
+    x = pressure;
+    b = sourceTerm;
     // Axを計算
     cout << "call solve CG method" << endl;
     Ax = A * x;
@@ -38,6 +40,7 @@ void solveByCGmethod(MatrixXd A, VectorXd b, VectorXd x)
         }
         p = r + beta * p;
     }
+    pressure = x;
 }
 
 
