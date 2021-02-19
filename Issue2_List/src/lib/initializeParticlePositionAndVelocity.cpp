@@ -35,6 +35,8 @@ double FluidDensity;
 
 // 領域の最大値 [m]
 double x_MAX = 1.0, y_MAX = 0.6, z_MAX = 0.3;
+// 領域の最小値 
+double x_MIN, y_MIN, z_MIN;
 
 void initializeParticlePositionAndVelocity_for2dim(double x_width, double y_height)
 {

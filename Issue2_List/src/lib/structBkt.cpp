@@ -18,6 +18,22 @@ void structBkt(void) {
     DB = re * (1.0 + CRT_NUM);          // バケット一辺の長さ
     DB2 = DB * DB;
     DBinv = 1.0 / DB;
-    // バケットの大きさ
+
+    // バケット数を計算
+    double MAX[3];    //バケットを構築する最大座標
+    MAX[0] = x_MAX + PARTICLE_DISTANCE*3;   // x座標
+    MAX[1] = y_MAX + PARTICLE_DISTANCE * 3; // y座標
+    MAX[2] = z_MAX + PARTICLE_DISTANCE * 3; // z座標
+    x_MIN = 0.0 - PARTICLE_DISTANCE*3;
+    y_MIN = 0.0 - PARTICLE_DISTANCE*3;
+    z_MIN = 0.0 - PARTICLE_DISTANCE*3;
+
+    nBx = (int)((MAX[0] - x_MIN) * DBinv) + 3;    // 解析領域のx方向のバケット数
+    nBy = (int)((MAX[1] - y_MIN) * DBinv) + 3;    // 解析領域のy方向のバケット数
+    nBz = (int)((MAX[2] - z_MIN) * DBinv) + 3;    // 解析領域のz方向のバケット数
+
+    nBxy = nBx * nBy;
+    nBxyz = nBx * nBy * nBz;
+
     
 }
