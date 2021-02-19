@@ -15,7 +15,7 @@ void writeData_inVtuFormat(void)
     FILE *fp;
     char fileName[1024];
 
-    sprintf(fileName, "particle_%04d.vtu", FileNumber);
+    sprintf(fileName, "./vtu/particle_%04d.vtu", FileNumber);
     fp = fopen(fileName, "w");
     fprintf(fp, "<?xml version='1.0' encoding='UTF-8'?>\n");
     fprintf(fp, "<VTKFile xmlns='VTK' byte_order='LittleEndian' version='0.1' type='UnstructuredGrid'>\n");

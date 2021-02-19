@@ -10,7 +10,6 @@
 
 MatrixXd A;                       // 行列係数 = CoefficientMatrix
 VectorXd sourceTerm, pressure;    // b:右辺係数，x:圧力の列ベクトル
-MatrixXd B(5, 5);
 
 void mainLoopOfSimulation(void)
 {
@@ -19,13 +18,8 @@ void mainLoopOfSimulation(void)
     int NoP = NumberOfParticles;
     // 初期化
     A.setZero(NoP, NoP);
-    B.setZero();
     sourceTerm.setZero(NoP);
     pressure.setZero(NoP);
-
-    cout << "B" << B(0, 2) << endl;
-    cout << "pressure" << pressure << endl;
-    cout << "call main Loop" << endl;
 
     writeData_inVtuFormat();
     writeData_inProfFormat();

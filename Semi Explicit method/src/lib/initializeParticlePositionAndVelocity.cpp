@@ -100,7 +100,7 @@ void initializeParticlePositionAndVelocity_for2dim(double x_width, double y_heig
         }
     }
     NumberOfParticles = i;
-    cout << "NumberOfParticles = " << NumberOfParticles << endl;
+    cout << "*** NumberOfParticles = " << NumberOfParticles << " ***" << endl;
     for (i = 0; i < NumberOfParticles * 3; i++)
     {
         Velocity[i] = 0.0;
@@ -174,6 +174,7 @@ void initializeParticlePositionAndVelocity_for3dim(double x_width, double y_heig
         }
     }
     NumberOfParticles = i;
+    cout << "*** NumberOfParticles = " << NumberOfParticles << " ***" << endl;
     for (i = 0; i < NumberOfParticles * 3; i++)
     {
         Velocity[i] = 0.0;
