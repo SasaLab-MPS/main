@@ -6,7 +6,8 @@ void solveByCGmethod(void)
 {
     int iMAX = ARRAY_SIZE * 2;
     int N_size = NumberOfParticles; // 行列サイズ
-    VectorXd p(N_size), r(N_size), Ax(N_size), Ap(N_size), x(N_size), b(N_size);
+    VectorXd x(N_size), b(N_size);
+    VectorXd p(N_size), r(N_size), Ax(N_size), Ap(N_size);
     x = pressure;
     b = sourceTerm;
     // Axを計算
