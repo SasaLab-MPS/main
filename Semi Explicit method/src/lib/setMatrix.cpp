@@ -8,10 +8,6 @@
 #include "../../include/functions.hpp"
 #include "../../include/inputs.hpp"
 
-int N = NumberOfParticles;
-MatrixXd A(N, N);                    // 行列係数 = CoefficientMatrix
-VectorXd sourceTerm(N), pressure(N); // b:右辺係数，x:圧力の列ベクトル
-
 void setMatrix(void)
 {
     double xij, yij, zij;
@@ -21,13 +17,9 @@ void setMatrix(void)
     int i, j;
     double a;
 
-    // 行列，ベクトルの初期化
-    A.setZero();
-    sourceTerm.setZero();
-    pressure.setZero();
-
     a = 2.0 * DIM / (n0 * Lambda);
-    
+
+    cout << "call setMatrix" << endl;
     // NxNの正方行列を設定，N:粒子数
     for (i = 0; i < NumberOfParticles; i++)
     {

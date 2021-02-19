@@ -18,6 +18,7 @@ void writeData_inProfFormat(void)
     fp = fopen(fileName, "w");
     fprintf(fp, "%lf\n", Time);
     fprintf(fp, "%d\n", NumberOfParticles);
+    cout << "call writeData" << endl;
     for (i = 0; i < NumberOfParticles; i++)
     {
         fprintf(fp, "%d %lf %lf %lf %lf %lf %lf %lf %lf\n", ParticleType[i], Position[i * 3], Position[i * 3 + 1], Position[i * 3 + 2], Velocity[i * 3], Velocity[i * 3 + 1], Velocity[i * 3 + 2], pressure(i), NumberDensity[i]);

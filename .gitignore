@@ -304,3 +304,4 @@ Semi Explicit method/include/Eigen/UmfPackSupport
 Semi Explicit method/include/inputs.hpp.gch
 *.gch
 *.vtu
+*.prof

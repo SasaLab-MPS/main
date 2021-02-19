@@ -10,6 +10,7 @@
 
 void calPressure(void)
 {
+    // 各構成要素の計算
     calNumberDensity();                         // 粒子数密度を計算
     setBoundaryCondition();                     // 境界条件の設定(ディリクレ条件)
     setSourceTerm();                            // ポアソン方程式の右辺ベクトルの設定

@@ -11,7 +11,7 @@ void solveByCGmethod(void)
     x = pressure;
     b = sourceTerm;
     // Axを計算
-    cout << "call solve CG method" << endl;
+    cout << "call CG method" << endl;
     Ax = A * x;
     // pとrを計算 p = r := b - Ax
     p = b - Ax; // p:初期勾配ベクトル
