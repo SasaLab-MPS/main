@@ -11,7 +11,8 @@
 double DB, DB2, DBinv;            // バケット一辺の長さ，その二乗，逆数
 int nBx, nBy, nBz, nBxy, nBxyz;   // x, y, z方向のバケット数とその積
 double re, re2;                   // 影響半径，影響半径の二乗
-vector<vector<int>> bktid;         // バケットid，structBktで定義
+vector<vector<int>> bkt;          // バケットid，structBktで定義
+vector<int> Pid;                  // 粒子が所属するバケット番号
 
 void structBkt(void) {
   re = 2.1 * PARTICLE_DISTANCE; // 影響半径を初期粒子間距離の2.1倍とする
@@ -48,7 +49,9 @@ void structBkt(void) {
   }
 
   // バケットリストの作成
-  bktid.resize(bkts);
+  bkt.resize(bkts);
+  Pid.resize(NumberOfParticles);
   // 全てのバケットを-1:粒子が無い状態に
-  fill(bktid.begin(), bktid.end(), -1);
+  fill(bkt.begin(), bkt.end(), -1);
+  fill(Pid.begin(), Pid.end(), -1);
 }

@@ -40,6 +40,6 @@ void writeData_inVtuFormat(void);                                 // 計算結�
 void solveByCGmethod(void);                                       // CG法による高速解法
 void structBkt(void);                                             // 解析領域にバケット領域を生成する関数
 void makeBkt(void);                                               // 粒子をバケットに格納する関数
-
+void setMatrixByList (void);                                      // 係数行列Aをリストにより実装
 
 #endif // FUNCTIONS_HPP_20210211_202753_

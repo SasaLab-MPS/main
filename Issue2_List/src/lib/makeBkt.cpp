@@ -18,6 +18,7 @@ void makeBkt(void) {
         int iy = (int)((Position[i*3 + 1] - x_MIN) * DBinv) + 1;
         int iz = (int)((Position[i*3 + 2] - x_MIN) * DBinv) + 1;
         int id = iz * nBxy + iy *nBx + ix;
-        bktid[id].push_back(i);
+        bkt[id].push_back(i);
+        Pid[i] = id;
     }
 }

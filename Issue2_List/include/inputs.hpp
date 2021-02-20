@@ -73,7 +73,9 @@ extern double MinimumPressure[ARRAY_SIZE];                  // ある粒子近�
 // 以下追加配列
 extern MatrixXd A;                                          // 行列係数 = CoefficientMatrix
 extern VectorXd sourceTerm, pressure;                       // b:右辺係数，x:圧力の列ベクトル
-extern vector<vector<int> > bktid;                          // バケットid，structBktで定義
+extern vector<vector<int> > bkt;                            // バケットid，structBktで定義
+extern vector<int> Pid;                                     // 粒子が所属するバケット番号                
+
 
 /* 変数定義 */
 extern int FileNumber;
