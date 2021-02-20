@@ -34,25 +34,40 @@ void setMatrixByList (void)
         // 粒子の所属するバケットのid
         int bktid[3];    // 0:x, 1:y, 2:z
         for(int j = 0; j < 3; j++) {
-            bktid[j] = (int)((pos[j] - x_MIN)*DBinv) + 1;
+            bktid[j] = (int)((pos[j] - Pos_MIN[j]) * DBinv) + 1;
         }
 
-        for (j = 0; j < NumberOfParticles; j++)
-        {
-            if ((j == i) || (BoundaryCondition[j] == GHOST_OR_DUMMY))
-                continue;
-            xij = Position[j * 3] - Position[i * 3];
-            yij = Position[j * 3 + 1] - Position[i * 3 + 1];
-            zij = Position[j * 3 + 2] - Position[i * 3 + 2];
-            distance2 = (xij * xij) + (yij * yij) + (zij * zij);
-            distance = sqrt(distance2);
-            // 影響範囲内か?
-            if (distance >= Re_forLaplacian)
-                continue;
-            coefficientIJ = a * weight(distance, Re_forLaplacian) / FluidDensity;
-            // 係数行列の中身aijを計算
-            A(i, j) = (-1.0) * coefficientIJ;
-            A(i, i) += coefficientIJ;
+        // 対象のバケット周辺の粒子のみを探索
+        for(int jz = bktid[2]-1; jz <= bktid[2]+1; jz++) {
+            for (int jy = bktid[1]-1; jy <= bktid[2]+1; jy++) {
+                for (int jx = bktid[0] - 1; jx <= bktid[0]+1; jx++) {
+                    int id = jz * nBxy + jy * nBx + jx;
+                    if (bkt[id][0] == -1)
+                    {
+                        continue;
+                    }
+                    // バケット内の粒子と対象の粒子との相互作用を計算
+                    for(int j = 0; j < bkt[id].size(); j++) {
+                        int poj = bkt[id][j];
+                        if ((poj == i) || (BoundaryCondition[poj] == GHOST_OR_DUMMY))
+                        {
+                            continue;
+                        }
+                        xij = Position[poj * 3] - Position[i * 3];
+                        yij = Position[poj * 3 + 1] - Position[i * 3 + 1];
+                        zij = Position[poj * 3 + 2] - Position[i * 3 + 2];
+                        distance2 = (xij * xij) + (yij * yij) + (zij * zij);
+                        distance = sqrt(distance2);
+                        // 影響範囲内か?
+                        if (distance >= Re_forLaplacian)
+                            continue;
+                        coefficientIJ = a * weight(distance, Re_forLaplacian) / FluidDensity;
+                        // 係数行列の中身aijを計算
+                        A(i, j) = (-1.0) * coefficientIJ;
+                        A(i, i) += coefficientIJ;
+                    }
+                }
+            }
         }
         A(i, i) += (COMPRESSIBILITY) / (DT * DT);
     }
