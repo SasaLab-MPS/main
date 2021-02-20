@@ -26,15 +26,10 @@ void setMatrixByList (void)
         if (BoundaryCondition[i] != INNER_PARTICLE)
             continue;
         
-        // 粒子の座標
-        double pos[3];   // 0:x, 1:y, 2:z
-        for(int j = 0; j < 3; j++) {
-            pos[j] = Position[i*3 + j];
-        }
         // 粒子の所属するバケットのid
         int bktid[3];    // 0:x, 1:y, 2:z
         for(int j = 0; j < 3; j++) {
-            bktid[j] = (int)((pos[j] - Pos_MIN[j]) * DBinv) + 1;
+            bktid[j] = (int)((Position[i*3+j] - Pos_MIN[j]) * DBinv) + 1;
         }
 
         // 対象のバケット周辺の粒子のみを探索
@@ -42,20 +37,21 @@ void setMatrixByList (void)
             for (int jy = bktid[1]-1; jy <= bktid[2]+1; jy++) {
                 for (int jx = bktid[0] - 1; jx <= bktid[0]+1; jx++) {
                     int id = jz * nBxy + jy * nBx + jx;
-                    if (bkt[id][0] == -1)
+                    if (bkt[id][0] == -1)   // バケット内に粒子が存在しない
                     {
                         continue;
                     }
                     // バケット内の粒子と対象の粒子との相互作用を計算
                     for(int j = 0; j < bkt[id].size(); j++) {
-                        int poj = bkt[id][j];
-                        if ((poj == i) || (BoundaryCondition[poj] == GHOST_OR_DUMMY))
+                        int paj = bkt[id][j];   // particle j
+                        if ((paj == i) || (BoundaryCondition[paj] == GHOST_OR_DUMMY))
                         {
                             continue;
                         }
-                        xij = Position[poj * 3] - Position[i * 3];
-                        yij = Position[poj * 3 + 1] - Position[i * 3 + 1];
-                        zij = Position[poj * 3 + 2] - Position[i * 3 + 2];
+                        // 粒子iとjの距離
+                        xij = Position[paj * 3] - Position[i * 3];
+                        yij = Position[paj * 3 + 1] - Position[i * 3 + 1];
+                        zij = Position[paj * 3 + 2] - Position[i * 3 + 2];
                         distance2 = (xij * xij) + (yij * yij) + (zij * zij);
                         distance = sqrt(distance2);
                         // 影響範囲内か?
