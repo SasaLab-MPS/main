@@ -609,3 +609,14 @@ Issue2_List/include/Eigen/StdVector
 Issue2_List/include/Eigen/SuperLUSupport
 Issue2_List/include/Eigen/SVD
 Issue2_List/include/Eigen/UmfPackSupport
+*.json
+*.cmake
+*.bin
+*.txt
+*.marks
+*.txt
+Issue2_List/build/CMakeFiles/Makefile2
+*.log
+*.txt
+Issue2_List/CMakeLists.txt
+*.check_cache
