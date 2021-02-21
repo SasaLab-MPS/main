@@ -12,6 +12,8 @@
 void initializeParticlePositionAndVelocity_for2dim(double x_width, double y_height);
 // t = 0sでの粒子の速度と位置を決定 (3次元)
 void initializeParticlePositionAndVelocity_for3dim(double x_width, double y_height, double z_depth);
+/* 2021 02.20　ここまで作業 */
+
 void calConstantParameter(void);                               // 影響半径などの定数計算
 void calNZeroAndLambda(void);                                  // 初期粒子密度 n0および lambdaの計算
 double weight(double distance, double re);                     // 重み関数の計算

@@ -41,38 +41,6 @@ double Pos_MIN[3];                  // 計算領域の最小値:struktBktで設�
 double DB, DB2, DBinv;              // バケット一辺の長さ，その二乗，逆数
 int nBx, nBy, nBz, nBxy, nBxyz;     // x, y, z方向のバケット数とその積
 double re, re2;                     // 影響半径，影響半径の二乗
-
-
-
-// 元の関数
-/*
-double Acceleration[3 * ARRAY_SIZE]; // 加速度
-int ParticleType[ARRAY_SIZE];        // 粒子のタイプ
-double Position[3 * ARRAY_SIZE];     // 位置
-double Velocity[3 * ARRAY_SIZE];     // 速度
-double Pressure[ARRAY_SIZE];         // 圧力
-double NumberDensity[ARRAY_SIZE];    // 粒子密度
-int BoundaryCondition[ARRAY_SIZE];   // 境界条件
-double SourceTerm[ARRAY_SIZE];       // ソースターム行列
-int FlagForCheckingBoundaryCondition[ARRAY_SIZE];
-double CoefficientMatrix[ARRAY_SIZE * ARRAY_SIZE]; // 係数行列A
-double MinimumPressure[ARRAY_SIZE];                // ある粒子近傍の最小圧力
-
-int FileNumber;
-double Time;
-int NumberOfParticles; // 全粒子数
-double Re_forNumberDensity, Re2_forNumberDensity;
-double Re_forGradient, Re2_forGradient;
-double Re_forLaplacian, Re2_forLaplacian;
-double N0_forNumberDensity; // 粒子数密度
-double N0_forGradient;
-double N0_forLaplacian;
-double Lambda;
-double collisionDistance, collisionDistance2;
-double FluidDensity;
-
-*/
-
 // 領域の最大値 [m]
 double x_MAX = 1.0, y_MAX = 0.6, z_MAX = 0.3;
 // 領域の最小値
