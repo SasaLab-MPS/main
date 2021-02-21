@@ -16,13 +16,14 @@ void calGravity(void)
     { // NumberOfParticles:粒子の総数
         if (position[i].particleType == FLUID)
         {
-            // 流体粒子⇒重力加速度を設定
+            // 流体粒子の重力加速度を設定
             acceleration[i].x = G_X;
             acceleration[i].y = G_Y;
             acceleration[i].z = G_Z;
         }
         else
         {
+            // 流体粒子でなければ加速度なし
             acceleration[i].x = 0.0;
             acceleration[i].y = 0.0;
             acceleration[i].z = 0.0;

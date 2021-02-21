@@ -11,7 +11,7 @@
 double DB, DB2, DBinv;          // バケット一辺の長さ，その二乗，逆数
 int nBx, nBy, nBz, nBxy, nBxyz; // x, y, z方向のバケット数とその積
 double re, re2;                 // 影響半径，影響半径の二乗
-vector<vector<int>> bkt;        // バケットid，structBktで定義
+vector<vector<int>> bkt;        // バケットid
 vector<int> Pid;                // 粒子が所属するバケット番号
 
 void structBkt(void)

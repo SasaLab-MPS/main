@@ -16,14 +16,15 @@ void calConstantParameter(void);                               // 影響半径�
 void calNZeroAndLambda(void);                                  // 初期粒子密度 n0および lambdaの計算
 double weight(double distance, double re);                     // 重み関数の計算
 void structBkt(void);                                          // 解析領域にバケット領域を生成する関数
+void calBkt(void);                                             // 粒子の所属するバケットを計算する関数
 void mainLoopOfSimulation(void);                               // メインループ
 void writeData_inProfFormat(void);                             // 計算結果の出力(独自ファイル形式)
 void writeData_inVtuFormat(void);                              // 計算結果をファイル出力(ParaViewのvtuファイル形式)
 void calGravity(void);                                         // NS方程式右辺第三項を計算，重力による粒子の加速を計算
-
-
-
 void calViscosity(void);                                       // NS方程式右辺第二項を計算，粘性による粒子の加速を計算
+
+
+
 void moveParticle(void);                                       // 粒子の移動を計算
 void collision(void);                                          // 剛体衝突関数(粒子同士が異常接近した場合に粒子間の距離を広げる)
 void calPressure(void);                                        // 圧力を計算(陰解法)
@@ -41,7 +42,7 @@ void calPressureGradient(void);                                // 圧力勾配�
 void moveParticleUsingPressureGradient(void);                  // 圧力勾配による加速度ベクトルの計算を元に粒子を移動
 void solveByCGmethod(void);                                    // CG法による高速解法
 
-void makeBkt(void);                                            // 粒子をバケットに格納する関数
+
 void setMatrixByList(void);                                    // 係数行列Aをリストにより実装
 
 #endif // FUNCTIONS_HPP_20210220_222753_

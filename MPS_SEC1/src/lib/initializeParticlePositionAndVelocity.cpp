@@ -44,7 +44,7 @@ double re, re2;                     // 影響半径，影響半径の二乗
 // 領域の最大値 [m]
 double x_MAX = 1.0, y_MAX = 0.6, z_MAX = 0.3;
 // 領域の最小値
-double Pos_MIN[3];
+double Pos_MIN[3] = {0, 0, 0};
 
 void initializeParticlePositionAndVelocity_for2dim(double x_width, double y_height)
 {
