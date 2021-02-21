@@ -14,12 +14,12 @@ void initializeParticlePositionAndVelocity_for2dim(double x_width, double y_heig
 void initializeParticlePositionAndVelocity_for3dim(double x_width, double y_height, double z_depth);
 void calConstantParameter(void);                               // 影響半径などの定数計算
 void calNZeroAndLambda(void);                                  // 初期粒子密度 n0および lambdaの計算
-void structBkt(void);                                          // 解析領域にバケット領域を生成する関数
-
-
-
 double weight(double distance, double re);                     // 重み関数の計算
+void structBkt(void);                                          // 解析領域にバケット領域を生成する関数
 void mainLoopOfSimulation(void);                               // メインループ
+
+
+
 void calGravity(void);                                         // NS方程式右辺第三項を計算，重力による粒子の加速を計算
 void calViscosity(void);                                       // NS方程式右辺第二項を計算，粘性による粒子の加速を計算
 void moveParticle(void);                                       // 粒子の移動を計算
