@@ -16,7 +16,7 @@ void calConstantParameter(void);                               // 影響半径�
 void calNZeroAndLambda(void);                                  // 初期粒子密度 n0および lambdaの計算
 double weight(double distance, double re);                     // 重み関数の計算
 void structBkt(void);                                          // 解析領域にバケット領域を生成する関数
-void calBkt(void);                                             // 粒子の所属するバケットを計算する関数
+void calBkt(void);                                             // 粒子の所属するバケットを計算する関数，calViscosityで使用
 void mainLoopOfSimulation(void);                               // メインループ
 void writeData_inProfFormat(void);                             // 計算結果の出力(独自ファイル形式)
 void writeData_inVtuFormat(void);                              // 計算結果をファイル出力(ParaViewのvtuファイル形式)

@@ -20,6 +20,7 @@ void mainLoopOfSimulation(void)
 
     writeData_inVtuFormat();
     writeData_inProfFormat();
+    structBkt();    // バケットの構築
 
     while (1)
     {

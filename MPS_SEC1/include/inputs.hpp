@@ -82,8 +82,6 @@ extern vector<int> boundaryCondition;                   // ディリクレ境界
 extern vector<int> flagForCheckingBoundaryCondition;    // 粒子の集合のどこかにディリクレ境界条件が付加されているかをチェックするためのフラグ
 extern vector<double> minimumPressure;                  // ある粒子近傍での最低圧力
 extern vector<vector<int>> bkt;                         // バケットid，structBktで定義
-extern vector<int> Pid;                                 // 粒子が所属するバケット番号
-
 
 /* グローバル変数定義 */
 extern int FileNumber;

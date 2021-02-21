@@ -37,7 +37,7 @@ void calViscosity(void)
         for (int jz = bktid[2] - 1; jz <= bktid[2] + 1; jz++) {
             for (int jy = bktid[1] - 1; jy <= bktid[1] + 1; jy++) {
                 for (int jx = bktid[0] - 1; jx <= bktid[0] + 1; jx++) {
-                    // バケットのid
+                    // バケットのid, 2次元のときnBxy = 0としている
                     int id = jz * nBxy + jy * nBx + jx;
                     if (bkt[id][0] == -1) // バケット内に粒子が存在しない
                     {
