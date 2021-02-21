@@ -51,8 +51,6 @@ void initializeParticlePositionAndVelocity_for2dim(double x_width, double y_heig
     int iX, iY;
     int nX, nY;
     double x, y, z;
-    int i = 0;
-    int flagOfParticleGeneration;
     Position p;
 
     // 計算領域全体の大きさ1.0 m x 0.6 m
@@ -65,14 +63,12 @@ void initializeParticlePositionAndVelocity_for2dim(double x_width, double y_heig
             x = PARTICLE_DISTANCE * (double)(iX); // 粒子生成候補位置
             y = PARTICLE_DISTANCE * (double)(iY);
             z = 0.0;    // 奥行は0で設定
-            flagOfParticleGeneration = OFF; // flagをリセット
 
             /* dummy wall region */
             if (((x > -4.0 * PARTICLE_DISTANCE + EPS) && (x <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((y > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (y <= y_MAX + EPS)))
             {
                 p = {x, y, z, DUMMY_WALL};
                 position.push_back(p);
-                flagOfParticleGeneration = ON;
             }
 
             /* wall region */
@@ -80,7 +76,6 @@ void initializeParticlePositionAndVelocity_for2dim(double x_width, double y_heig
             {
                 p = {x, y, z, WALL};
                 position.push_back(p);
-                flagOfParticleGeneration = ON;
             }
 
             /* wall region */
@@ -88,13 +83,12 @@ void initializeParticlePositionAndVelocity_for2dim(double x_width, double y_heig
             {
                 p = {x, y, z, WALL};
                 position.push_back(p);
-                flagOfParticleGeneration = ON;
             }
 
-            /* empty region */
+            /* empty region 粒子を生成しない */
             if (((x > 0.0 + EPS) && (x <= x_MAX + EPS)) && (y > 0.0 + EPS))
             {
-                flagOfParticleGeneration = OFF;
+                continue;
             }
 
             /* fluid region：流体領域を設定 */
@@ -102,11 +96,10 @@ void initializeParticlePositionAndVelocity_for2dim(double x_width, double y_heig
             {
                 p = {x, y, z, FLUID};
                 position.push_back(p);
-                flagOfParticleGeneration = ON;
             }
         }
     }
-    NumberOfParticles = i;
+    NumberOfParticles = position.size();
     cout << "*** NumberOfParticles = " << NumberOfParticles << " ***" << endl;
     // 速度，加速度を0で初期化
     p = {0, 0, 0, FLUID};

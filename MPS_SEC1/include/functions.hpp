@@ -17,6 +17,8 @@ void calNZeroAndLambda(void);                                  // 初期粒子�
 double weight(double distance, double re);                     // 重み関数の計算
 void structBkt(void);                                          // 解析領域にバケット領域を生成する関数
 void mainLoopOfSimulation(void);                               // メインループ
+void writeData_inProfFormat(void);                             // 計算結果の出力(独自ファイル形式)
+void writeData_inVtuFormat(void);                              // 計算結果をファイル出力(ParaViewのvtuファイル形式)
 
 
 
@@ -37,8 +39,6 @@ void removeNegativePressure(void);                             // 負圧が生�
 void setMinimumPressure(void);                                 // ある粒子近傍で最低圧力を記録
 void calPressureGradient(void);                                // 圧力勾配による加速度ベクトルの計算
 void moveParticleUsingPressureGradient(void);                  // 圧力勾配による加速度ベクトルの計算を元に粒子を移動
-void writeData_inProfFormat(void);                             // 計算結果の出力(独自ファイル形式)
-void writeData_inVtuFormat(void);                              // 計算結果をファイル出力(ParaViewのvtuファイル形式)
 void solveByCGmethod(void);                                    // CG法による高速解法
 
 void makeBkt(void);                                            // 粒子をバケットに格納する関数
