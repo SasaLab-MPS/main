@@ -12,10 +12,12 @@
 void initializeParticlePositionAndVelocity_for2dim(double x_width, double y_height);
 // t = 0sでの粒子の速度と位置を決定 (3次元)
 void initializeParticlePositionAndVelocity_for3dim(double x_width, double y_height, double z_depth);
-/* 2021 02.20　ここまで作業 */
-
 void calConstantParameter(void);                               // 影響半径などの定数計算
 void calNZeroAndLambda(void);                                  // 初期粒子密度 n0および lambdaの計算
+void structBkt(void);                                          // 解析領域にバケット領域を生成する関数
+
+
+
 double weight(double distance, double re);                     // 重み関数の計算
 void mainLoopOfSimulation(void);                               // メインループ
 void calGravity(void);                                         // NS方程式右辺第三項を計算，重力による粒子の加速を計算
@@ -38,7 +40,7 @@ void moveParticleUsingPressureGradient(void);                  // 圧力勾配�
 void writeData_inProfFormat(void);                             // 計算結果の出力(独自ファイル形式)
 void writeData_inVtuFormat(void);                              // 計算結果をファイル出力(ParaViewのvtuファイル形式)
 void solveByCGmethod(void);                                    // CG法による高速解法
-void structBkt(void);                                          // 解析領域にバケット領域を生成する関数
+
 void makeBkt(void);                                            // 粒子をバケットに格納する関数
 void setMatrixByList(void);                                    // 係数行列Aをリストにより実装
 

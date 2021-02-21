@@ -1,5 +1,5 @@
 /*=====================================================================
-  initializeParticlePositionAndVelocity.cpp   
+  calConstantParameter.cpp   
   Yota INOUE (2021) 
   関数実装ファイル 
   粒子の位置と速度の初期化する関数
