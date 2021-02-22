@@ -24,10 +24,10 @@ void calGravity(void);                                         // NS方程式右
 void calViscosity(void);                                       // NS方程式右辺第二項を計算，粘性による粒子の加速を計算
 void moveParticle(void);                                       // 粒子の移動を計算
 void collision(void);                                          // 剛体衝突関数(粒子同士が異常接近した場合に粒子間の距離を広げる)
-
-
 void calPressure(void);                                        // 圧力を計算(陰解法)
 void calNumberDensity(void);                                   // 粒子数密度の計算
+
+
 void setBoundaryCondition(void);                               // 圧力のポアソン方程式にディリクレ境界条件を付与
 void setSourceTerm(void);                                      // 圧力のポアソン方程式のソース項の計算
 void setMatrix(void);                                          // 連立一次方程式の係数行列を設定

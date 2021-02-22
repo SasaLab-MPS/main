@@ -35,6 +35,7 @@ void collision(void)
         if (position[i].particleType == FLUID)
         {
             mi = FluidDensity;
+            // 粒子 iの速度
             velocity_ix = velocity[i].x;
             velocity_iz = velocity[i].y;
             velocity_iy = velocity[i].z;
@@ -46,7 +47,7 @@ void collision(void)
             bktid[1] = (int)((position[i].y - Pos_MIN[1]) * DBinv) + 1;
             bktid[2] = (int)((position[i].z - Pos_MIN[2]) * DBinv) + 1;
 
-            // 対象のバケット周辺の粒子のみを探索
+            // 対象のバケット周辺の粒子のみを探索 3*3*3=27
             for (int jz = bktid[2] - 1; jz <= bktid[2] + 1; jz++) {
                 for (int jy = bktid[1] - 1; jy <= bktid[1] + 1; jy++) {
                     for (int jx = bktid[0] - 1; jx <= bktid[0] + 1; jx++) {

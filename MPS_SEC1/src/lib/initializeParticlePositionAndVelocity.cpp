@@ -14,7 +14,7 @@ vector<Velocity> velocity;                    // 速度
 vector<Acceleration> acceleration;            // 加速度
 MatrixXd coefficientMatrix;                   // A:係数行列 = CoefficientMatrix
 VectorXd sourceTerm, pressure;                // b:右辺係数，x:圧力の列ベクトル
-vector<double> numberDensity;                 // 粒子密度
+vector<double> numberDensity;                 // 粒子密度，calNumberDensityで定義
 vector<int> boundaryCondition;                // ディリクレ境界条件を付加するかどうかのフラグ
 vector<int> flagForCheckingBoundaryCondition; // 粒子の集合のどこかにディリクレ境界条件が付加されているかをチェックするためのフラグ
 vector<double> minimumPressure;               // ある粒子近傍での最低圧力
