@@ -75,7 +75,7 @@ typedef Position Acceleration;
 extern vector<Position> position;                       // 位置
 extern vector<Velocity> velocity;                       // 速度
 extern vector<Acceleration> acceleration;               // 加速度
-extern MatrixXd coefficientMatrix;                      // A:係数行列 = CoefficientMatrix
+extern MatrixXd coefficientMatrix;                      // A:係数行列 = CoefficientMatrix mianLoopで定義
 extern VectorXd sourceTerm, pressure;                   // b:右辺係数，x:圧力の列ベクトル
 extern vector<double> numberDensity;                    // 粒子密度
 extern vector<int> boundaryCondition;                   // ディリクレ境界条件を付加するかどうかのフラグ

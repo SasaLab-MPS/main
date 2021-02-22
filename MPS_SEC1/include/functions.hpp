@@ -26,11 +26,11 @@ void moveParticle(void);                                       // 粒子の移�
 void collision(void);                                          // 剛体衝突関数(粒子同士が異常接近した場合に粒子間の距離を広げる)
 void calPressure(void);                                        // 圧力を計算(陰解法)
 void calNumberDensity(void);                                   // 粒子数密度の計算
-
-
 void setBoundaryCondition(void);                               // 圧力のポアソン方程式にディリクレ境界条件を付与
 void setSourceTerm(void);                                      // 圧力のポアソン方程式のソース項の計算
 void setMatrix(void);                                          // 連立一次方程式の係数行列を設定
+
+
 void exceptionalProcessingForBoundaryCondition(void);          // 自由表面が無い粒子集合に対する例外処理
 void checkBoundaryCondition(void);                             // ポアソン方程式のディリクレ境界条件のチェック
 void increaseDiagonalTerm(void);                               // 連立一次方程式の係数行列の対角項を大きくする例外処理
