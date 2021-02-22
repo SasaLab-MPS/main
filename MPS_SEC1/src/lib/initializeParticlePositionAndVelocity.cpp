@@ -20,6 +20,7 @@ vector<int> flagForCheckingBoundaryCondition; // 粒子の集合のどこかに�
 vector<double> minimumPressure;               // ある粒子近傍での最低圧力
 vector<vector<int>> bkt;                      // バケットid，structBktで定義
 vector<int> Pid;                              // 粒子が所属するバケット番号
+vector<int> neghPar;                          // 対象の粒子近傍の粒子リスト
 
 /* グローバル変数定義 */
 int FileNumber;

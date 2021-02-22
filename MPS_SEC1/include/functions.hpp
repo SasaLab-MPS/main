@@ -30,7 +30,7 @@ void setBoundaryCondition(void);                               // 圧力のポ�
 void setSourceTerm(void);                                      // 圧力のポアソン方程式のソース項の計算
 void setMatrix(void);                                          // 連立一次方程式の係数行列を設定
 void exceptionalProcessingForBoundaryCondition(void);          // 自由表面が無い粒子集合に対する例外処理
-
+void searchBkt(int i);                                         // 粒子i近傍の粒子を探索する関数
 
 void checkBoundaryCondition(void);                             // ポアソン方程式のディリクレ境界条件のチェック
 void increaseDiagonalTerm(void);                               // 連立一次方程式の係数行列の対角項を大きくする例外処理
