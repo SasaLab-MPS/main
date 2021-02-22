@@ -31,8 +31,9 @@ void setSourceTerm(void);                                      // 圧力のポ�
 void setMatrix(void);                                          // 連立一次方程式の係数行列を設定
 void exceptionalProcessingForBoundaryCondition(void);          // 自由表面が無い粒子集合に対する例外処理
 void searchBkt(int i);                                         // 粒子i近傍の粒子を探索する関数
-
 void checkBoundaryCondition(void);                             // ポアソン方程式のディリクレ境界条件のチェック
+
+
 void increaseDiagonalTerm(void);                               // 連立一次方程式の係数行列の対角項を大きくする例外処理
 void solveSimultaniousEquationsByGaussEliminationMethod(void); // 連立一次方程式を掃き出し法で解き，各粒子の圧力を計算
 void removeNegativePressure(void);                             // 負圧が生じた場合，0 Paに修正

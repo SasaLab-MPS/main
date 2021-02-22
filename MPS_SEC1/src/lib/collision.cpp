@@ -10,7 +10,6 @@
 
 void collision(void)
 {
-    int i, j;
     double xij, yij, zij;
     double distance, distance2;
     double forceDT; /* forceDT is the impulse of collision between particles */
@@ -20,7 +19,8 @@ void collision(void)
     static vector<Velocity> VelocityAfterCollision;
     VelocityAfterCollision.resize(NumberOfParticles);
 
-    for (i = 0; i < NumberOfParticles; i++)
+    // 更新前の速度を設定
+    for (int i = 0; i < NumberOfParticles; i++)
     {
         VelocityAfterCollision[i].x = velocity[i].x;
         VelocityAfterCollision[i].y = velocity[i].y;
@@ -30,7 +30,7 @@ void collision(void)
     calBkt(); // 粒子が所属するバケットを計算
 
     // 粒子同士の衝突を計算
-    for (i = 0; i < NumberOfParticles; i++)
+    for (int i = 0; i < NumberOfParticles; i++)
     {
         if (position[i].particleType == FLUID)
         {
@@ -74,7 +74,7 @@ void collision(void)
     }
 
     // 速度の更新
-    for (i = 0; i < NumberOfParticles; i++)
+    for (int i = 0; i < NumberOfParticles; i++)
     {
         if (position[i].particleType == FLUID)
         {
