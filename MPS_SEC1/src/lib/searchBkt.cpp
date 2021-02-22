@@ -11,7 +11,6 @@
 void searchBkt(int i) {
   int particle;
   neghPar.clear(); // 要素の全削除
-
   /* バケット法による粒子の探索効率向上 */
   // 粒子iの所属するバケットのid
   int bktid[3]; // 0:x, 1:y, 2:z

@@ -27,45 +27,28 @@ void calViscosity(void)
         viscosityTerm_y = 0.0;
         viscosityTerm_z = 0.0;
 
-        // 粒子の所属するバケットのid
-        int bktid[3]; // 0:x, 1:y, 2:z
-        bktid[0] = (int)((position[i].x - Pos_MIN[0]) * DBinv) + 1;
-        bktid[1] = (int)((position[i].y - Pos_MIN[1]) * DBinv) + 1;
-        bktid[2] = (int)((position[i].z - Pos_MIN[2]) * DBinv) + 1;
-
-        // 対象のバケット周辺の粒子のみを探索
-        for (int jz = bktid[2] - 1; jz <= bktid[2] + 1; jz++) {
-            for (int jy = bktid[1] - 1; jy <= bktid[1] + 1; jy++) {
-                for (int jx = bktid[0] - 1; jx <= bktid[0] + 1; jx++) {
-                    // バケットのid, 2次元のときnBxy = 0としている
-                    int id = jz * nBxy + jy * nBx + jx;
-                    if (bkt[id][0] == -1) // バケット内に粒子が存在しない
-                    {
-                        continue;
-                    }
-                    // バケット内の粒子と対象の粒子との粘性相互作用を計算
-                    for(int j = 0; j < bkt[id].size(); j++) {
-                        int par_j = bkt[id][j]; // particle jの番号
-                        if ((par_j == i) || (position[par_j].particleType == GHOST))
-                            continue;           // その粒子自身とゴースト粒子は計算に含めない
-                        // 粒子間距離の計算
-                        xij = position[par_j].x - position[i].x;
-                        yij = position[par_j].y - position[i].y;
-                        zij = position[par_j].z - position[i].z;
-                        distance2 = (xij * xij) + (yij * yij) + (zij * zij);
-                        distance = sqrt(distance2);
-                        // 影響範囲か？
-                        if (distance < Re_forLaplacian)
-                        {
-                            w = weight(distance, Re_forLaplacian); // 重み関数
-                            viscosityTerm_x += (velocity[par_j].x - velocity[i].x) * w;
-                            viscosityTerm_y += (velocity[par_j].y - velocity[i].y) * w;
-                            viscosityTerm_z += (velocity[par_j].z - velocity[i].z) * w;
-                        }
-                    }
-                }
+        searchBkt(i);
+        int j;
+        for(int k = 0; k < neghPar.size(); k++) {
+            j = neghPar[k];     // particle jの番号
+            if ((j == i) || (position[j].particleType == GHOST))
+                continue; // その粒子自身とゴースト粒子は計算に含めない
+            // 粒子間距離の計算
+            xij = position[j].x - position[i].x;
+            yij = position[j].y - position[i].y;
+            zij = position[j].z - position[i].z;
+            distance2 = (xij * xij) + (yij * yij) + (zij * zij);
+            distance = sqrt(distance2);
+            // 影響範囲か？
+            if (distance < Re_forLaplacian)
+            {
+                w = weight(distance, Re_forLaplacian); // 重み関数
+                viscosityTerm_x += (velocity[j].x - velocity[i].x) * w;
+                viscosityTerm_y += (velocity[j].y - velocity[i].y) * w;
+                viscosityTerm_z += (velocity[j].z - velocity[i].z) * w;
             }
         }
+
         // 粘性による粒子の加速を計算
         viscosityTerm_x = viscosityTerm_x * a;
         viscosityTerm_y = viscosityTerm_y * a;

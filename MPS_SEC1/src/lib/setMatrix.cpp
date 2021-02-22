@@ -18,12 +18,12 @@ void setMatrix(void)
 
     a = 2.0 * DIM / (n0 * Lambda);
 
+    calBkt();
     // NxNの正方行列を設定，N:粒子数
     for (int i = 0; i < NumberOfParticles; i++)
     {
         if (boundaryCondition[i] != INNER_PARTICLE)
-            continue;
-
+            continue;\
         /* バケット法による粒子の探索効率向上 */
         searchBkt(i);
         // 粒子の所属するバケットのid

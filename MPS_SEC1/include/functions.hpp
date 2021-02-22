@@ -32,17 +32,11 @@ void setMatrix(void);                                          // 連立一次�
 void exceptionalProcessingForBoundaryCondition(void);          // 自由表面が無い粒子集合に対する例外処理
 void searchBkt(int i);                                         // 粒子i近傍の粒子を探索する関数
 void checkBoundaryCondition(void);                             // ポアソン方程式のディリクレ境界条件のチェック
-
-
 void increaseDiagonalTerm(void);                               // 連立一次方程式の係数行列の対角項を大きくする例外処理
-void solveSimultaniousEquationsByGaussEliminationMethod(void); // 連立一次方程式を掃き出し法で解き，各粒子の圧力を計算
+void solveByCGmethod(void);                                    // CG法による高速解法，calPressureで使用
 void removeNegativePressure(void);                             // 負圧が生じた場合，0 Paに修正
 void setMinimumPressure(void);                                 // ある粒子近傍で最低圧力を記録
 void calPressureGradient(void);                                // 圧力勾配による加速度ベクトルの計算
 void moveParticleUsingPressureGradient(void);                  // 圧力勾配による加速度ベクトルの計算を元に粒子を移動
-void solveByCGmethod(void);                                    // CG法による高速解法
-
-
-void setMatrixByList(void);                                    // 係数行列Aをリストにより実装
 
 #endif // FUNCTIONS_HPP_20210220_222753_

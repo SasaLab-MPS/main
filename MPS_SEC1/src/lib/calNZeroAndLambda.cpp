@@ -35,7 +35,7 @@ void calNZeroAndLambda(void) {
     yi = 0.0;
     zi = 0.0;
 
-    // 自分を中心に周りの粒子との相互作用を計算
+    // 自分を中心に周りの粒子との密度を計算
     for (iX = -4; iX < 5; iX++)
     {
         for (iY = -4; iY < 5; iY++)

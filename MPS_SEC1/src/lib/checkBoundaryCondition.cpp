@@ -30,6 +30,8 @@ void checkBoundaryCondition(void)
         }
     }
 
+    calBkt();
+    
     do
     {
         count = 0;
