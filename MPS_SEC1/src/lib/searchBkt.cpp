@@ -24,7 +24,7 @@ void searchBkt(int i) {
       for (int jx = bktid[0] - 1; jx <= bktid[0] + 1; jx++) {
         // バケットのidを計算, 2次元のときnBxy = 0としている
         int id = jz * nBxy + jy * nBx + jx;
-        if (bkt[id][0] == -1) // バケット内に粒子が存在しない
+        if (bkt[id].empty()) // バケット内に粒子が存在しない
         {
           continue;
         }

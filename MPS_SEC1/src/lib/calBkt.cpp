@@ -9,8 +9,8 @@
 #include "../../include/inputs.hpp"
 
 void calBkt(void) {
-    // 全てのバケットを-1:粒子が無い状態に
-    fill(bkt.begin(), bkt.end(), -1);
+    bkt.clear(); // 全てのバケットを粒子が無い状態に
+    
     for(int i = 0; i < NumberOfParticles; i++) {
         if (position[i].particleType == GHOST)
         {
@@ -21,13 +21,6 @@ void calBkt(void) {
         int iz = (int)((position[i].z - Pos_MIN[2]) * DBinv) + 1;
         int id = iz * nBxy + iy *nBx + ix;
 
-        if (bkt[id][0] == -1)   // そのバケットに入る初めての粒子の場合
-        {
-            bkt[id][0] = i;
-        }
-        else
-        {
-            bkt[id].push_back(i);
-        }
+        bkt[id].push_back(i);
     }
 }

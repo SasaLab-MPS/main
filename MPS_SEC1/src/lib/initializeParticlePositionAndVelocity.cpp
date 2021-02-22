@@ -28,24 +28,22 @@ double Time;
 int NumberOfParticles; // 全粒子数
 double Re_forNumberDensity, Re2_forNumberDensity;
 double Re_forGradient, Re2_forGradient;
-double Re_forLaplacian, Re2_forLaplacian; // Re:ラプラシアンモデルの影響範囲, calConstantParameterで設定
-double N0_forNumberDensity;               // 粒子数密度
+double Re_forLaplacian, Re2_forLaplacian;       // Re:ラプラシアンモデルの影響範囲, calConstantParameterで設定
+double N0_forNumberDensity;                     // 粒子数密度
 double N0_forGradient;
 double N0_forLaplacian;
 double Lambda;
 double collisionDistance, collisionDistance2;
 double FluidDensity;
-double x_width, y_height, z_depth;  // 幅，高さ，奥行(流体領域)
-double x_MAX, y_MAX, z_MAX;         // 計算領域の最大値:main.cppで設定
-double Pos_MIN[3];                  // 計算領域の最小値:struktBktで設定
+double x_width, y_height, z_depth;              // 幅，高さ，奥行(流体領域)
+double x_MAX = 1.0, y_MAX = 0.6, z_MAX = 0.3;   // 計算領域の最大値:main.cppで設定
+double Pos_MIN[3] = {0, 0, 0};                  // 計算領域の最小値:struktBktで設定
+
 // バケット構築のための変数
-double DB, DB2, DBinv;              // バケット一辺の長さ，その二乗，逆数
-int nBx, nBy, nBz, nBxy, nBxyz;     // x, y, z方向のバケット数とその積
-double re, re2;                     // 影響半径，影響半径の二乗
-// 領域の最大値 [m]
-double x_MAX = 1.0, y_MAX = 0.6, z_MAX = 0.3;
-// 領域の最小値
-double Pos_MIN[3] = {0, 0, 0};
+double DB, DB2, DBinv;                          // バケット一辺の長さ，その二乗，逆数
+int nBx, nBy, nBz, nBxy, nBxyz;                 // x, y, z方向のバケット数とその積
+double re, re2;                                 // 影響半径，影響半径の二乗
+
 
 void initializeParticlePositionAndVelocity_for2dim(double x_width, double y_height)
 {
