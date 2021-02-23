@@ -610,3 +610,5 @@ MPS_SEC1/include/Eigen/UmfPackSupport
 *.gch
 *.a
 *.a
+*.a
+*.a

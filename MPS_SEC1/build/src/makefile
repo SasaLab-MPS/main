@@ -10,3 +10,5 @@ CFLAGS = r
 # オブジェクトファイルの作成
 libfuncs.a : $(OBJS)
 	$(CC) $(CFLAGS) $@ $^
+
+#  ranlib libabc.a
