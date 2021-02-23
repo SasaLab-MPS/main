@@ -8,11 +8,6 @@
 #include "../../include/functions.hpp"
 #include "../../include/inputs.hpp"
 
-double DB, DB2, DBinv;          // バケット一辺の長さ，その二乗，逆数
-int nBx, nBy, nBz, nBxy, nBxyz; // x, y, z方向のバケット数とその積
-double re, re2;                 // 影響半径，影響半径の二乗
-vector<vector<int>> bkt;        // バケットid
-
 void structBkt(void)
 {
     re = 2.1 * PARTICLE_DISTANCE; // 影響半径を初期粒子間距離の2.1倍とする

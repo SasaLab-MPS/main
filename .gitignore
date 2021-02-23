@@ -612,3 +612,4 @@ MPS_SEC1/include/Eigen/UmfPackSupport
 *.a
 *.a
 *.a
+MPS_SEC1/build/src/libfuncs.a

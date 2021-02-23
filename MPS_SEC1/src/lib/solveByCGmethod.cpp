@@ -12,8 +12,10 @@ int iMAX = ARRAY_SIZE * 2;
 int N_size = ARRAY_SIZE; // 行列サイズ
 
 // CG法：共役勾配法
-VectorXd CG_method(MatrixXd A, VectorXd b, VectorXd x)
+void solveByCGmethod(void)
 {
+    MatrixXd A = coefficientMatrix;
+    VectorXd b = sourceTerm, x = pressure;
     VectorXd p(N_size), r(N_size), Ax(N_size), Ap(N_size);
 
     // Axを計算
@@ -46,5 +48,5 @@ VectorXd CG_method(MatrixXd A, VectorXd b, VectorXd x)
         }
         p = r + beta * p;
     }
-    return x;
+    pressure = x;
 }

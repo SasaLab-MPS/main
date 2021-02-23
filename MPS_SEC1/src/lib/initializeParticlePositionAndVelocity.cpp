@@ -35,7 +35,6 @@ double N0_forLaplacian;
 double Lambda;
 double collisionDistance, collisionDistance2;
 double FluidDensity;
-double x_width, y_height, z_depth;              // 幅，高さ，奥行(流体領域)
 double x_MAX = 1.0, y_MAX = 0.6, z_MAX = 0.3;   // 計算領域の最大値:main.cppで設定
 double Pos_MIN[3] = {0, 0, 0};                  // 計算領域の最小値:struktBktで設定
 
@@ -47,6 +46,7 @@ double re, re2;                                 // 影響半径，影響半径�
 
 void initializeParticlePositionAndVelocity_for2dim(double x_width, double y_height)
 {
+    int i = 0;
     int iX, iY;
     int nX, nY;
     double x, y, z;
@@ -95,10 +95,11 @@ void initializeParticlePositionAndVelocity_for2dim(double x_width, double y_heig
             {
                 p = {x, y, z, FLUID};
                 position.push_back(p);
+                i++;
             }
         }
     }
-    NumberOfParticles = position.size();
+    NumberOfParticles = i;
     cout << "*** NumberOfParticles = " << NumberOfParticles << " ***" << endl;
     // 速度，加速度を0で初期化
     p = {0, 0, 0, FLUID};
@@ -165,6 +166,7 @@ void initializeParticlePositionAndVelocity_for3dim(double x_width, double y_heig
                     p = {x, y, z, FLUID};
                     position.push_back(p);
                     flagOfParticleGeneration = ON;
+                    i++;
                 }
             }
         }
