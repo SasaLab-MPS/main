@@ -608,3 +608,5 @@ MPS_SEC1/include/Eigen/UmfPackSupport
 *.vtu
 *.exe
 *.gch
+*.a
+*.a
