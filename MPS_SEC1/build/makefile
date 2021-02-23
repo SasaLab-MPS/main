@@ -11,4 +11,4 @@ CFLAGS = -Wall -O2 -o
 
 # オブジェクトファイルの作成
 main : $(SRCS)
-	$(CC) $(CFLAGS) $^ $(AR) $(HEADERS) 
+	$(CC) $(CFLAGS) $^ -l $(AR) $(HEADERS) 
