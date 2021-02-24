@@ -16,7 +16,7 @@ void checkBoundaryCondition(void)
 
     for (int i = 0; i < NumberOfParticles; i++)
     {
-        if (boundaryCondition[i] == GHOST_OR_DUMMY)
+        if (boundaryCondition[i] == GHOST_OR_DUMMY) // setBoundaryConditionで設定
         {
             flagForCheckingBoundaryCondition[i] = GHOST_OR_DUMMY;
         }
