@@ -15,7 +15,6 @@ void structBkt(void)
     DB = re * (1.0 + CRT_NUM); // バケット一辺の長さ
     DB2 = DB * DB;
     DBinv = 1.0 / DB;
-
     // バケット数を計算
     double MAX[3];                          //バケットを構築する最大座標
     MAX[0] = x_MAX + PARTICLE_DISTANCE * 3; // x座標

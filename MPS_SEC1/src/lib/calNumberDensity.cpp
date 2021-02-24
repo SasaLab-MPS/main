@@ -13,7 +13,6 @@ void calNumberDensity(void)
     double xij, yij, zij;
     double distance, distance2;
     double w;
-    numberDensity.resize(NumberOfParticles);
 
     calBkt(); // 粒子が所属するバケットを計算
     for (int i = 0; i < NumberOfParticles; i++)

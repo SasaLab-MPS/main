@@ -11,7 +11,6 @@
 void calGravity(void)
 {
     int i; //  粒子番号
-
     for (i = 0; i < NumberOfParticles; i++)
     { // NumberOfParticles:粒子の総数
         if (position[i].particleType == FLUID)
@@ -29,5 +28,4 @@ void calGravity(void)
             acceleration[i].z = 0.0;
         }
     }
-    
 }

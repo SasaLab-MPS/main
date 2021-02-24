@@ -13,7 +13,6 @@ void writeData_inProfFormat(void)
     int i;
     FILE *fp;
     char fileName[256];
-
     sprintf(fileName, "./prof/output_%04d.prof", FileNumber);
     fp = fopen(fileName, "w");
     fprintf(fp, "%lf\n", Time);

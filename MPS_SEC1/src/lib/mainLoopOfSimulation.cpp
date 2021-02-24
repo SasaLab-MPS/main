@@ -17,10 +17,13 @@ void mainLoopOfSimulation(void)
     coefficientMatrix.setZero(NoP, NoP);    
     sourceTerm.setZero(NoP);
     pressure.setZero(NoP);
+    numberDensity.resize(NumberOfParticles, 0);
 
     writeData_inVtuFormat();
     writeData_inProfFormat();
     structBkt();    // バケットの構築
+
+    // ここまでOK，setBounderyConditionで問題発生?
 
     while (1)
     {

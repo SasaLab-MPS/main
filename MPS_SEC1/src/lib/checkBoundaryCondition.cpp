@@ -70,7 +70,7 @@ void checkBoundaryCondition(void)
     {
         if (flagForCheckingBoundaryCondition[i] == DIRICHLET_BOUNDARY_IS_NOT_CONNECTED)
         {
-            fprintf(stderr, "WARNING: There is no dirichlet boundary condition for %d-th particle.\n", i);
+            fprintf(stderr, "WARNING: There is no dirichlet boundary condition for %d_th particle.\n", i);
         }
     }
 }

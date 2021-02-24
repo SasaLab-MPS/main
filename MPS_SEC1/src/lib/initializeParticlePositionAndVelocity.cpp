@@ -12,15 +12,18 @@
 vector<Position> position;                    // 位置
 vector<Velocity> velocity;                    // 速度
 vector<Acceleration> acceleration;            // 加速度
+// mainLoopで定義
 MatrixXd coefficientMatrix;                   // A:係数行列 = CoefficientMatrix
 VectorXd sourceTerm, pressure;                // b:右辺係数，x:圧力の列ベクトル
-vector<double> numberDensity;                 // 粒子密度，calNumberDensityで定義
+vector<double> numberDensity;                 // 粒子密度
+//
 vector<int> boundaryCondition;                // ディリクレ境界条件を付加するかどうかのフラグ
 vector<int> flagForCheckingBoundaryCondition; // 粒子の集合のどこかにディリクレ境界条件が付加されているかをチェックするためのフラグ
 vector<double> minimumPressure;               // ある粒子近傍での最低圧力
 vector<vector<int>> bkt;                      // バケットid，structBktで定義
 vector<int> Pid;                              // 粒子が所属するバケット番号
 vector<int> neghPar;                          // 対象の粒子近傍の粒子リスト
+
 
 /* グローバル変数定義 */
 int FileNumber;
@@ -50,20 +53,15 @@ void initializeParticlePositionAndVelocity_for2dim(double wx, double hy)
     int nX, nY;
     double ix, iy, iz;
     Position p;
+    Velocity v;
+    Acceleration a;
     int flagOfParticleGeneration;
     int ParticleType;
     int i = 0;
 
-    // cout << "*** call DIM 2 ***" << endl; :OK
-
     // 計算領域全体の大きさ1.0 m x 0.6 m
     nX = (int)(x_MAX / PARTICLE_DISTANCE) + 5;
     nY = (int)(y_MAX / PARTICLE_DISTANCE) + 5;
-
-    //cout << "nX:" << nX << endl; :OK
-    //cout << "nY:" << nY << endl; :OK
-    //cout << "wX:" << wx << endl; :OK
-    //cout << "hY:" << hy << endl; :OK
 
     for (iX = -4; iX < nX; iX++) // 計算領域下限から粒子生成
     {
@@ -108,41 +106,24 @@ void initializeParticlePositionAndVelocity_for2dim(double wx, double hy)
                 flagOfParticleGeneration = ON;
                 ParticleType = FLUID;               
             }
-
+            // 粒子の生成
             if (flagOfParticleGeneration == ON)
             {
                 p = {ix, iy, iz, ParticleType};
+                // 速度，加速度を0で初期化
+                v = {0, 0, 0, ParticleType};
+                a = {0, 0, 0, ParticleType};
+                // 追加
                 position.push_back(p);
+                velocity.push_back(v);
+                acceleration.push_back(a);
                 i++;
             }
         }
     }
 
     NumberOfParticles = i;
-    cout << "*** Position Size = " << position.size() << " ***" << endl;    // OK
     cout << "*** NumberOfParticles = " << NumberOfParticles << " ***" << endl;
-    // 速度，加速度を0で初期化
-    p = {0, 0, 0, FLUID};
-    velocity.resize(NumberOfParticles, p);
-    acceleration.resize(NumberOfParticles);
-
-    /*
-    FILE *fp;
-    char fileName[256];
-
-    sprintf(fileName, "output_position.prof");
-    fp = fopen(fileName, "w");
-    fprintf(fp, "%lf\n", Time);
-    fprintf(fp, "%d\n", NumberOfParticles);
-    for (int i = 0; i < NumberOfParticles; i++)
-    {
-        fprintf(fp, "%d %lf %lf %lf\n", position[i].particleType, position[i].x, position[i].y, position[i].z);
-    }
-    fclose(fp);
-    FileNumber++;
-    */
-
-    cout << "*** Velocity Size = " << velocity.size() << " ***" << endl;
 }
 
 void initializeParticlePositionAndVelocity_for3dim(double wx, double hy, double dz)
@@ -151,6 +132,8 @@ void initializeParticlePositionAndVelocity_for3dim(double wx, double hy, double 
     int nX, nY, nZ;
     double ix, iy, iz;
     Position p;
+    Velocity v;
+    Acceleration a;
     int flagOfParticleGeneration;
     int ParticleType;
     int i = 0;
@@ -206,7 +189,13 @@ void initializeParticlePositionAndVelocity_for3dim(double wx, double hy, double 
                 if (flagOfParticleGeneration == ON)
                 {
                     p = {ix, iy, iz, ParticleType};
+                    // 速度，加速度を0で初期化
+                    v = {0, 0, 0, ParticleType};
+                    a = {0, 0, 0, ParticleType};
+                    // 追加
                     position.push_back(p);
+                    velocity.push_back(v);
+                    acceleration.push_back(a);
                     i++;
                 }
             }
@@ -215,8 +204,4 @@ void initializeParticlePositionAndVelocity_for3dim(double wx, double hy, double 
 
     NumberOfParticles = i;
     cout << "*** NumberOfParticles = " << NumberOfParticles << " ***" << endl;
-    // 速度，加速度を0で初期化
-    p = {0, 0, 0, FLUID};
-    velocity.resize(NumberOfParticles, p);
-    acceleration.resize(NumberOfParticles);
 }
