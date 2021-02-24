@@ -66,22 +66,22 @@ void initializeParticlePositionAndVelocity_for2dim(double x_width, double y_heig
             /* dummy wall region */
             if (((x > -4.0 * PARTICLE_DISTANCE + EPS) && (x <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((y > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (y <= y_MAX + EPS)))
             {
-                p = {x, y, z, DUMMY_WALL};
-                position.push_back(p);
+                //p = {x, y, z, DUMMY_WALL};
+                //position.push_back(p);
             }
 
             /* wall region */
             if (((x > -2.0 * PARTICLE_DISTANCE + EPS) && (x <= x_MAX + 2.0 * PARTICLE_DISTANCE + EPS)) && ((y > 0.0 - 2.0 * PARTICLE_DISTANCE + EPS) && (y <= y_MAX + EPS)))
             {
-                p = {x, y, z, WALL};
-                position.push_back(p);
+                //p = {x, y, z, WALL};
+                //position.push_back(p);
             }
 
             /* wall region */
             if (((x > -4.0 * PARTICLE_DISTANCE + EPS) && (x <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((y > y_MAX - 2.0 * PARTICLE_DISTANCE + EPS) && (y <= y_MAX + EPS)))
             {
-                p = {x, y, z, WALL};
-                position.push_back(p);
+                // p = {x, y, z, WALL};
+                //position.push_back(p);
             }
 
             /* empty region 粒子を生成しない */
@@ -133,24 +133,24 @@ void initializeParticlePositionAndVelocity_for3dim(double x_width, double y_heig
                 /* dummy wall region */
                 if ((((x > -4.0 * PARTICLE_DISTANCE + EPS) && (x <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((y > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (y <= y_MAX + EPS))) && ((z > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (z <= z_MAX + 4.0 * PARTICLE_DISTANCE + EPS)))
                 {
-                    p = {x, y, z, DUMMY_WALL};
-                    position.push_back(p);
+                    //p = {x, y, z, DUMMY_WALL};
+                    //position.push_back(p);
                     flagOfParticleGeneration = ON;
                 }
 
                 /* wall region */
                 if ((((x > -2.0 * PARTICLE_DISTANCE + EPS) && (x <= x_MAX + 2.0 * PARTICLE_DISTANCE + EPS)) && ((y > 0.0 - 2.0 * PARTICLE_DISTANCE + EPS) && (y <= y_MAX + EPS))) && ((z > 0.0 - 2.0 * PARTICLE_DISTANCE + EPS) && (z <= z_MAX + 2.0 * PARTICLE_DISTANCE + EPS)))
                 {
-                    p = {x, y, z, WALL};
-                    position.push_back(p);
+                    //p = {x, y, z, WALL};
+                    //position.push_back(p);
                     flagOfParticleGeneration = ON;
                 }
 
                 /* wall region */
                 if ((((x > -4.0 * PARTICLE_DISTANCE + EPS) && (x <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((y > y_MAX - 2.0 * PARTICLE_DISTANCE + EPS) && (y <= y_MAX + EPS))) && ((z > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (z <= z_MAX + 4.0 * PARTICLE_DISTANCE + EPS)))
                 {
-                    p = {x, y, z, WALL};
-                    position.push_back(p);
+                    //p = {x, y, z, WALL};
+                    //position.push_back(p);
                     flagOfParticleGeneration = ON;
                 }
 
