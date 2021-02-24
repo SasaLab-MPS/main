@@ -35,7 +35,7 @@ double N0_forLaplacian;
 double Lambda;
 double collisionDistance, collisionDistance2;
 double FluidDensity;
-double x_MAX = 1.0, y_MAX = 0.6, z_MAX = 0.3;   // 計算領域の最大値:main.cppで設定
+double x_MAX = 1.0, y_MAX = 0.6, z_MAX = 0.3;   // 計算領域の最大値
 double Pos_MIN[3] = {0, 0, 0};                  // 計算領域の最小値:struktBktで設定
 
 // バケット構築のための変数
@@ -44,56 +44,70 @@ int nBx, nBy, nBz, nBxy, nBxyz;                 // x, y, z方向のバケット�
 double re, re2;                                 // 影響半径，影響半径の二乗
 
 
-void initializeParticlePositionAndVelocity_for2dim(double x_width, double y_height)
+void initializeParticlePositionAndVelocity_for2dim(double wx, double hy)
 {
     int i = 0;
     int iX, iY;
     int nX, nY;
-    double x, y, z;
+    double ix, iy, iz;
     Position p;
+
+    // cout << "*** call DIM 2 ***" << endl; :OK
 
     // 計算領域全体の大きさ1.0 m x 0.6 m
     nX = (int)(x_MAX / PARTICLE_DISTANCE) + 5;
     nY = (int)(y_MAX / PARTICLE_DISTANCE) + 5;
+
+    //cout << "nX:" << nX << endl; :OK
+    //cout << "nY:" << nY << endl; :OK
+    //cout << "wX:" << wx << endl; :OK
+    //cout << "hY:" << hy << endl; :OK
+
     for (iX = -4; iX < nX; iX++) // 計算領域下限から粒子生成
     {
         for (iY = -4; iY < nY; iY++)
         {
-            x = PARTICLE_DISTANCE * (double)(iX); // 粒子生成候補位置
-            y = PARTICLE_DISTANCE * (double)(iY);
-            z = 0.0;    // 奥行は0で設定
+            ix = PARTICLE_DISTANCE * (double)(iX); // 粒子生成候補位置
+            iy = PARTICLE_DISTANCE * (double)(iY);
+            iz = 0.0;    // 奥行は0で設定
+            
+            // cout << "ix:" << ix << endl; : OK
 
             /* dummy wall region */
-            if (((x > -4.0 * PARTICLE_DISTANCE + EPS) && (x <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((y > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (y <= y_MAX + EPS)))
+            if (((ix > -4.0 * PARTICLE_DISTANCE + EPS) && (ix <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((iy > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (iy <= y_MAX + EPS)))
             {
                 //p = {x, y, z, DUMMY_WALL};
                 //position.push_back(p);
+                continue;
             }
 
             /* wall region */
-            if (((x > -2.0 * PARTICLE_DISTANCE + EPS) && (x <= x_MAX + 2.0 * PARTICLE_DISTANCE + EPS)) && ((y > 0.0 - 2.0 * PARTICLE_DISTANCE + EPS) && (y <= y_MAX + EPS)))
+            if (((ix > -2.0 * PARTICLE_DISTANCE + EPS) && (ix <= x_MAX + 2.0 * PARTICLE_DISTANCE + EPS)) && ((iy > 0.0 - 2.0 * PARTICLE_DISTANCE + EPS) && (iy <= y_MAX + EPS)))
             {
                 //p = {x, y, z, WALL};
                 //position.push_back(p);
+                continue;
             }
 
             /* wall region */
-            if (((x > -4.0 * PARTICLE_DISTANCE + EPS) && (x <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((y > y_MAX - 2.0 * PARTICLE_DISTANCE + EPS) && (y <= y_MAX + EPS)))
+            if (((ix > -4.0 * PARTICLE_DISTANCE + EPS) && (ix <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((iy > y_MAX - 2.0 * PARTICLE_DISTANCE + EPS) && (iy <= y_MAX + EPS)))
             {
                 // p = {x, y, z, WALL};
                 //position.push_back(p);
+                continue;
             }
 
             /* empty region 粒子を生成しない */
-            if (((x > 0.0 + EPS) && (x <= x_MAX + EPS)) && (y > 0.0 + EPS))
+            if (((ix > 0.0 + EPS) && (ix <= x_MAX + EPS)) && (iy > 0.0 + EPS))
             {
                 continue;
             }
 
             /* fluid region：流体領域を設定 */
-            if (((x > 0.0 + EPS) && (x <= x_width + EPS)) && ((y > 0.0 + EPS) && (y <= y_height + EPS)))
+            if (((ix > 0.0 + EPS) && (ix <= wx + EPS)) && ((iy > 0.0 + EPS) && (iy <= hy + EPS)))
             {
-                p = {x, y, z, FLUID};
+                cout << "*** call FLUID region ***" << endl;
+                p = {ix, iy, iz, FLUID};
                 position.push_back(p);
                 i++;
             }
@@ -107,13 +121,12 @@ void initializeParticlePositionAndVelocity_for2dim(double x_width, double y_heig
     acceleration.resize(NumberOfParticles);
 }
 
-void initializeParticlePositionAndVelocity_for3dim(double x_width, double y_height, double z_depth)
+void initializeParticlePositionAndVelocity_for3dim(double wx, double hy, double dz)
 {
     int iX, iY, iZ;
     int nX, nY, nZ;
-    double x, y, z;
+    double ix, iy, iz;
     int i = 0;
-    int flagOfParticleGeneration;
     Position p;
 
     nX = (int)(x_MAX / PARTICLE_DISTANCE) + 5;
@@ -125,47 +138,46 @@ void initializeParticlePositionAndVelocity_for3dim(double x_width, double y_heig
         {
             for (iZ = -4; iZ < nZ; iZ++)
             {
-                x = PARTICLE_DISTANCE * iX;
-                y = PARTICLE_DISTANCE * iY;
-                z = PARTICLE_DISTANCE * iZ;
-                flagOfParticleGeneration = OFF;
+                ix = PARTICLE_DISTANCE * iX;
+                iy = PARTICLE_DISTANCE * iY;
+                iz = PARTICLE_DISTANCE * iZ;
+
 
                 /* dummy wall region */
-                if ((((x > -4.0 * PARTICLE_DISTANCE + EPS) && (x <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((y > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (y <= y_MAX + EPS))) && ((z > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (z <= z_MAX + 4.0 * PARTICLE_DISTANCE + EPS)))
+                if ((((ix > -4.0 * PARTICLE_DISTANCE + EPS) && (ix <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((iy > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (iy <= y_MAX + EPS))) && ((iz > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (iz <= z_MAX + 4.0 * PARTICLE_DISTANCE + EPS)))
                 {
                     //p = {x, y, z, DUMMY_WALL};
                     //position.push_back(p);
-                    flagOfParticleGeneration = ON;
+                    continue;
                 }
 
                 /* wall region */
-                if ((((x > -2.0 * PARTICLE_DISTANCE + EPS) && (x <= x_MAX + 2.0 * PARTICLE_DISTANCE + EPS)) && ((y > 0.0 - 2.0 * PARTICLE_DISTANCE + EPS) && (y <= y_MAX + EPS))) && ((z > 0.0 - 2.0 * PARTICLE_DISTANCE + EPS) && (z <= z_MAX + 2.0 * PARTICLE_DISTANCE + EPS)))
+                if ((((ix > -2.0 * PARTICLE_DISTANCE + EPS) && (ix <= x_MAX + 2.0 * PARTICLE_DISTANCE + EPS)) && ((iy > 0.0 - 2.0 * PARTICLE_DISTANCE + EPS) && (iy <= y_MAX + EPS))) && ((iz > 0.0 - 2.0 * PARTICLE_DISTANCE + EPS) && (iz <= z_MAX + 2.0 * PARTICLE_DISTANCE + EPS)))
                 {
                     //p = {x, y, z, WALL};
                     //position.push_back(p);
-                    flagOfParticleGeneration = ON;
+                    continue;
                 }
 
                 /* wall region */
-                if ((((x > -4.0 * PARTICLE_DISTANCE + EPS) && (x <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((y > y_MAX - 2.0 * PARTICLE_DISTANCE + EPS) && (y <= y_MAX + EPS))) && ((z > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (z <= z_MAX + 4.0 * PARTICLE_DISTANCE + EPS)))
+                if ((((ix > -4.0 * PARTICLE_DISTANCE + EPS) && (ix <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((iy > y_MAX - 2.0 * PARTICLE_DISTANCE + EPS) && (iy <= y_MAX + EPS))) && ((iz > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (iz <= z_MAX + 4.0 * PARTICLE_DISTANCE + EPS)))
                 {
                     //p = {x, y, z, WALL};
                     //position.push_back(p);
-                    flagOfParticleGeneration = ON;
+                    continue;
                 }
 
                 /* empty region */
-                if ((((x > 0.0 + EPS) && (x <= x_MAX + EPS)) && (y > 0.0 + EPS)) && ((z > 0.0 + EPS) && (z <= z_MAX + EPS)))
+                if ((((ix > 0.0 + EPS) && (ix <= x_MAX + EPS)) && (iy > 0.0 + EPS)) && ((iz > 0.0 + EPS) && (iz <= z_MAX + EPS)))
                 {
-                    flagOfParticleGeneration = OFF;
+                    continue;
                 }
 
                 /* fluid region */
-                if ((((x > 0.0 + EPS) && (x <= x_width + EPS)) && ((y > 0.0 + EPS) && (y < y_height + EPS))) && ((z > 0.0 + EPS) && (z <= z_depth + EPS)))
+                if ((((ix > 0.0 + EPS) && (ix <= wx + EPS)) && ((iy > 0.0 + EPS) && (iy < hy + EPS))) && ((iz > 0.0 + EPS) && (iz <= dz + EPS)))
                 {
-                    p = {x, y, z, FLUID};
+                    p = {ix, iy, iz, FLUID};
                     position.push_back(p);
-                    flagOfParticleGeneration = ON;
                     i++;
                 }
             }
