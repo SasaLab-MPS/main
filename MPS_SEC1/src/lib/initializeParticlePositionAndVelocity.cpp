@@ -46,11 +46,13 @@ double re, re2;                                 // 影響半径，影響半径�
 
 void initializeParticlePositionAndVelocity_for2dim(double wx, double hy)
 {
-    int i = 0;
     int iX, iY;
     int nX, nY;
     double ix, iy, iz;
     Position p;
+    int flagOfParticleGeneration;
+    int ParticleType;
+    int i = 0;
 
     // cout << "*** call DIM 2 ***" << endl; :OK
 
@@ -70,55 +72,77 @@ void initializeParticlePositionAndVelocity_for2dim(double wx, double hy)
             ix = PARTICLE_DISTANCE * (double)(iX); // 粒子生成候補位置
             iy = PARTICLE_DISTANCE * (double)(iY);
             iz = 0.0;    // 奥行は0で設定
-            
-            // cout << "ix:" << ix << endl; : OK
+            flagOfParticleGeneration = OFF;
 
             /* dummy wall region */
             if (((ix > -4.0 * PARTICLE_DISTANCE + EPS) && (ix <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((iy > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (iy <= y_MAX + EPS)))
             {
-                //p = {x, y, z, DUMMY_WALL};
-                //position.push_back(p);
-                continue;
+                flagOfParticleGeneration = ON;
+                ParticleType = DUMMY_WALL;
             }
 
             /* wall region */
             if (((ix > -2.0 * PARTICLE_DISTANCE + EPS) && (ix <= x_MAX + 2.0 * PARTICLE_DISTANCE + EPS)) && ((iy > 0.0 - 2.0 * PARTICLE_DISTANCE + EPS) && (iy <= y_MAX + EPS)))
             {
-                //p = {x, y, z, WALL};
-                //position.push_back(p);
-                continue;
+                flagOfParticleGeneration = ON;
+                ParticleType = WALL;
             }
 
             /* wall region */
             if (((ix > -4.0 * PARTICLE_DISTANCE + EPS) && (ix <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((iy > y_MAX - 2.0 * PARTICLE_DISTANCE + EPS) && (iy <= y_MAX + EPS)))
             {
-                // p = {x, y, z, WALL};
-                //position.push_back(p);
-                continue;
+                flagOfParticleGeneration = ON;
+                ParticleType = WALL;
             }
 
             /* empty region 粒子を生成しない */
             if (((ix > 0.0 + EPS) && (ix <= x_MAX + EPS)) && (iy > 0.0 + EPS))
             {
-                continue;
+                flagOfParticleGeneration = OFF;
             }
 
             /* fluid region：流体領域を設定 */
             if (((ix > 0.0 + EPS) && (ix <= wx + EPS)) && ((iy > 0.0 + EPS) && (iy <= hy + EPS)))
             {
-                cout << "*** call FLUID region ***" << endl;
-                p = {ix, iy, iz, FLUID};
+                //cout << "*** make FLUID region ***" << endl; :OK
+                flagOfParticleGeneration = ON;
+                ParticleType = FLUID;               
+            }
+
+            if (flagOfParticleGeneration == ON)
+            {
+                p = {ix, iy, iz, ParticleType};
                 position.push_back(p);
                 i++;
             }
         }
     }
+
     NumberOfParticles = i;
+    cout << "*** Position Size = " << position.size() << " ***" << endl;    // OK
     cout << "*** NumberOfParticles = " << NumberOfParticles << " ***" << endl;
     // 速度，加速度を0で初期化
     p = {0, 0, 0, FLUID};
     velocity.resize(NumberOfParticles, p);
     acceleration.resize(NumberOfParticles);
+
+    /*
+    FILE *fp;
+    char fileName[256];
+
+    sprintf(fileName, "output_position.prof");
+    fp = fopen(fileName, "w");
+    fprintf(fp, "%lf\n", Time);
+    fprintf(fp, "%d\n", NumberOfParticles);
+    for (int i = 0; i < NumberOfParticles; i++)
+    {
+        fprintf(fp, "%d %lf %lf %lf\n", position[i].particleType, position[i].x, position[i].y, position[i].z);
+    }
+    fclose(fp);
+    FileNumber++;
+    */
+
+    cout << "*** Velocity Size = " << velocity.size() << " ***" << endl;
 }
 
 void initializeParticlePositionAndVelocity_for3dim(double wx, double hy, double dz)
@@ -126,8 +150,10 @@ void initializeParticlePositionAndVelocity_for3dim(double wx, double hy, double 
     int iX, iY, iZ;
     int nX, nY, nZ;
     double ix, iy, iz;
-    int i = 0;
     Position p;
+    int flagOfParticleGeneration;
+    int ParticleType;
+    int i = 0;
 
     nX = (int)(x_MAX / PARTICLE_DISTANCE) + 5;
     nY = (int)(y_MAX / PARTICLE_DISTANCE) + 5;
@@ -141,48 +167,52 @@ void initializeParticlePositionAndVelocity_for3dim(double wx, double hy, double 
                 ix = PARTICLE_DISTANCE * iX;
                 iy = PARTICLE_DISTANCE * iY;
                 iz = PARTICLE_DISTANCE * iZ;
-
+                flagOfParticleGeneration = OFF;
 
                 /* dummy wall region */
                 if ((((ix > -4.0 * PARTICLE_DISTANCE + EPS) && (ix <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((iy > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (iy <= y_MAX + EPS))) && ((iz > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (iz <= z_MAX + 4.0 * PARTICLE_DISTANCE + EPS)))
                 {
-                    //p = {x, y, z, DUMMY_WALL};
-                    //position.push_back(p);
-                    continue;
+                    flagOfParticleGeneration = ON;
+                    ParticleType = DUMMY_WALL;
                 }
 
                 /* wall region */
                 if ((((ix > -2.0 * PARTICLE_DISTANCE + EPS) && (ix <= x_MAX + 2.0 * PARTICLE_DISTANCE + EPS)) && ((iy > 0.0 - 2.0 * PARTICLE_DISTANCE + EPS) && (iy <= y_MAX + EPS))) && ((iz > 0.0 - 2.0 * PARTICLE_DISTANCE + EPS) && (iz <= z_MAX + 2.0 * PARTICLE_DISTANCE + EPS)))
                 {
-                    //p = {x, y, z, WALL};
-                    //position.push_back(p);
-                    continue;
+                    flagOfParticleGeneration = ON;
+                    ParticleType = WALL;
                 }
 
                 /* wall region */
                 if ((((ix > -4.0 * PARTICLE_DISTANCE + EPS) && (ix <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((iy > y_MAX - 2.0 * PARTICLE_DISTANCE + EPS) && (iy <= y_MAX + EPS))) && ((iz > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (iz <= z_MAX + 4.0 * PARTICLE_DISTANCE + EPS)))
                 {
-                    //p = {x, y, z, WALL};
-                    //position.push_back(p);
-                    continue;
+                    flagOfParticleGeneration = ON;
+                    ParticleType = WALL;
                 }
 
                 /* empty region */
                 if ((((ix > 0.0 + EPS) && (ix <= x_MAX + EPS)) && (iy > 0.0 + EPS)) && ((iz > 0.0 + EPS) && (iz <= z_MAX + EPS)))
                 {
-                    continue;
+                    flagOfParticleGeneration = OFF;
                 }
 
                 /* fluid region */
                 if ((((ix > 0.0 + EPS) && (ix <= wx + EPS)) && ((iy > 0.0 + EPS) && (iy < hy + EPS))) && ((iz > 0.0 + EPS) && (iz <= dz + EPS)))
                 {
-                    p = {ix, iy, iz, FLUID};
+                    flagOfParticleGeneration = ON;
+                    ParticleType = FLUID;
+                }
+
+                if (flagOfParticleGeneration == ON)
+                {
+                    p = {ix, iy, iz, ParticleType};
                     position.push_back(p);
                     i++;
                 }
             }
         }
     }
+
     NumberOfParticles = i;
     cout << "*** NumberOfParticles = " << NumberOfParticles << " ***" << endl;
     // 速度，加速度を0で初期化
