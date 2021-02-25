@@ -22,6 +22,20 @@ void calBkt(void) {
         int iz = (int)((position[i].z - Pos_MIN[2]) * DBinv) + 1;
         int id = iz * nBxy + iy *nBx + ix;
 
-        bkt[id].push_back(i);
+        bkt[id].emplace_back(i);
     }
+
+    FILE *fp;
+    char fileName[256];
+    sprintf(fileName, "output_BKT_particles.prof");
+    fp = fopen(fileName, "w");
+    fprintf(fp, "%d\n", NumberOfParticles);
+    for (int i = 0; i < bkts; i++)
+    {
+        for(int j = 0; j < bkt[i].size(); j++) {
+            fprintf(fp, "%d:%d ", i, bkt[i][j]);
+        }
+        fprintf(fp, "\n");
+    }
+    fclose(fp);
 }

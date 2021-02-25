@@ -31,8 +31,8 @@ void checkBoundaryCondition(void)
     }
 
     calBkt();
-    cout << "bkt size:" << bkt.size() << endl; 
-    cout << "bkt[1][0]:" << bkt[1][0] << endl;
+    cout << "bkt size:" << bkt.size() << endl;
+    cout << "bkt[27][2]:" << bkt[27].at(2) << endl;  // OK!, キチンとcalBktは動作している
 
     do
     {
