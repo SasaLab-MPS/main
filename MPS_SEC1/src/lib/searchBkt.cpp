@@ -10,6 +10,7 @@
 
 void searchBkt(int i) {
   int particle;
+  int id;   // バケットのid
   neghPar.clear(); // 要素の全削除
   /* バケット法による粒子の探索効率向上 */
   // 粒子iの所属するバケットのid
@@ -23,17 +24,12 @@ void searchBkt(int i) {
     for (int jy = bktid[1] - 1; jy <= bktid[1] + 1; jy++) {
       for (int jx = bktid[0] - 1; jx <= bktid[0] + 1; jx++) {
         // バケットのidを計算, 2次元のときnBxy = 0としている
-        int id = jz * nBxy + jy * nBx + jx;
-        if (bkt[id].empty()) // バケット内に粒子が存在しない
-        {
-          continue;
-        }
-        for(int k = 0; k < bkt[id].size(); k++) {
-          particle = bkt[id][k];
+        id = jz * nBxy + jy * nBx + jx;
+        for(int j = 0; j < bkt[id].size(); j++) {
+          particle = bkt[id][j];
           neghPar.push_back(particle);
         }
       }
     }
   }
-
 }

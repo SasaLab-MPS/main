@@ -103,6 +103,7 @@ extern double x_MAX, y_MAX, z_MAX;          // 計算領域の最大値:main.cpp
 extern double Pos_MIN[3];                   // 計算領域の最小値:struktBktで設定
 // バケット構築のための変数
 extern double DB, DB2, DBinv;               // バケット一辺の長さ，その二乗，逆数
+extern int bkts;                            // バケットの総数，initilizationで定義
 extern int nBx, nBy, nBz, nBxy, nBxyz;      // x, y, z方向のバケット数とその積
 extern double re, re2;                      // 影響半径，影響半径の二乗
 

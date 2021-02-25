@@ -31,7 +31,9 @@ void checkBoundaryCondition(void)
     }
 
     calBkt();
-    
+    cout << "bkt size:" << bkt.size() << endl; 
+    cout << "bkt[1][0]:" << bkt[1][0] << endl;
+
     do
     {
         count = 0;
@@ -41,6 +43,7 @@ void checkBoundaryCondition(void)
             {
                 /* バケット法による粒子の探索 */
                 searchBkt(i);
+                //cout << "neghPar:" << neghPar[2] << endl; // 反応せず:戻り値をvectorにするべきか？
                 int j;
                 for(int k = 0; k < neghPar.size(); k++) {
                     j = neghPar[k];     // particle j

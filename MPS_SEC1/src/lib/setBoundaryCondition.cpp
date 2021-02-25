@@ -14,8 +14,6 @@ void setBoundaryCondition(void)
     double beta = THRESHOLD_RATIO_OF_NUMBER_DENSITY;
     boundaryCondition.resize(NumberOfParticles);
 
-    cout << "boundaryCondition size:" << boundaryCondition.size() << endl;
-
     for (int i = 0; i < NumberOfParticles; i++)
     {
         if (position[i].particleType == GHOST || position[i].particleType == DUMMY_WALL)
@@ -31,17 +29,4 @@ void setBoundaryCondition(void)
             boundaryCondition[i] = INNER_PARTICLE;  // 内部粒子
         }
     }
-
-
-    FILE *fp;
-    char fileName[256];
-    sprintf(fileName, "output_bounderycondition.prof");
-    fp = fopen(fileName, "w");
-    fprintf(fp, "%lf\n", Time);
-    fprintf(fp, "%d\n", NumberOfParticles);
-    for (int i = 0; i < NumberOfParticles; i++)
-    {
-        fprintf(fp, "%d \n", boundaryCondition[i]);
-    }
-    fclose(fp);
 }

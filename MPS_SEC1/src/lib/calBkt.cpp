@@ -10,6 +10,7 @@
 
 void calBkt(void) {
     bkt.clear(); // 全てのバケットを粒子が無い状態に
+    bkt.resize(bkts);
     
     for(int i = 0; i < NumberOfParticles; i++) {
         if (position[i].particleType == GHOST)
