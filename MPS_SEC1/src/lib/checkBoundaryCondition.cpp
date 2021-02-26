@@ -32,42 +32,40 @@ void checkBoundaryCondition(void)
 
     calBkt();
     cout << "bkt size:" << bkt.size() << endl;
-    cout << "bkt[27][2]:" << bkt[27].at(2) << endl;  // OK!, キチンとcalBktは動作している
+    //cout << "bkt[27][2]:" << bkt[27].at(2) << endl;  // OK!, キチンとcalBktは動作している
 
-    do
+
+    for (int i = 0; i < NumberOfParticles; i++)
     {
-        count = 0;
-        for (int i = 0; i < NumberOfParticles; i++)
+        if (flagForCheckingBoundaryCondition[i] == DIRICHLET_BOUNDARY_IS_CONNECTED)
         {
-            if (flagForCheckingBoundaryCondition[i] == DIRICHLET_BOUNDARY_IS_CONNECTED)
-            {
-                /* バケット法による粒子の探索 */
-                searchBkt(i);
-                //cout << "neghPar:" << neghPar[2] << endl; // 反応せず:戻り値をvectorにするべきか？
-                int j;
-                for(int k = 0; k < neghPar.size(); k++) {
-                    j = neghPar[k];     // particle j
-                    if (j == i)
-                        continue; 
-                    // その粒子自身とゴースト粒子は計算に含めない
-                    if ((position[j].particleType == GHOST) || (position[j].particleType == DUMMY_WALL))
+            /* バケット法による粒子の探索 */
+            searchBkt(i);
+            //cout << "neghPar:" << neghPar[2] << endl; // 反応せず:戻り値をvectorにするべきか？
+            int j;
+            for(int k = 0; k < neghPar.size(); k++) {
+                j = neghPar[k];     // particle j
+                if (j == i)
+                    continue; 
+                // その粒子自身とゴースト粒子は計算に含めない
+                if ((position[j].particleType == GHOST) || (position[j].particleType == DUMMY_WALL))
+                    continue;
+                if (flagForCheckingBoundaryCondition[j] == DIRICHLET_BOUNDARY_IS_NOT_CONNECTED)
+                {
+                    xij = position[j].x - position[i].x;
+                    yij = position[j].y - position[i].y;
+                    zij = position[j].z - position[i].z;
+                    distance2 = (xij * xij) + (yij * yij) + (zij * zij);
+                    if (distance2 >= Re2_forLaplacian)
                         continue;
-                    if (flagForCheckingBoundaryCondition[j] == DIRICHLET_BOUNDARY_IS_NOT_CONNECTED)
-                    {
-                        xij = position[j].x - position[i].x;
-                        yij = position[j].y - position[i].y;
-                        zij = position[j].z - position[i].z;
-                        distance2 = (xij * xij) + (yij * yij) + (zij * zij);
-                        if (distance2 >= Re2_forLaplacian)
-                            continue;
-                        flagForCheckingBoundaryCondition[j] = DIRICHLET_BOUNDARY_IS_CONNECTED;
-                    }
+                    flagForCheckingBoundaryCondition[j] = DIRICHLET_BOUNDARY_IS_CONNECTED;
                 }
-                flagForCheckingBoundaryCondition[i] = DIRICHLET_BOUNDARY_IS_CHECKED;
-                count++;
             }
+            flagForCheckingBoundaryCondition[i] = DIRICHLET_BOUNDARY_IS_CHECKED;
+            count++;
         }
-    } while (count != 0); /* This procedure is repeated until the all fluid or wall particles (which have Dirhchlet boundary condition in the particle group) are in the state of "DIRICHLET_BOUNDARY_IS_CHECKED".*/
+    }
+    /* This procedure is repeated until the all fluid or wall particles (which have Dirhchlet boundary condition in the particle group) are in the state of "DIRICHLET_BOUNDARY_IS_CHECKED".*/
 
     for (int i = 0; i < NumberOfParticles; i++)
     {

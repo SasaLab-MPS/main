@@ -26,7 +26,7 @@ void setBoundaryCondition(void)
         }
         else
         {
-            boundaryCondition[i] = INNER_PARTICLE;  // 内部粒子
+            boundaryCondition[i] = INNER_PARTICLE;  // 内部粒子または壁粒子
         }
     }
 }
