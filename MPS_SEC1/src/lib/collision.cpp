@@ -43,7 +43,7 @@ void collision(void)
             /* バケット法による粒子の探索効率向上 */
             searchBkt(i);   // 粒子i近傍の粒子をneghParにリスト化
             int j;          // particle j
-            for(int k = 0; k < neghPar.size(); k++) {
+            for(int k = 0; k < (int)neghPar.size(); k++) {
                 j = neghPar[k];
                 if ((j == i) || (position[j].particleType == GHOST))
                     continue; // その粒子自身とゴースト粒子は計算に含めない

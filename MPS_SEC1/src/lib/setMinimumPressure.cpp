@@ -22,7 +22,7 @@ void setMinimumPressure(void)
 
         searchBkt(i);
         int j;
-        for(int k = 0; k < neghPar.size(); k++) {
+        for(int k = 0; k < (int)neghPar.size(); k++) {
             j = neghPar[k];
             if ((j == i) || (position[j].particleType == GHOST))
                 continue;
@@ -40,4 +40,5 @@ void setMinimumPressure(void)
             }
         }
     }
+    cout << "call setMinimumPressure" << endl;
 }

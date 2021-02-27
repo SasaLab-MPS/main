@@ -23,12 +23,12 @@ void setMatrix(void)
     for (int i = 0; i < NumberOfParticles; i++)
     {
         if (boundaryCondition[i] != INNER_PARTICLE)
-            continue;\
+            continue;
         /* バケット法による粒子の探索効率向上 */
         searchBkt(i);
         // 粒子の所属するバケットのid
         int j;
-        for(int k = 0; k < neghPar.size(); k++) {
+        for(int k = 0; k < (int)neghPar.size(); k++) {
             j = neghPar[k];
             if ((j == i) || (position[j].particleType == GHOST))
                 continue; // その粒子自身とゴースト粒子は計算に含めない

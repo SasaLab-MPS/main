@@ -8,15 +8,17 @@
 #include "../../include/functions.hpp"
 #include "../../include/inputs.hpp"
 
-int iMAX = ARRAY_SIZE * 2;
-int N_size = ARRAY_SIZE; // 行列サイズ
-
 // CG法：共役勾配法
 void solveByCGmethod(void)
 {
-    MatrixXd A = coefficientMatrix;
-    VectorXd b = sourceTerm, x = pressure;
-    VectorXd p(N_size), r(N_size), Ax(N_size), Ap(N_size);
+    int NoP = NumberOfParticles; // 行列サイズ
+    int iMAX = 2*NoP;
+    MatrixXd A(NoP, NoP);
+    VectorXd b(NoP), x(NoP), p(NoP), r(NoP), Ax(NoP), Ap(NoP);
+
+    A = coefficientMatrix;
+    b = sourceTerm;
+    x = pressure;
 
     // Axを計算
     Ax = A * x;
@@ -36,7 +38,6 @@ void solveByCGmethod(void)
         r -= alpha * Ap;
         // 誤差を計算
         error = r.norm();
-        //printf("LOOP : %d\t Error : %g\n", i, error);
         if (error < cgEPS)
         {
             break;

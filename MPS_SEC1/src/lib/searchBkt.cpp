@@ -25,7 +25,7 @@ void searchBkt(int i) {
       for (int jx = bktid[0] - 1; jx <= bktid[0] + 1; jx++) {
         // バケットのidを計算, 2次元のときnBxy = 0としている
         id = jz * nBxy + jy * nBx + jx;
-        for(int j = 0; j < bkt[id].size(); j++) {
+        for(int j = 0; j < (int)bkt[id].size(); j++) {
           particle = bkt[id][j];
           neghPar.emplace_back(particle);
         }
@@ -36,18 +36,4 @@ void searchBkt(int i) {
   // 重複を削除
   sort(neghPar.begin(), neghPar.end());
   neghPar.erase(unique(neghPar.begin(), neghPar.end()), neghPar.end());
-
-  /*
-  FILE *fp;
-  char fileName[256];
-  sprintf(fileName, "output_negPar.prof");
-  fp = fopen(fileName, "w");
-  fprintf(fp, "%d: ", i);
-  for (int k = 0; k < neghPar.size(); k++)
-  {
-    fprintf(fp, "%d, ", neghPar[k]);
-  }
-  fprintf(fp, "\n");
-  fclose(fp);
-  */
 }

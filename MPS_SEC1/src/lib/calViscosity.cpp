@@ -29,7 +29,7 @@ void calViscosity(void)
 
         searchBkt(i);
         int j;
-        for(int k = 0; k < neghPar.size(); k++) {
+        for(int k = 0; k < (int)neghPar.size(); k++) {
             j = neghPar[k];     // particle jの番号
             if ((j == i) || (position[j].particleType == GHOST))
                 continue; // その粒子自身とゴースト粒子は計算に含めない

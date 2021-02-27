@@ -32,7 +32,7 @@ void calBkt(void) {
     fprintf(fp, "%d\n", NumberOfParticles);
     for (int i = 0; i < bkts; i++)
     {
-        for(int j = 0; j < bkt[i].size(); j++) {
+        for(int j = 0; j < (int)bkt[i].size(); j++) {
             fprintf(fp, "%d:%d ", i, bkt[i][j]);
         }
         fprintf(fp, "\n");

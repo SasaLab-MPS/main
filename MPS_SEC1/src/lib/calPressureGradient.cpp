@@ -30,7 +30,7 @@ void calPressureGradient(void)
 
         searchBkt(i);
         int j;
-        for(int k = 0; k < neghPar.size(); k++) {
+        for(int k = 0; k < (int)neghPar.size(); k++) {
             j = neghPar[k];
             if (j == i)
                 continue;
@@ -61,4 +61,5 @@ void calPressureGradient(void)
         acceleration[i].y = (-1.0) * gradient_y / FluidDensity;
         acceleration[i].z = (-1.0) * gradient_z / FluidDensity;
     }
+    cout << "call calPressureGradient" << endl;
 }
