@@ -39,6 +39,8 @@ void mainLoopOfSimulation(void)
         iTimeStep++;
         Time += DT;
 
+        cout << "Time:" << Time << endl;
+
         // 20ステップ毎に計算結果をファイルに出力
         if ((iTimeStep % OUTPUT_INTERVAL) == 0)
         {

@@ -26,4 +26,5 @@ void moveParticleUsingPressureGradient(void)
         acceleration[i].y = 0.0;
         acceleration[i].z = 0.0;
     }
+    //cout << "call moveParticleUsingPressureGradient" << endl;
 }

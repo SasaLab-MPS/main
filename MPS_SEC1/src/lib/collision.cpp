@@ -86,4 +86,5 @@ void collision(void)
             velocity[i].z = VelocityAfterCollision[i].z;
         }
     }
+    cout << "call collision" << endl;
 }

@@ -18,6 +18,7 @@ void calViscosity(void)
 
     a = (KINEMATIC_VISCOSITY) * (2.0 * DIM) / (N0_forLaplacian * Lambda); // 係数
     calBkt();   // 粒子が所属するバケットを計算
+    
     for (int i = 0; i < NumberOfParticles; i++)
     {
         if (position[i].particleType != FLUID)
@@ -32,7 +33,7 @@ void calViscosity(void)
         for(int k = 0; k < (int)neghPar.size(); k++) {
             j = neghPar[k];     // particle jの番号
             if ((j == i) || (position[j].particleType == GHOST))
-                continue; // その粒子自身とゴースト粒子は計算に含めない
+                continue;       // その粒子自身とゴースト粒子は計算に含めない
             // 粒子間距離の計算
             xij = position[j].x - position[i].x;
             yij = position[j].y - position[i].y;
@@ -57,4 +58,5 @@ void calViscosity(void)
         acceleration[i].y += viscosityTerm_y;
         acceleration[i].z += viscosityTerm_z;
     }
+    cout << "call calViscosity" << endl;
 }

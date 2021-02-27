@@ -28,4 +28,5 @@ void calGravity(void)
             acceleration[i].z = 0.0;
         }
     }
+    cout << "call calGravity" << endl;
 }

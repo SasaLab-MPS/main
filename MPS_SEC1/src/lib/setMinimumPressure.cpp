@@ -40,5 +40,4 @@ void setMinimumPressure(void)
             }
         }
     }
-    cout << "call setMinimumPressure" << endl;
 }

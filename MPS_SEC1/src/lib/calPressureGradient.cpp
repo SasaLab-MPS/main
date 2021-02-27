@@ -61,5 +61,5 @@ void calPressureGradient(void)
         acceleration[i].y = (-1.0) * gradient_y / FluidDensity;
         acceleration[i].z = (-1.0) * gradient_z / FluidDensity;
     }
-    cout << "call calPressureGradient" << endl;
+    //cout << "call calPressureGradient" << endl;
 }
