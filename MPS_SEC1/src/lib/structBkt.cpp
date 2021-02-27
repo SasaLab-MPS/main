@@ -10,8 +10,7 @@
 
 void structBkt(void)
 {
-    re = 2.1 * PARTICLE_DISTANCE; // 影響半径を初期粒子間距離の2.1倍とする
-    re2 = re * re;
+    double re = 2.1 * PARTICLE_DISTANCE; // 影響半径を初期粒子間距離の2.1倍とする
     DB = re * (1.0 + CRT_NUM); // バケット一辺の長さ
     DB2 = DB * DB;
     DBinv = 1.0 / DB;

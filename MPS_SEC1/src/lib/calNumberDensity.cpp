@@ -14,13 +14,13 @@ void calNumberDensity(void)
     double distance, distance2;
     double w;
 
-    calBkt(); // 粒子が所属するバケットを計算
+    calBkt();
+
     for (int i = 0; i < NumberOfParticles; i++)
     {
         numberDensity[i] = 0.0;
         if (position[i].particleType == GHOST)
             continue;
-
         /* バケット法による粒子の探索効率向上 */
         searchBkt(i); // 粒子i近傍の粒子をneghParにリスト化
         int j;        // particle j

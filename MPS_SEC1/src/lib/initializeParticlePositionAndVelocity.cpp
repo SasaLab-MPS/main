@@ -45,7 +45,7 @@ double Pos_MIN[3] = {0, 0, 0};                  // 計算領域の最小値:stru
 double DB, DB2, DBinv;                          // バケット一辺の長さ，その二乗，逆数
 int bkts;                                       // バケットの総数
 int nBx, nBy, nBz, nBxy, nBxyz;                 // x, y, z方向のバケット数とその積
-double re, re2;                                 // 影響半径，影響半径の二乗
+//double re, re2;                                 // 影響半径，影響半径の二乗
 
 
 void initializeParticlePositionAndVelocity_for2dim(double wx, double hy)

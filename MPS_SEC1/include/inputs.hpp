@@ -104,7 +104,7 @@ extern double Pos_MIN[3];                   // 計算領域の最小値:struktBk
 extern double DB, DB2, DBinv;               // バケット一辺の長さ，その二乗，逆数
 extern int bkts;                            // バケットの総数，initilizationで定義
 extern int nBx, nBy, nBz, nBxy, nBxyz;      // x, y, z方向のバケット数とその積
-extern double re, re2;                      // 影響半径，影響半径の二乗
+//extern double re, re2;                      // 影響半径，影響半径の二乗
 
 
 #endif // INPUTS_HPP_20210220_220210_

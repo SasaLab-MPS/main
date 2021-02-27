@@ -18,7 +18,6 @@ void setMatrix(void)
 
     a = 2.0 * DIM / (n0 * Lambda);
 
-    calBkt();
     // NxNの正方行列を設定，N:粒子数
     for (int i = 0; i < NumberOfParticles; i++)
     {
@@ -39,15 +38,12 @@ void setMatrix(void)
             distance2 = (xij * xij) + (yij * yij) + (zij * zij);
             distance = sqrt(distance2);
             // 影響範囲内か？
-            if (distance2 < collisionDistance2)
-            {
-                if (distance >= Re_forLaplacian)
-                    continue;
-                coefficientIJ = a * weight(distance, Re_forLaplacian) / FluidDensity;
-                // 係数行列の中身aijを計算
-                coefficientMatrix(i, j) = (-1.0) * coefficientIJ;
-                coefficientMatrix(i, i) += coefficientIJ;
-            }
+            if (distance >= Re_forLaplacian)
+                continue;
+            coefficientIJ = a * weight(distance, Re_forLaplacian) / FluidDensity;
+            // 係数行列の中身aijを計算
+            coefficientMatrix(i, j) = (-1.0) * coefficientIJ;
+            coefficientMatrix(i, i) += coefficientIJ;
         }
         coefficientMatrix(i, i) += (COMPRESSIBILITY) / (DT * DT);
     }

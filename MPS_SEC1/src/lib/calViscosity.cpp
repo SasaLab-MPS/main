@@ -58,5 +58,4 @@ void calViscosity(void)
         acceleration[i].y += viscosityTerm_y;
         acceleration[i].z += viscosityTerm_z;
     }
-    cout << "call calViscosity" << endl;
 }
