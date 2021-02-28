@@ -16,7 +16,8 @@ void collision(void)
     double mi, mj;
     double velocity_ix, velocity_iy, velocity_iz;
     double e = COEFFICIENT_OF_RESTITUTION;
-    static vector<Velocity> VelocityAfterCollision;
+    vector<Velocity> VelocityAfterCollision;
+    
     VelocityAfterCollision.resize(NumberOfParticles);
 
     // 更新前の速度を設定

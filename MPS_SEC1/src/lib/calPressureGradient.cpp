@@ -17,8 +17,6 @@ void calPressureGradient(void)
     double w, pij;
     double a;
 
-    calBkt();
-
     a = DIM / N0_forGradient;
     for (int i = 0; i < NumberOfParticles; i++)
     {
@@ -61,5 +59,4 @@ void calPressureGradient(void)
         acceleration[i].y = (-1.0) * gradient_y / FluidDensity;
         acceleration[i].z = (-1.0) * gradient_z / FluidDensity;
     }
-    //cout << "call calPressureGradient" << endl;
 }

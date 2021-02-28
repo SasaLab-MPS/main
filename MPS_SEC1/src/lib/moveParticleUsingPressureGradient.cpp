@@ -26,5 +26,6 @@ void moveParticleUsingPressureGradient(void)
         acceleration[i].y = 0.0;
         acceleration[i].z = 0.0;
     }
-    //cout << "call moveParticleUsingPressureGradient" << endl;
+    // 計算範囲外に出た粒子を処理
+    checkParticle();
 }

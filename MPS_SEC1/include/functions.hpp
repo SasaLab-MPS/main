@@ -38,5 +38,6 @@ void removeNegativePressure(void);                             // 負圧が生�
 void setMinimumPressure(void);                                 // ある粒子近傍で最低圧力を記録
 void calPressureGradient(void);                                // 圧力勾配による加速度ベクトルの計算
 void moveParticleUsingPressureGradient(void);                  // 圧力勾配による加速度ベクトルの計算を元に粒子を移動
+void checkParticle(void);                                      // 計算領域外に出た粒子を処理
 
 #endif // FUNCTIONS_HPP_20210220_222753_

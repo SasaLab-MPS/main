@@ -30,4 +30,6 @@ void moveParticle(void)
         acceleration[i].y = 0.0;
         acceleration[i].z = 0.0;
     }
+    // 計算範囲外に出た粒子を処理
+    checkParticle();
 }

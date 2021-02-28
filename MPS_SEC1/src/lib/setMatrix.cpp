@@ -29,7 +29,7 @@ void setMatrix(void)
         int j;
         for(int k = 0; k < (int)neghPar.size(); k++) {
             j = neghPar[k];
-            if ((j == i) || (position[j].particleType == GHOST))
+            if ((j == i) || (boundaryCondition[j] == GHOST_OR_DUMMY))
                 continue; // その粒子自身とゴースト粒子は計算に含めない
             // 粒子間距離の計算
             xij = position[j].x - position[i].x;
@@ -41,7 +41,7 @@ void setMatrix(void)
             if (distance >= Re_forLaplacian)
                 continue;
             coefficientIJ = a * weight(distance, Re_forLaplacian) / FluidDensity;
-            // 係数行列の中身aijを計算
+            // 係数行列の中身を計算
             coefficientMatrix(i, j) = (-1.0) * coefficientIJ;
             coefficientMatrix(i, i) += coefficientIJ;
         }

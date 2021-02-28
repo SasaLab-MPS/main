@@ -3,7 +3,7 @@
   Yota INOUE (2021) 
   関数実装ファイル 
   各粒子近傍で最小の圧力を計算し記録
-  Last update: Feb 22, 2021
+  Last update: Feb 28, 2021
 =======================================================================*/
 #include "../../include/functions.hpp"
 #include "../../include/inputs.hpp"
@@ -13,7 +13,6 @@ void setMinimumPressure(void)
     double xij, yij, zij, distance2;
     minimumPressure.resize(NumberOfParticles);
 
-    calBkt();
     for (int i = 0; i < NumberOfParticles; i++)
     {
         if (position[i].particleType == GHOST || position[i].particleType == DUMMY_WALL)

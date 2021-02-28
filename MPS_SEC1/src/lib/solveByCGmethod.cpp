@@ -11,10 +11,11 @@
 // CG法：共役勾配法
 void solveByCGmethod(void)
 {
-    int NoP = NumberOfParticles; // 行列サイズ
-    int iMAX = 2*NoP;
-    MatrixXd A(NoP, NoP);
-    VectorXd b(NoP), x(NoP), p(NoP), r(NoP), Ax(NoP), Ap(NoP);
+    int NP = NumberOfParticles;             // 行列・ベクトルサイズ
+    int iMAX = 2*NP;                        // 最大反復計算回数
+    MatrixXd A(NP, NP);                     // 係数行列
+    VectorXd b(NP), x(NP);                  // Ax = bko
+    VectorXd p(NP), r(NP), Ax(NP), Ap(NP);  // 中間変数
 
     A = coefficientMatrix;
     b = sourceTerm;
@@ -29,25 +30,23 @@ void solveByCGmethod(void)
     // 反復計算
     for (int i = 0; i < iMAX; i++)
     {
-        double alpha, beta, error = 0;
+        double alpha, beta, error;
         // alphaを計算
         Ap = A * p;
         alpha = p.dot(r) / p.dot(Ap);
-        // x, rを更新
+        // x, r, errorを更新
         x += alpha * p;
         r -= alpha * Ap;
-        // 誤差を計算
-        error = r.norm();
-        if (error < cgEPS)
-        {
+        error = r.norm();   // 誤差
+
+        // 誤差が許容範囲以下か?
+        if (error < cgEPS) {
             break;
-        }
-        else
-        {
+        } else {
             // betaの計算
             beta = -r.dot(Ap) / p.dot(Ap);
         }
         p = r + beta * p;
     }
-    pressure = x;
+    pressure = x;   // 答え
 }

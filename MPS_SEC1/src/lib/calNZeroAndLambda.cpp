@@ -15,13 +15,10 @@ void calNZeroAndLambda(void) {
     double xi, yi, zi;
 
     // 次元の判定
-    if (DIM == 2)
-    {
+    if (DIM == 2) {
         iZ_start = 0;
         iZ_end = 1;
-    }
-    else
-    {
+    } else {
         iZ_start = -4;
         iZ_end = 5;
     }

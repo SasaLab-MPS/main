@@ -21,13 +21,12 @@ void mainLoopOfSimulation(void)
 
     writeData_inVtuFormat();
     writeData_inProfFormat();
-    structBkt();    // バケットの構築
-
-    // ここまでOK，setBounderyConditionで問題発生?
+    structBkt();        // バケットの構築
+    checkParticle();    // 計算範囲外に出た粒子を処理
 
     while (1)
     {
-        // 粒子法計算
+        // 粒子法計算メイン
         calGravity();
         calViscosity();
         moveParticle();

@@ -28,7 +28,7 @@ constexpr int OUTPUT_INTERVAL = 20;         // 計算結果のファイル出力
 */
 
 constexpr double FINISH_TIME = 2.0;              // シミュレーションの終了時刻
-constexpr double KINEMATIC_VISCOSITY = (1.0E-6); // 動粘性係数
+constexpr double KINEMATIC_VISCOSITY = 1.0e-6; // 動粘性係数
 constexpr double FLUID_DENSITY = 1000.0;
 constexpr double G_X = 0.0;
 constexpr double G_Y = -9.8; // 重力加速度
@@ -39,7 +39,7 @@ constexpr double RADIUS_FOR_LAPLACIAN = (3.1 * PARTICLE_DISTANCE);
 constexpr double COLLISION_DISTANCE = (0.5 * PARTICLE_DISTANCE);
 constexpr double THRESHOLD_RATIO_OF_NUMBER_DENSITY = 0.97; // 自由表面かを判定する係数β
 constexpr double COEFFICIENT_OF_RESTITUTION = 0.2;         // 剛体衝突の反発係数
-constexpr double COMPRESSIBILITY = (0.45E-9);              // 流体の圧縮率
+constexpr double COMPRESSIBILITY = 0.45e-9;              // 流体の圧縮率
 constexpr double EPS = (0.01 * PARTICLE_DISTANCE);         // 粒子間隔の100分の1を誤差の判定に利用
 constexpr double cgEPS = 1.0e-8;                           // CG法で許容する誤差の上限
 constexpr int ON = 1;
@@ -102,9 +102,8 @@ extern double x_MAX, y_MAX, z_MAX;          // 計算領域の最大値:main.cpp
 extern double Pos_MIN[3];                   // 計算領域の最小値:struktBktで設定
 // バケット構築のための変数
 extern double DB, DB2, DBinv;               // バケット一辺の長さ，その二乗，逆数
-extern int bkts;                            // バケットの総数，initilizationで定義
+extern int bkts;                            // バケットの総数，initilizationで定義，structBktで実装
 extern int nBx, nBy, nBz, nBxy, nBxyz;      // x, y, z方向のバケット数とその積
-//extern double re, re2;                      // 影響半径，影響半径の二乗
 
 
 #endif // INPUTS_HPP_20210220_220210_

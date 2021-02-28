@@ -32,16 +32,11 @@ void structBkt(void)
     nBxyz = nBx * nBy * nBz;
 
     // バケットの総数
-    if (DIM == 2)
-    {
+    if (DIM == 2) {
         bkts = nBxy;
         nBxy = 0;
-    }
-    else
-    {
+    } else {
         bkts = nBxyz;
     }
-
     // バケットリストの作成，初期化はcalBktで実行, Pid:粒子が所属するバケットid
-    bkt.resize(bkts);
 }
