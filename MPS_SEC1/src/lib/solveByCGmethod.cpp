@@ -24,27 +24,29 @@ void solveByCGmethod(void)
     // Axを計算
     Ax = A * x;
     // pとrを計算 p = r := b - Ax
-    p = b - Ax; // p:初期勾配ベクトル
-    r = p;      // 初期残差ベクトル
+    r = b - Ax; // p:初期勾配ベクトル
+    p = r;      // 初期残差ベクトル
 
     // 反復計算
     for (int i = 0; i < iMAX; i++)
     {
-        double alpha, beta, error;
+        double alpha, beta, error, r0, r1;
         // alphaを計算
         Ap = A * p;
-        alpha = p.dot(r) / p.dot(Ap);
+        r0 = r.dot(r);
+        alpha = r0 / p.dot(Ap);
         // x, r, errorを更新
         x += alpha * p;
         r -= alpha * Ap;
-        error = r.norm();   // 誤差
+        r1 = r.dot(r);
+        error = r.norm(); // 誤差
 
         // 誤差が許容範囲以下か?
         if (error < cgEPS) {
             break;
         } else {
             // betaの計算
-            beta = -r.dot(Ap) / p.dot(Ap);
+            beta = r1 / r0;
         }
         p = r + beta * p;
     }

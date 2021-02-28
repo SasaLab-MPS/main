@@ -9,14 +9,19 @@
 #include "../../include/inputs.hpp"
 
 void checkParticle(void) {
-    double x_MIN, y_MIN, z_MIN;
+    double x_max, y_max, z_max;
+    double x_min, y_min, z_min;
 
-    x_MIN = Pos_MIN[0] - PARTICLE_DISTANCE * 3;
-    y_MIN = Pos_MIN[1] - PARTICLE_DISTANCE * 3;
-    z_MIN = Pos_MIN[2] - PARTICLE_DISTANCE * 3;
+    x_max = x_MAX + PARTICLE_DISTANCE * 3;
+    y_max = y_MAX + PARTICLE_DISTANCE * 3;
+    z_max = z_MAX + PARTICLE_DISTANCE * 3;
+
+    x_min = Pos_MIN[0] - PARTICLE_DISTANCE * 3;
+    y_min = Pos_MIN[1] - PARTICLE_DISTANCE * 3;
+    z_min = Pos_MIN[2] - PARTICLE_DISTANCE * 3;
 
     for(int i = 0; i < NumberOfParticles; i++) {
-        if (position[i].x > x_MAX || position[i].x < x_MIN || position[i].y > y_MAX || position[i].y < y_MIN || position[i].z > z_MAX || position[i].z < z_MIN)
+        if (position[i].x > x_max || position[i].x < x_min || position[i].y > y_max || position[i].y < y_min || position[i].z > z_max || position[i].z < z_min)
         {
             position[i].particleType = GHOST;
             pressure[i] = 0;
