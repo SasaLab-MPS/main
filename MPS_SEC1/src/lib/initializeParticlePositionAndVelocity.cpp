@@ -21,7 +21,6 @@ vector<int> boundaryCondition;                // ディリクレ境界条件を�
 vector<int> flagForCheckingBoundaryCondition; // 粒子の集合のどこかにディリクレ境界条件が付加されているかをチェックするためのフラグ
 vector<double> minimumPressure;               // ある粒子近傍での最低圧力
 vector<vector<int>> bkt;                      // バケットid，structBktで定義
-vector<int> Pid;                              // 粒子が所属するバケット番号
 vector<int> neghPar;                          // 対象の粒子近傍の粒子リスト
 
 
@@ -39,7 +38,7 @@ double Lambda;
 double collisionDistance, collisionDistance2;
 double FluidDensity;
 double x_MAX = 1.0, y_MAX = 0.6, z_MAX = 0.3;   // 計算領域の最大値
-double Pos_MIN[3] = {0, 0, 0};                  // 計算領域の最小値:struktBktで設定
+double Pos_MIN[3] = {0.0, 0.0, 0.0};            // 計算領域の最小値:struktBktで設定
 
 // バケット構築のための変数
 double DB, DB2, DBinv;                          // バケット一辺の長さ，その二乗，逆数
@@ -112,8 +111,8 @@ void initializeParticlePositionAndVelocity_for2dim(double wx, double hy)
             {
                 p = {ix, iy, iz, ParticleType};
                 // 速度，加速度を0で初期化
-                v = {0, 0, 0, ParticleType};
-                a = {0, 0, 0, ParticleType};
+                v = {0.0, 0.0, 0.0, ParticleType};
+                a = {0.0, 0.0, 0.0, ParticleType};
                 // 追加
                 position.push_back(p);
                 velocity.push_back(v);

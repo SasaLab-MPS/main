@@ -24,8 +24,8 @@ void solveByCGmethod(void)
     // Axを計算
     Ax = A * x;
     // pとrを計算 p = r := b - Ax
-    r = b - Ax; // p:初期勾配ベクトル
-    p = r;      // 初期残差ベクトル
+    r = b - Ax; // r:初期勾配ベクトル
+    p = r;      // p:初期残差ベクトル
 
     // 反復計算
     for (int i = 0; i < iMAX; i++)

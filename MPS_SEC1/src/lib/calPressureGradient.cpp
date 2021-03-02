@@ -38,7 +38,12 @@ void calPressureGradient(void)
                 continue;
             xij = position[j].x - position[i].x;
             yij = position[j].y - position[i].y;
-            zij = position[j].z - position[i].z;
+            if (DIM == 2) {
+                zij = 0.0;
+            } else {
+                zij = position[j].z - position[i].z;
+            }
+            
             distance2 = (xij * xij) + (yij * yij) + (zij * zij);
             distance = sqrt(distance2);
             if (distance < Re_forGradient)

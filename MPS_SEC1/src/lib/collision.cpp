@@ -38,8 +38,8 @@ void collision(void)
             mi = FluidDensity;
             // 粒子 iの速度
             velocity_ix = velocity[i].x;
-            velocity_iz = velocity[i].y;
-            velocity_iy = velocity[i].z;
+            velocity_iy = velocity[i].y;
+            velocity_iz = velocity[i].z;
 
             /* バケット法による粒子の探索効率向上 */
             searchBkt(i);   // 粒子i近傍の粒子をneghParにリスト化

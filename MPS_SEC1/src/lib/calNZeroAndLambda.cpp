@@ -33,12 +33,9 @@ void calNZeroAndLambda(void) {
     zi = 0.0;
 
     // 自分を中心に周りの粒子との密度を計算
-    for (iX = -4; iX < 5; iX++)
-    {
-        for (iY = -4; iY < 5; iY++)
-        {
-            for (iZ = iZ_start; iZ < iZ_end; iZ++)
-            {
+    for (iX = -4; iX < 5; iX++) {
+        for (iY = -4; iY < 5; iY++) {
+            for (iZ = iZ_start; iZ < iZ_end; iZ++) {
                 if (((iX == 0) && (iY == 0)) && (iZ == 0))
                     continue;
                 //　粒子間距離の計算

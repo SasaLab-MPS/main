@@ -12,8 +12,7 @@ void mainLoopOfSimulation(void)
 {
     int iTimeStep = 0; // タイムステップカウント
     // 行列，ベクトルの設定
-    int NoP = NumberOfParticles;
-    // 初期化    
+    int NoP = NumberOfParticles;    
     coefficientMatrix.setZero(NoP, NoP);    
     sourceTerm.setZero(NoP);
     pressure.setZero(NoP);
