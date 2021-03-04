@@ -39,4 +39,5 @@ void calNumberDensity(void)
             numberDensity[i] += w;
         }
     }
+    //cout << "call calNumberDensity" << endl;
 }

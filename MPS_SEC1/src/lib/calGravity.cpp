@@ -10,6 +10,7 @@
 
 void calGravity(void)
 {
+    /*
     // zの初期化
     if (DIM == 2) {
         for(int i = 0; i < NumberOfParticles; i++) {
@@ -17,6 +18,7 @@ void calGravity(void)
             velocity[i].z = 0.0;
         }
     }
+    */
     
     for (int i = 0; i < NumberOfParticles; i++)
     { // NumberOfParticles:粒子の総数

@@ -18,4 +18,5 @@ void calPressure(void)
     solveByCGmethod();        // 共役勾配法による高速解法
     removeNegativePressure(); // 圧力が0未満になった場合を0処理
     setMinimumPressure();     // 各粒子近傍の最低圧力を計算(圧力勾配の計算に使用)
+    // cout << "call calPressure" << endl;
 }

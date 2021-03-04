@@ -38,11 +38,7 @@ void calPressureGradient(void)
                 continue;
             xij = position[j].x - position[i].x;
             yij = position[j].y - position[i].y;
-            if (DIM == 2) {
-                zij = 0.0;
-            } else {
-                zij = position[j].z - position[i].z;
-            }
+            zij = position[j].z - position[i].z;
             
             distance2 = (xij * xij) + (yij * yij) + (zij * zij);
             distance = sqrt(distance2);
@@ -64,4 +60,5 @@ void calPressureGradient(void)
         acceleration[i].y = (-1.0) * gradient_y / FluidDensity;
         acceleration[i].z = (-1.0) * gradient_z / FluidDensity;
     }
+    // cout << "call calPressureGradient" << endl;
 }

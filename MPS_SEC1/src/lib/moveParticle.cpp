@@ -32,4 +32,5 @@ void moveParticle(void)
     }
     // 計算範囲外に出た粒子を処理
     checkParticle();
+    // cout << "call moveParticle" << endl;
 }

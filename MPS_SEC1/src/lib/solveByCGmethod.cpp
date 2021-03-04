@@ -51,4 +51,5 @@ void solveByCGmethod(void)
         p = r + beta * p;
     }
     pressure = x;   // 答え
+    // cout << "call solveByCGmethod" << endl;
 }

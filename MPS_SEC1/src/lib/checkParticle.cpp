@@ -13,7 +13,7 @@ void checkParticle(void) {
     double x_min, y_min, z_min;
 
     x_max = x_MAX + PARTICLE_DISTANCE * 4;
-    y_max = y_MAX + PARTICLE_DISTANCE * 4;
+    y_max = y_MAX;
     z_max = z_MAX + PARTICLE_DISTANCE * 4;
 
     x_min = Pos_MIN[0] - PARTICLE_DISTANCE * 4;

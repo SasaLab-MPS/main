@@ -14,10 +14,14 @@ void searchBkt(int i) {
   neghPar.clear(); // 要素の全削除
   /* バケット法による粒子の探索効率向上 */
   // 粒子iの所属するバケットのid
-  int bktid[3]; // 0:x, 1:y, 2:z
-  bktid[0] = (int)((position[i].x - Pos_MIN[0]) * DBinv) + 1;
-  bktid[1] = (int)((position[i].y - Pos_MIN[1]) * DBinv) + 1;
-  bktid[2] = (int)((position[i].z - Pos_MIN[2]) * DBinv) + 1;
+  int bktid[3];   // 0:x, 1:y, 2:z
+  double MIN[3];  // 領域の最小値
+  for (int i = 0; i < 3; i++) {
+    MIN[i] = Pos_MIN[i] - PARTICLE_DISTANCE * 4;
+  }
+  bktid[0] = (int)((position[i].x - MIN[0]) * DBinv) + 1;
+  bktid[1] = (int)((position[i].y - MIN[1]) * DBinv) + 1;
+  bktid[2] = (int)((position[i].z - MIN[2]) * DBinv) + 1;
 
   // 対象粒子i周辺の粒子をバケット法により探索 3*3*3=27
   for (int jz = bktid[2] - 1; jz <= bktid[2] + 1; jz++) {
