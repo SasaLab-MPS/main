@@ -613,3 +613,10 @@ MPS_SEC1/include/Eigen/UmfPackSupport
 *.a
 *.a
 MPS_SEC1/build/src/libfuncs.a
+*.log
+Semi Explicit method/build/CMakeFiles/cmake.check_cache
+*.txt
+*.cmake
+*.bin
+Semi Explicit method/build/CMakeFiles/3.19.4/CompilerIdC/CMakeCCompilerId.c
+Semi Explicit method/build/CMakeFiles/3.19.4/CompilerIdCXX/CMakeCXXCompilerId.cpp

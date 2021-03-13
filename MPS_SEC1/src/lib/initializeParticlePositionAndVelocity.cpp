@@ -51,7 +51,7 @@ void initializeParticlePositionAndVelocity_for2dim(double wx, double hy)
 {
     int iX, iY;
     int nX, nY;
-    double ix, iy, iz;
+    double x, y, z;
     Position p;
     Velocity v;
     Acceleration a;
@@ -67,40 +67,40 @@ void initializeParticlePositionAndVelocity_for2dim(double wx, double hy)
     {
         for (iY = -4; iY < nY; iY++)
         {
-            ix = PARTICLE_DISTANCE * (double)(iX); // 粒子生成候補位置
-            iy = PARTICLE_DISTANCE * (double)(iY);
-            iz = 0.0;    // 奥行は0で設定
+            x = PARTICLE_DISTANCE * (double)(iX); // 粒子生成候補位置
+            y = PARTICLE_DISTANCE * (double)(iY);
+            z = 0.0;    // 奥行は0で設定
             flagOfParticleGeneration = OFF;
 
             /* dummy wall region */
-            if (((ix > -4.0 * PARTICLE_DISTANCE + EPS) && (ix <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((iy > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (iy <= y_MAX + EPS)))
+            if (((x > -4.0 * PARTICLE_DISTANCE + EPS) && (x <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((y > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (y <= y_MAX + EPS)))
             {
                 flagOfParticleGeneration = ON;
                 ParticleType = DUMMY_WALL;
             }
 
             /* wall region */
-            if (((ix > -2.0 * PARTICLE_DISTANCE + EPS) && (ix <= x_MAX + 2.0 * PARTICLE_DISTANCE + EPS)) && ((iy > 0.0 - 2.0 * PARTICLE_DISTANCE + EPS) && (iy <= y_MAX + EPS)))
+            if (((x > -2.0 * PARTICLE_DISTANCE + EPS) && (x <= x_MAX + 2.0 * PARTICLE_DISTANCE + EPS)) && ((y > 0.0 - 2.0 * PARTICLE_DISTANCE + EPS) && (y <= y_MAX + EPS)))
             {
                 flagOfParticleGeneration = ON;
                 ParticleType = WALL;
             }
 
             /* wall region */
-            if (((ix > -4.0 * PARTICLE_DISTANCE + EPS) && (ix <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((iy > y_MAX - 2.0 * PARTICLE_DISTANCE + EPS) && (iy <= y_MAX + EPS)))
+            if (((x > -4.0 * PARTICLE_DISTANCE + EPS) && (x <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((y > y_MAX - 2.0 * PARTICLE_DISTANCE + EPS) && (y <= y_MAX + EPS)))
             {
                 flagOfParticleGeneration = ON;
                 ParticleType = WALL;
             }
 
             /* empty region 粒子を生成しない */
-            if (((ix > 0.0 + EPS) && (ix <= x_MAX + EPS)) && (iy > 0.0 + EPS))
+            if (((x > 0.0 + EPS) && (x <= x_MAX + EPS)) && (y > 0.0 + EPS))
             {
                 flagOfParticleGeneration = OFF;
             }
 
             /* fluid region：流体領域を設定 */
-            if (((ix > 0.0 + EPS) && (ix <= wx + EPS)) && ((iy > 0.0 + EPS) && (iy <= hy + EPS)))
+            if (((x > 0.0 + EPS) && (x <= wx + EPS)) && ((y > 0.0 + EPS) && (y <= hy + EPS)))
             {
                 //cout << "*** make FLUID region ***" << endl; :OK
                 flagOfParticleGeneration = ON;
@@ -109,7 +109,7 @@ void initializeParticlePositionAndVelocity_for2dim(double wx, double hy)
             // 粒子の生成
             if (flagOfParticleGeneration == ON)
             {
-                p = {ix, iy, iz, ParticleType};
+                p = {x, y, z, ParticleType};
                 // 速度，加速度を0で初期化
                 v = {0.0, 0.0, 0.0, ParticleType};
                 a = {0.0, 0.0, 0.0, ParticleType};
@@ -130,7 +130,7 @@ void initializeParticlePositionAndVelocity_for3dim(double wx, double hy, double 
 {
     int iX, iY, iZ;
     int nX, nY, nZ;
-    double ix, iy, iz;
+    double x, y, z;
     Position p;
     Velocity v;
     Acceleration a;
@@ -147,40 +147,40 @@ void initializeParticlePositionAndVelocity_for3dim(double wx, double hy, double 
         {
             for (iZ = -4; iZ < nZ; iZ++)
             {
-                ix = PARTICLE_DISTANCE * iX;
-                iy = PARTICLE_DISTANCE * iY;
-                iz = PARTICLE_DISTANCE * iZ;
+                x = PARTICLE_DISTANCE * iX;
+                y = PARTICLE_DISTANCE * iY;
+                z = PARTICLE_DISTANCE * iZ;
                 flagOfParticleGeneration = OFF;
 
                 /* dummy wall region */
-                if ((((ix > -4.0 * PARTICLE_DISTANCE + EPS) && (ix <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((iy > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (iy <= y_MAX + EPS))) && ((iz > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (iz <= z_MAX + 4.0 * PARTICLE_DISTANCE + EPS)))
+                if ((((x > -4.0 * PARTICLE_DISTANCE + EPS) && (x <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((y > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (y <= y_MAX + EPS))) && ((z > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (z <= z_MAX + 4.0 * PARTICLE_DISTANCE + EPS)))
                 {
                     flagOfParticleGeneration = ON;
                     ParticleType = DUMMY_WALL;
                 }
 
                 /* wall region */
-                if ((((ix > -2.0 * PARTICLE_DISTANCE + EPS) && (ix <= x_MAX + 2.0 * PARTICLE_DISTANCE + EPS)) && ((iy > 0.0 - 2.0 * PARTICLE_DISTANCE + EPS) && (iy <= y_MAX + EPS))) && ((iz > 0.0 - 2.0 * PARTICLE_DISTANCE + EPS) && (iz <= z_MAX + 2.0 * PARTICLE_DISTANCE + EPS)))
+                if ((((x > -2.0 * PARTICLE_DISTANCE + EPS) && (x <= x_MAX + 2.0 * PARTICLE_DISTANCE + EPS)) && ((y > 0.0 - 2.0 * PARTICLE_DISTANCE + EPS) && (y <= y_MAX + EPS))) && ((z > 0.0 - 2.0 * PARTICLE_DISTANCE + EPS) && (z <= z_MAX + 2.0 * PARTICLE_DISTANCE + EPS)))
                 {
                     flagOfParticleGeneration = ON;
                     ParticleType = WALL;
                 }
 
                 /* wall region */
-                if ((((ix > -4.0 * PARTICLE_DISTANCE + EPS) && (ix <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((iy > y_MAX - 2.0 * PARTICLE_DISTANCE + EPS) && (iy <= y_MAX + EPS))) && ((iz > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (iz <= z_MAX + 4.0 * PARTICLE_DISTANCE + EPS)))
+                if ((((x > -4.0 * PARTICLE_DISTANCE + EPS) && (x <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((y > y_MAX - 2.0 * PARTICLE_DISTANCE + EPS) && (y <= y_MAX + EPS))) && ((z > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (z <= z_MAX + 4.0 * PARTICLE_DISTANCE + EPS)))
                 {
                     flagOfParticleGeneration = ON;
                     ParticleType = WALL;
                 }
 
                 /* empty region */
-                if ((((ix > 0.0 + EPS) && (ix <= x_MAX + EPS)) && (iy > 0.0 + EPS)) && ((iz > 0.0 + EPS) && (iz <= z_MAX + EPS)))
+                if ((((x > 0.0 + EPS) && (x <= x_MAX + EPS)) && (y > 0.0 + EPS)) && ((z > 0.0 + EPS) && (z <= z_MAX + EPS)))
                 {
                     flagOfParticleGeneration = OFF;
                 }
 
                 /* fluid region */
-                if ((((ix > 0.0 + EPS) && (ix <= wx + EPS)) && ((iy > 0.0 + EPS) && (iy < hy + EPS))) && ((iz > 0.0 + EPS) && (iz <= dz + EPS)))
+                if ((((x > 0.0 + EPS) && (x <= wx + EPS)) && ((y > 0.0 + EPS) && (y < hy + EPS))) && ((z > 0.0 + EPS) && (z <= dz + EPS)))
                 {
                     flagOfParticleGeneration = ON;
                     ParticleType = FLUID;
@@ -188,7 +188,7 @@ void initializeParticlePositionAndVelocity_for3dim(double wx, double hy, double 
 
                 if (flagOfParticleGeneration == ON)
                 {
-                    p = {ix, iy, iz, ParticleType};
+                    p = {x, y, z, ParticleType};
                     // 速度，加速度を0で初期化
                     v = {0, 0, 0, ParticleType};
                     a = {0, 0, 0, ParticleType};

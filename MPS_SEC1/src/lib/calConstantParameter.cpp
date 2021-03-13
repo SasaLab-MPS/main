@@ -25,4 +25,11 @@ void calConstantParameter(void) {
     collisionDistance2 = collisionDistance * collisionDistance;
     FileNumber = 0;
     Time = 0.0;
+
+    // 行列，ベクトルの設定
+    int NP = NumberOfParticles;
+    coefficientMatrix.setZero(NP, NP);
+    sourceTerm.setZero(NP);
+    pressure.setZero(NP);
+    numberDensity.resize(NumberOfParticles, 0);
 }                               

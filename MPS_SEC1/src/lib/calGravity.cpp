@@ -9,17 +9,7 @@
 #include "../../include/inputs.hpp"
 
 void calGravity(void)
-{
-    /*
-    // zの初期化
-    if (DIM == 2) {
-        for(int i = 0; i < NumberOfParticles; i++) {
-            position[i].z = 0.0;
-            velocity[i].z = 0.0;
-        }
-    }
-    */
-    
+{ 
     for (int i = 0; i < NumberOfParticles; i++)
     { // NumberOfParticles:粒子の総数
         if (position[i].particleType == FLUID)

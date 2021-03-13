@@ -15,6 +15,8 @@ void setMatrix(void)
     double coefficientIJ;
     double n0 = N0_forLaplacian;
     double a;
+    int NP = NumberOfParticles;
+    coefficientMatrix.setZero(NP, NP);
 
     a = 2.0 * DIM / (n0 * Lambda);
 

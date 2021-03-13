@@ -17,9 +17,6 @@ void calBkt(void) {
     }
 
     for(int i = 0; i < NumberOfParticles; i++) {
-        if (position[i].particleType == GHOST) {
-            continue;
-        }
         int ix = (int)((position[i].x - MIN[0]) * DBinv) + 1;
         int iy = (int)((position[i].y - MIN[1]) * DBinv) + 1;
         int iz = (int)((position[i].z - MIN[2]) * DBinv) + 1;

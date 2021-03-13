@@ -28,8 +28,6 @@ void collision(void)
         VelocityAfterCollision[i].z = velocity[i].z;
     }
 
-    calBkt(); // 粒子が所属するバケットを計算
-
     // 粒子同士の衝突を計算
     for (int i = 0; i < NumberOfParticles; i++)
     {
@@ -57,9 +55,10 @@ void collision(void)
                 if (distance2 < collisionDistance2)
                 {
                     distance = sqrt(distance2);
-                    forceDT = (velocity_ix - velocity[j].x) * (xij / distance) + (velocity_iy - velocity[j].y) * (yij / distance) + (velocity_iz - velocity[j].z) * (zij / distance);
-                    if (forceDT > 0.0)
-                    {
+                    forceDT = (velocity_ix - velocity[j].x) * (xij / distance)
+                            + (velocity_iy - velocity[j].y) * (yij / distance) 
+                            + (velocity_iz - velocity[j].z) * (zij / distance);
+                    if (forceDT > 0.0) {
                         mj = FluidDensity;
                         forceDT *= (1.0 + e) * mi * mj / (mi + mj);
                         velocity_ix -= (forceDT / mi) * (xij / distance);
@@ -87,5 +86,7 @@ void collision(void)
             velocity[i].z = VelocityAfterCollision[i].z;
         }
     }
+
+    calBkt(); // 粒子が所属するバケットを更新
     //cout << "call collision" << endl;
 }

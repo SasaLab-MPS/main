@@ -20,8 +20,7 @@ void calPressureGradient(void)
     a = DIM / N0_forGradient;
     for (int i = 0; i < NumberOfParticles; i++)
     {
-        if (position[i].particleType != FLUID)
-            continue;
+        if (position[i].particleType != FLUID) { continue; }
         gradient_x = 0.0;
         gradient_y = 0.0;
         gradient_z = 0.0;
@@ -30,12 +29,9 @@ void calPressureGradient(void)
         int j;
         for(int k = 0; k < (int)neghPar.size(); k++) {
             j = neghPar[k];
-            if (j == i)
-                continue;
-            if (position[j].particleType == GHOST)
-                continue;
-            if (position[j].particleType == DUMMY_WALL)
-                continue;
+            if (j == i) { continue; }
+            if (position[j].particleType == GHOST) { continue; }
+            if (position[j].particleType == DUMMY_WALL) { continue; }
             xij = position[j].x - position[i].x;
             yij = position[j].y - position[i].y;
             zij = position[j].z - position[i].z;

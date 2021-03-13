@@ -32,5 +32,7 @@ void moveParticle(void)
     }
     // 計算範囲外に出た粒子を処理
     checkParticle();
+    // 粒子が所属するバケットを計算
+    calBkt(); 
     // cout << "call moveParticle" << endl;
 }
