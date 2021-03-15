@@ -26,10 +26,18 @@ void calConstantParameter(void) {
     FileNumber = 0;
     Time = 0.0;
 
-    // 行列，ベクトルの設定
+    structBucket();  // バケットの構築
+    calBucket();     // バケットに粒子を入れる
+    checkParticle(); // 計算範囲外に出た粒子を処理
+
+    // 行列，ベクトルの設定, 初期化
     int NP = NumberOfParticles;
     coefficientMatrix.setZero(NP, NP);
     sourceTerm.setZero(NP);
     pressure.setZero(NP);
-    numberDensity.resize(NumberOfParticles, 0);
+    numberDensity.resize(NP, 0);
+    temperature.resize(NP, INITIAL_TEMPERATURE);  // 全粒子に初期温度を与える
+
+    // 初期熱流束を与える
+    inputHeatFlux();
 }                               

@@ -8,10 +8,8 @@
 #ifndef FUNCTIONS_HPP_20210220_222753_
 #define FUNCTIONS_HPP_20210220_222753_
 
-// t = 0sでの粒子の速度と位置を決定 (2次元)
-void initializeParticlePositionAndVelocity_for2dim(double wx, double hy);
-// t = 0sでの粒子の速度と位置を決定 (3次元)
-void initializeParticlePositionAndVelocity_for3dim(double wx, double hy, double dz);
+void initializeParticlePositionAndVelocity_for2dim(void);      // t = 0sでの粒子の速度と位置を決定 (2次元)
+void initializeParticlePositionAndVelocity_for3dim(void);      // t = 0sでの粒子の速度と位置を決定 (3次元)
 void calConstantParameter(void);                               // 影響半径などの定数計算
 void calNZeroAndLambda(void);                                  // 初期粒子密度 n0および lambdaの計算
 double weight(double distance, double re);                     // 重み関数の計算
@@ -39,5 +37,7 @@ void setMinimumPressure(void);                                 // ある粒子�
 void calPressureGradient(void);                                // 圧力勾配による加速度ベクトルの計算
 void moveParticleUsingPressureGradient(void);                  // 圧力勾配による加速度ベクトルの計算を元に粒子を移動
 void checkParticle(void);                                      // 計算領域外に出た粒子を処理
+
+void inputHeatFlux(void);                                      // 初期熱流束を与える
 
 #endif // FUNCTIONS_HPP_20210220_222753_

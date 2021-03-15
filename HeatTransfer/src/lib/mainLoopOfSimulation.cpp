@@ -14,9 +14,7 @@ void mainLoopOfSimulation(void)
 
     writeData_inVtuFormat();
     writeData_inProfFormat();
-    structBucket();     // バケットの構築
-    checkParticle();    // 計算範囲外に出た粒子を処理
-
+    
     while (1)
     {
         // 粒子法計算メイン

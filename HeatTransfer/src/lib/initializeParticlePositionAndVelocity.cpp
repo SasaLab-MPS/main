@@ -16,15 +16,16 @@ vector<Acceleration> acceleration;            // 加速度
 MatrixXd coefficientMatrix;                   // A:係数行列 = CoefficientMatrix
 VectorXd sourceTerm, pressure;                // b:右辺係数，x:圧力の列ベクトル
 vector<double> numberDensity;                 // 粒子密度
+vector<double> temperature;                   // 温度
+vector<double> minimumPressure;               // ある粒子近傍での最低圧力
 // 境界条件に関わる変数
 vector<int> boundaryCondition;                // ディリクレ境界条件を付加するかどうかのフラグ
 vector<int> flagForCheckingBoundaryCondition; // 粒子の集合のどこかにディリクレ境界条件が付加されているかをチェックするためのフラグ
-vector<double> minimumPressure;               // ある粒子近傍での最低圧力
 
 /* グローバル変数定義 */
 int FileNumber;
 double Time;
-int NumberOfParticles; // 全粒子数
+int NumberOfParticles;                          // 全粒子数
 double Re_forNumberDensity, Re2_forNumberDensity;
 double Re_forGradient, Re2_forGradient;
 double Re_forLaplacian, Re2_forLaplacian;       // Re:ラプラシアンモデルの影響範囲, calConstantParameterで設定
@@ -45,7 +46,7 @@ int buckets;                                    // バケットの総数
 int nBx, nBy, nBz, nBxy, nBxyz;                 // x, y, z方向のバケット数とその積
 
 
-void initializeParticlePositionAndVelocity_for2dim(double wx, double hy)
+void initializeParticlePositionAndVelocity_for2dim(void)
 {
     int iX, iY;
     int nX, nY;
@@ -92,17 +93,18 @@ void initializeParticlePositionAndVelocity_for2dim(double wx, double hy)
             }
 
             /* empty region 粒子を生成しない */
+            /*
             if (((x > 0.0 + EPS) && (x <= x_MAX + EPS)) && (y > 0.0 + EPS))
             {
                 flagOfParticleGeneration = OFF;
             }
+            */
 
-            /* fluid region：流体領域を設定 */
-            if (((x > 0.0 + EPS) && (x <= wx + EPS)) && ((y > 0.0 + EPS) && (y <= hy + EPS)))
+            /* solid region：固体領域を設定 */
+            if (((x > 0.0 + EPS) && (x <= x_MAX + EPS)) && ((y > 0.0 + EPS) && (y <= y_MAX + EPS)))
             {
-                //cout << "*** make FLUID region ***" << endl; :OK
                 flagOfParticleGeneration = ON;
-                ParticleType = FLUID;               
+                ParticleType = SOLID;               
             }
             // 粒子の生成
             if (flagOfParticleGeneration == ON)
@@ -124,7 +126,7 @@ void initializeParticlePositionAndVelocity_for2dim(double wx, double hy)
     cout << "*** NumberOfParticles = " << NumberOfParticles << " ***" << endl;
 }
 
-void initializeParticlePositionAndVelocity_for3dim(double wx, double hy, double dz)
+void initializeParticlePositionAndVelocity_for3dim(void)
 {
     int iX, iY, iZ;
     int nX, nY, nZ;
@@ -172,16 +174,18 @@ void initializeParticlePositionAndVelocity_for3dim(double wx, double hy, double 
                 }
 
                 /* empty region */
+                /*
                 if ((((x > 0.0 + EPS) && (x <= x_MAX + EPS)) && (y > 0.0 + EPS)) && ((z > 0.0 + EPS) && (z <= z_MAX + EPS)))
                 {
                     flagOfParticleGeneration = OFF;
                 }
+                */
 
-                /* fluid region */
-                if ((((x > 0.0 + EPS) && (x <= wx + EPS)) && ((y > 0.0 + EPS) && (y < hy + EPS))) && ((z > 0.0 + EPS) && (z <= dz + EPS)))
+                /* solid region */
+                if ((((x > 0.0 + EPS) && (x <= x_MAX + EPS)) && ((y > 0.0 + EPS) && (y < y_MAX + EPS))) && ((z > 0.0 + EPS) && (z <= z_MAX + EPS)))
                 {
                     flagOfParticleGeneration = ON;
-                    ParticleType = FLUID;
+                    ParticleType = SOLID;
                 }
 
                 if (flagOfParticleGeneration == ON)
