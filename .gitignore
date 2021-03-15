@@ -620,3 +620,7 @@ Semi Explicit method/build/CMakeFiles/cmake.check_cache
 *.bin
 Semi Explicit method/build/CMakeFiles/3.19.4/CompilerIdC/CMakeCCompilerId.c
 Semi Explicit method/build/CMakeFiles/3.19.4/CompilerIdCXX/CMakeCXXCompilerId.cpp
+*.json
+HeatTransfer/build/makefile
+HeatTransfer/build/src/lib/makefile
+HeatTransfer/build/src/makefile
