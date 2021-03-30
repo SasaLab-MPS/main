@@ -2,7 +2,7 @@
   define.cpp   
   Yota INOUE (2021) 
   変数定義ファイル
-  Last update: May 30, 2021
+  Last update: Mar 30, 2021
 =======================================================================*/
 #include "../../include/functions.hpp"
 #include "../../include/inputs.hpp"

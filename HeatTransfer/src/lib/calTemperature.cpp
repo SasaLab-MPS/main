@@ -23,8 +23,10 @@ void calTemperature(void) {
     for (int i = 0; i < NumberOfParticles; i++)
     {
         // 要検討
+        /*
         if (position[i].particleType != SOLID || position[i].particleType != FLUID || position[i].particleType != GAS)
             continue;
+        */
 
         Ti = 0.0;
         searchBucket(i);
@@ -43,12 +45,12 @@ void calTemperature(void) {
             // 影響範囲か？
             if (distance < Re_forLaplacian)
             {
-                cout << "cal Temperature" << endl;
+                //cout << "cal Temperature" << endl;
                 w = weight(distance, Re_forLaplacian); // 重み関数
-                temperature[j] += (1/(rho*c))*(lmb*a*temperature[j] + heatFlux[i])*w;
-                Ti += temperature[j];
+                //temperature[j] += (1/(rho*c))*(lmb*a*temperature[i] + heatFlux[i])*w;
+                Ti += (temperature[j] - temperature[i]) * w;
             }
-            temperature[i] = Ti;
+            temperature[i] = (1/(rho*c)) * (lmb*a*Ti + heatFlux[i]);
         }
     }
 }
