@@ -2,7 +2,7 @@
   solveCGmethod.cpp   
   Yota INOUE (2021) 
   関数実装ファイル 
-  CG法により高速に解を計算する関数
+  CG法により高速に解を計算
   Last update: Feb 22, 2021
 =======================================================================*/
 #include "../../include/functions.hpp"

@@ -43,6 +43,7 @@ void calTemperature(void) {
             // 影響範囲か？
             if (distance < Re_forLaplacian)
             {
+                cout << "cal Temperature" << endl;
                 w = weight(distance, Re_forLaplacian); // 重み関数
                 temperature[j] += (1/(rho*c))*(lmb*a*temperature[j] + heatFlux[i])*w;
                 Ti += temperature[j];
