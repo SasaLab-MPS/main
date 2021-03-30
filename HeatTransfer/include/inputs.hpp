@@ -28,7 +28,7 @@ constexpr double DT = 0.003;
 constexpr int OUTPUT_INTERVAL = 20;
 */
 
-constexpr double FINISH_TIME = 2.0;                       // シミュレーションの終了時刻
+constexpr double FINISH_TIME = 1.0;                       // シミュレーションの終了時刻
 constexpr double KINEMATIC_VISCOSITY = 1.0e-6;            // 動粘性係数
 constexpr double FLUID_DENSITY = 1000.0;
 constexpr double G_X = 0.0;
@@ -61,7 +61,8 @@ constexpr int DIRICHLET_BOUNDARY_IS_CHECKED = 2;            // ディリクレ�
 constexpr double CRT_NUM = 0.1;                             // クーラン数
 
 constexpr double INITIAL_TEMPERATURE = 0.0;                 // 初期温度 (℃)
-constexpr double HEAT_INPUT = 100e-3;                       // 初期熱流束:Q (J/mm^2)
+constexpr double SOLID_DENSITY = 8000;                      // 固体の密度 (kg/m^3)
+constexpr double HEAT_INPUT = 100;                       // 初期熱流束:Q (J/mm^2)
 constexpr double SPECIFIC_HEAT = 500e-3;                    // 比熱容量:c (J/gK)
 constexpr double HEAT_CONDUCTIVITY = 300e-3;                // 熱伝導率:λ (J/mmKs)
 
@@ -84,6 +85,7 @@ extern vector<Acceleration> acceleration;               // 加速度
 extern MatrixXd coefficientMatrix;                      // A:係数行列 = CoefficientMatrix mianLoopで定義
 extern VectorXd sourceTerm, pressure;                   // b:右辺係数，x:圧力の列ベクトル
 extern vector<double> temperature;                      // 温度
+extern vector<double> heatFlux;                         // 熱流束
 extern vector<double> numberDensity;                    // 粒子密度
 extern vector<int> boundaryCondition;                   // ディリクレ境界条件を付加するかどうかのフラグ
 extern vector<int> flagForCheckingBoundaryCondition;    // 粒子の集合のどこかにディリクレ境界条件が付加されているかをチェックするためのフラグ

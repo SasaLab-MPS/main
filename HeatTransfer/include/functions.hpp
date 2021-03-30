@@ -39,5 +39,6 @@ void moveParticleUsingPressureGradient(void);                  // 圧力勾配�
 void checkParticle(void);                                      // 計算領域外に出た粒子を処理
 
 void inputHeatFlux(void);                                      // 初期熱流束を与える
+void calTemperature(void);                                     // 温度分布を計算
 
 #endif // FUNCTIONS_HPP_20210220_222753_
