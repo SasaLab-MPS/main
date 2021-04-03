@@ -22,7 +22,7 @@ void calTemperature(void) {
 
     a = (2.0 * DIM) / (N0_forLaplacian * Lambda);
     b = 1 / (rho * C);
-    
+
     calBucket(); // 粒子が所属するバケットを計算
 
     for (int i = 0; i < NumberOfParticles; i++)
@@ -31,7 +31,7 @@ void calTemperature(void) {
         if (position[i].particleType == WALL || position[i].particleType == DUMMY_WALL || position[i].particleType == GHOST)
             continue;
 
-        Ti = 0.0;
+        Ti = 0.0;   // これで良いのか？
         searchBucket(i);
         int j;
         for (int k = 0; k < (int)neghPar.size(); k++)
@@ -45,7 +45,7 @@ void calTemperature(void) {
             zij = position[j].z - position[i].z;
             distance2 = (xij * xij) + (yij * yij) + (zij * zij);
             distance = sqrt(distance2);
-            // 影響範囲か？
+            // 影響範囲内か
             if (distance < Re_forLaplacian)
             {
                 w = weight(distance, Re_forLaplacian); // 重み関数
