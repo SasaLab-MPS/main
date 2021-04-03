@@ -12,21 +12,24 @@ void calTemperature(void) {
     double distance, distance2;
     double w;
     double xij, yij, zij;
-    double a, rho, c, lmb;
+    double rho, C, lmb;
+    double a, b;    // 係数
     double Ti;
-    a = (2.0 * DIM) / (N0_forLaplacian * Lambda); // 係数
+     
     rho = SOLID_DENSITY;        // 相変化を考慮するなら変更する
-    c = SPECIFIC_HEAT;          // 比熱容量
+    C = SPECIFIC_HEAT;          // 比熱容量
     lmb = HEAT_CONDUCTIVITY;    // 熱伝導率
-    calBucket();                // 粒子が所属するバケットを計算
+
+    a = (2.0 * DIM) / (N0_forLaplacian * Lambda);
+    b = 1 / (rho * C);
+    
+    calBucket(); // 粒子が所属するバケットを計算
 
     for (int i = 0; i < NumberOfParticles; i++)
     {
         // 要検討
-        /*
-        if (position[i].particleType != SOLID || position[i].particleType != FLUID || position[i].particleType != GAS)
+        if (position[i].particleType == WALL || position[i].particleType == DUMMY_WALL || position[i].particleType == GHOST)
             continue;
-        */
 
         Ti = 0.0;
         searchBucket(i);
@@ -45,12 +48,11 @@ void calTemperature(void) {
             // 影響範囲か？
             if (distance < Re_forLaplacian)
             {
-                //cout << "cal Temperature" << endl;
                 w = weight(distance, Re_forLaplacian); // 重み関数
                 //temperature[j] += (1/(rho*c))*(lmb*a*temperature[i] + heatFlux[i])*w;
                 Ti += (temperature[j] - temperature[i]) * w;
             }
-            temperature[i] = (1/(rho*c)) * (lmb*a*Ti + heatFlux[i]);
+            temperature[i] = b * (lmb*a*Ti + heatFlux[i]);
         }
     }
 }
