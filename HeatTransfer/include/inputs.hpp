@@ -28,7 +28,7 @@ constexpr double DT = 0.003;
 constexpr int OUTPUT_INTERVAL = 20;
 */
 
-constexpr double FINISH_TIME = 2.0;                       // シミュレーションの終了時刻
+constexpr double FINISH_TIME = 1.0;                       // シミュレーションの終了時刻
 constexpr double KINEMATIC_VISCOSITY = 1.0e-6;            // 動粘性係数
 constexpr double FLUID_DENSITY = 1000.0;
 constexpr double G_X = 0.0;
@@ -62,15 +62,20 @@ constexpr int DIRICHLET_BOUNDARY_IS_CHECKED = 2;            // ディリクレ�
 constexpr double CRT_NUM = 0.1;                             // クーラン数
 
 constexpr double INITIAL_TEMPERATURE = 0.0;                 // 初期温度 (℃)
-constexpr double SOLID_DENSITY = 8000;                      // 固体の密度 (kg/m^3)
-constexpr double HEAT_INPUT = 100;                          // 初期熱流束:Q (J/mm^2)
-constexpr double SPECIFIC_HEAT = 500e-3;                    // 比熱容量:c (J/gK)
-constexpr double HEAT_CONDUCTIVITY = 300e-3;                // 熱伝導率:λ (J/mmKs)
+constexpr double SOLID_DENSITY = 2.7e-3;                    // 固体の密度 (g/mm^3)
+constexpr double SPECIFIC_HEAT_CAPACITY = 917e-3;           // 比熱容量:c (J/gK)
+constexpr double HEAT_CONDUCTIVITY = 238e-3;                // 熱伝導率:λ (J/mmKs)
+
+/* レーザ諸元・造形条件 */
+constexpr double LASER_POWER = 300;                         // レーザ出力:P (W)
+constexpr double LASER_DIAMETER = 0.08;                     // レーザ半径:d (mm)
+constexpr double SCAN_SPEED = 1;                            // レーザ走査速度:v (mm/s)
 
 
 /* 粒子の座標，速度，速度を表す構造体 */
 // 座標:Position
-typedef struct {
+typedef struct
+{
   double x;
   double y;
   double z;

@@ -17,13 +17,16 @@ void calTemperature(void) {
     double Ti;
      
     rho = SOLID_DENSITY;        // 相変化を考慮するなら変更する
-    c = SPECIFIC_HEAT;          // 比熱容量
+    c = SPECIFIC_HEAT_CAPACITY; // 比熱容量
     lmb = HEAT_CONDUCTIVITY;    // 熱伝導率
 
     a = (2.0 * DIM) / (N0_forLaplacian * Lambda);
     b = 1 / (rho * c);
 
     calBucket(); // 粒子が所属するバケットを計算
+
+    // 熱流束を与える
+    inputHeatFlux();
 
     for (int i = 0; i < NumberOfParticles; i++)
     {

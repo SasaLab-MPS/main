@@ -24,7 +24,7 @@ vector<int> flagForCheckingBoundaryCondition;   // 粒子の集合のどこか�
 
 /* グローバル変数定義 */
 int FileNumber;
-double Time;
+double Time = 0.0;
 int NumberOfParticles;                          // 全粒子数
 double Re_forNumberDensity, Re2_forNumberDensity;
 double Re_forGradient, Re2_forGradient;
@@ -36,7 +36,7 @@ double Lambda;
 double collisionDistance, collisionDistance2;
 double FluidDensity;
 double x_MAX = 1.0, y_MAX = 0.6, z_MAX = 0.3;   // 計算領域の最大値
-double Pos_MIN[3] = {0.0, 0.0, 0.0};            // 計算領域の最小値:struktBktで設定
+double Pos_MIN[3] = {0.0, 0.0, 0.0};            // 計算領域の最小値:struktBktで使用
 
 // バケット探索法に関わる変数・配列
 vector<vector<int>> bucket;                     // バケットid，structBktで定義

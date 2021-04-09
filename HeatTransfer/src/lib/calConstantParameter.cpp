@@ -38,7 +38,4 @@ void calConstantParameter(void) {
     numberDensity.resize(NP, 0);
     temperature.resize(NP, INITIAL_TEMPERATURE);  // 全粒子に初期温度を与える
     heatFlux.resize(NP);                          // 熱流束
-
-    // 初期熱流束を与える
-    inputHeatFlux();
 }                               
