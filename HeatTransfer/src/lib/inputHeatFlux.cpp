@@ -37,7 +37,6 @@ void inputHeatFlux(void) {
       }
     }
     
-
     /*
     if ( x_MAX*0.5 - PARTICLE_DISTANCE < position[i].x && position[i].x < x_MAX*0.5 + PARTICLE_DISTANCE) {
       heatFlux[i] = Q;

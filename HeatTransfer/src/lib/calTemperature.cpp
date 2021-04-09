@@ -25,9 +25,6 @@ void calTemperature(void) {
 
     calBucket(); // 粒子が所属するバケットを計算
 
-    // 熱流束を与える
-    inputHeatFlux();
-
     for (int i = 0; i < NumberOfParticles; i++)
     {
         // 要検討
