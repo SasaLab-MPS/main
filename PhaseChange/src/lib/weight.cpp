@@ -10,7 +10,6 @@
 
 double weight(double distance, double re)
 {
-    /* re:影響半径，struct Bktで設定 */
     double weightIJ;
 
     if (distance >= re)

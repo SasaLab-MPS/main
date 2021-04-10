@@ -21,8 +21,9 @@ void mainLoopOfSimulation(void)
         calGravity();
         calViscosity();
 
-        calTemperature();                       // 温度分布を計算
-        
+        inputHeatFlux();                        // 熱流束を設定
+        calTemperature();                       // 温度分布を計算 
+
         moveParticle();
         collision();                            // 剛体衝突判定：粒子同士の異常接近防止のため
         calPressure();

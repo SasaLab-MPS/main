@@ -10,35 +10,32 @@
 
 // 影響半径などの定数計算
 void calConstantParameter(void) {
-    Re_forNumberDensity = RADIUS_FOR_NUMBER_DENSITY;
-    Re_forGradient = RADIUS_FOR_GRADIENT;
-    Re_forLaplacian = RADIUS_FOR_LAPLACIAN;
+  Re_forNumberDensity = RADIUS_FOR_NUMBER_DENSITY;
+  Re_forGradient = RADIUS_FOR_GRADIENT;
+  Re_forLaplacian = RADIUS_FOR_LAPLACIAN;
 
-    Re2_forNumberDensity = Re_forNumberDensity * Re_forNumberDensity;
-    Re2_forGradient = Re_forGradient * Re_forGradient;
-    Re2_forLaplacian = Re_forLaplacian * Re_forLaplacian;
+  Re2_forNumberDensity = Re_forNumberDensity * Re_forNumberDensity;
+  Re2_forGradient = Re_forGradient * Re_forGradient;
+  Re2_forLaplacian = Re_forLaplacian * Re_forLaplacian;
     
-    calNZeroAndLambda();
+  calNZeroAndLambda();
     
-    FluidDensity = FLUID_DENSITY;
-    collisionDistance = COLLISION_DISTANCE;
-    collisionDistance2 = collisionDistance * collisionDistance;
-    FileNumber = 0;
-    Time = 0.0;
+  FluidDensity = FLUID_DENSITY;
+  collisionDistance = COLLISION_DISTANCE;
+  collisionDistance2 = collisionDistance * collisionDistance;
+  FileNumber = 0;
+  Time = 0.0;
 
-    structBucket();  // バケットの構築
-    calBucket();     // バケットに粒子を入れる
-    checkParticle(); // 計算範囲外に出た粒子を処理
+  structBucket();  // バケットの構築
+  calBucket();     // バケットに粒子を入れる
+  checkParticle(); // 計算範囲外に出た粒子を処理
 
-    // 行列，ベクトルの設定, 初期化
-    int NP = NumberOfParticles;
-    coefficientMatrix.setZero(NP, NP);
-    sourceTerm.setZero(NP);
-    pressure.setZero(NP);
-    numberDensity.resize(NP, 0);
-    temperature.resize(NP, INITIAL_TEMPERATURE);  // 全粒子に初期温度を与える
-    heatFlux.resize(NP);                          // 熱流束
-
-    // 初期熱流束を与える
-    inputHeatFlux();
+  // 行列，ベクトルの設定, 初期化
+  int NP = NumberOfParticles;
+  coefficientMatrix.setZero(NP, NP);
+  sourceTerm.setZero(NP);
+  pressure.setZero(NP);
+  numberDensity.resize(NP, 0);
+  temperature.resize(NP, INITIAL_TEMPERATURE);  // 全粒子に初期温度を与える
+  heatFlux.resize(NP);                          // 熱流束
 }                               

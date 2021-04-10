@@ -16,7 +16,7 @@ using namespace Eigen;
 /* 定数定義 */
 /* for two-dimensional simulation */
 constexpr int DIM = 2;                      // 次元
-constexpr double PARTICLE_DISTANCE = 0.025; // 初期粒子間距離 l0
+constexpr double PARTICLE_DISTANCE = 30e-6; // 初期粒子間距離 l0 (m)
 constexpr double DT = 0.001;                // 時間刻み幅
 constexpr int OUTPUT_INTERVAL = 20;         // 計算結果のファイル出力の間隔
 
@@ -28,11 +28,9 @@ constexpr double DT = 0.003;
 constexpr int OUTPUT_INTERVAL = 20;
 */
 
-constexpr double FINISH_TIME = 2.0;                       // シミュレーションの終了時刻
-constexpr double KINEMATIC_VISCOSITY = 1.0e-6;            // 動粘性係数
-constexpr double FLUID_DENSITY = 1000.0;
+constexpr double FINISH_TIME = 1;                         // シミュレーションの終了時刻
 constexpr double G_X = 0.0;
-constexpr double G_Y = -9.8;                              // 重力加速度
+constexpr double G_Y = -9.8;                              // 重力加速度 (m/s^2)
 constexpr double G_Z = 0.0;
 constexpr double RADIUS_FOR_NUMBER_DENSITY = (2.1 * PARTICLE_DISTANCE);
 constexpr double RADIUS_FOR_GRADIENT = (2.1 * PARTICLE_DISTANCE);
@@ -60,17 +58,30 @@ constexpr int DIRICHLET_BOUNDARY_IS_NOT_CONNECTED = 0;      // ディリクレ�
 constexpr int DIRICHLET_BOUNDARY_IS_CONNECTED = 1;          // ディリクレ条件を設定済み
 constexpr int DIRICHLET_BOUNDARY_IS_CHECKED = 2;            // ディリクレ条件を満たすことを確認済み
 constexpr double CRT_NUM = 0.1;                             // クーラン数
+constexpr double INITIAL_TEMPERATURE = 273 + 20;            // 初期温度 (K)
 
-constexpr double INITIAL_TEMPERATURE = 0.0;                 // 初期温度 (℃)
-constexpr double SOLID_DENSITY = 8000;                      // 固体の密度 (kg/m^3)
-constexpr double HEAT_INPUT = 100;                          // 初期熱流束:Q (J/mm^2)
-constexpr double SPECIFIC_HEAT = 500e-3;                    // 比熱容量:c (J/gK)
-constexpr double HEAT_CONDUCTIVITY = 300e-3;                // 熱伝導率:λ (J/mmKs)
+/* 金属物性 */
+constexpr double KINEMATIC_VISCOSITY = 1.0e-6;              // 動粘性係数
+constexpr double SURFACE_TENSION = 0.878;                   // 表面張力 (N/m)
+constexpr double SOLID_DENSITY = 2700;                      // 固体の密度 (kg/m^3)
+constexpr double FLUID_DENSITY = 1000.0;                    // 流体の密度 (kg/m^3)
+constexpr double MELTING_TEMPERATURE = 933;                 // アルミ融点 (K)
+constexpr double BOILING_TEMPERATURE = 2793;                // アルミ沸点 (K)
+constexpr double HEAT_OF_MELTING = 1071.9e6;                // アルミ溶融潜熱 hm (J/m^3)
+constexpr double HEAT_OF_EVAPORATION = 25876e6;             // アルミ蒸発潜熱 hp (J/m^3)
+constexpr double SPECIFIC_HEAT_CAPACITY = 917;              // 比熱容量:c (J/kgK)
+constexpr double HEAT_CONDUCTIVITY = 238;                   // 熱伝導率:λ (J/mKs)
+
+/* レーザ諸元・造形条件 */
+constexpr double LASER_POWER = 300;                         // レーザ出力:P (W, J/s)
+constexpr double LASER_DIAMETER = 80e-6;                    // レーザ半径:d (m)
+constexpr double SCAN_SPEED = 1;                            // レーザ走査速度:v (m/s)
 
 
 /* 粒子の座標，速度，速度を表す構造体 */
 // 座標:Position
-typedef struct {
+typedef struct
+{
   double x;
   double y;
   double z;

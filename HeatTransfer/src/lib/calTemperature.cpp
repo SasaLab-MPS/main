@@ -60,17 +60,17 @@ void calTemperature(void) {
             }
         }
         //T[i] = (b * (lmb * a * Ti + heatFlux[i])) * DT;
-        T[i] = b * (a*Ti + heatFlux[i]) * DT;
-        if (T[i] < INITIAL_TEMPERATURE) {
-            T[i] = INITIAL_TEMPERATURE;
-        } 
+        T[i] = b * (a * Ti + heatFlux[i]); 
     }
 
     // 温度の更新
     for (int i = 0; i < NumberOfParticles; i++) {
         temperature[i] += T[i];
-        if (temperature[i] > 5000) {
-            temperature[i] = 5000;
+        if (temperature[i] < INITIAL_TEMPERATURE) {
+            temperature[i] = INITIAL_TEMPERATURE;
+        }
+        if (temperature[i] > 2000) {
+            temperature[i] = 2000;
         }
     }
 }
