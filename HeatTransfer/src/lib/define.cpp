@@ -35,8 +35,8 @@ double N0_forLaplacian;
 double Lambda;
 double collisionDistance, collisionDistance2;
 double FluidDensity;
-double x_MAX = 1.0, y_MAX = 0.6, z_MAX = 0.3;   // 計算領域の最大値
-double Pos_MIN[3] = {0.0, 0.0, 0.0};            // 計算領域の最小値:struktBktで使用
+double x_MAX = 1e-3, y_MAX = 1e-3, z_MAX = 1e-3;    // 計算領域の最大値
+double Pos_MIN[3] = {0.0, 0.0, 0.0};                // 計算領域の最小値:struktBktで使用
 
 // バケット探索法に関わる変数・配列
 vector<vector<int>> bucket;                     // バケットid，structBktで定義

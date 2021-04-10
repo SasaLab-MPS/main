@@ -10,7 +10,8 @@
 
 void inputHeatFlux(void) {
   double area = M_PI * 0.25 * (LASER_DIAMETER * LASER_DIAMETER);
-  double Q = LASER_POWER / area;   // W/mm^2 = J/mm^2
+  double piece = area / (M_PI * 0.25 * (PARTICLE_DISTANCE * PARTICLE_DISTANCE));
+  double Q = (LASER_POWER * DT) / piece;   // J/m^2
   double travelDistance = SCAN_SPEED * Time;
 
   // レーザの中心, zの座標は要検討
@@ -35,12 +36,6 @@ void inputHeatFlux(void) {
       if (distance < LASER_DIAMETER * 0.5 + EPS) {
         heatFlux[i] = Q;
       }
-    }
-    
-    /*
-    if ( x_MAX*0.5 - PARTICLE_DISTANCE < position[i].x && position[i].x < x_MAX*0.5 + PARTICLE_DISTANCE) {
-      heatFlux[i] = Q;
-    }
-    */  
+    }  
   }
 }

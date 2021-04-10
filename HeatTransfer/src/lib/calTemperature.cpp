@@ -15,12 +15,19 @@ void calTemperature(void) {
     double rho, c, lmb;
     double a, b;    // 係数
     double Ti;
+
+    // 計算用の配列
+    vector<double> T;
+    T.resize(NumberOfParticles);
+    for(int i = 0; i < NumberOfParticles; i++) {
+        T[i] = temperature[i];
+    }
      
     rho = SOLID_DENSITY;        // 相変化を考慮するなら変更する
     c = SPECIFIC_HEAT_CAPACITY; // 比熱容量
     lmb = HEAT_CONDUCTIVITY;    // 熱伝導率
 
-    a = (2.0 * DIM) / (N0_forLaplacian * Lambda);
+    a = lmb * (2.0 * DIM) / (N0_forLaplacian * Lambda);
     b = 1 / (rho * c);
 
     calBucket(); // 粒子が所属するバケットを計算
@@ -52,6 +59,18 @@ void calTemperature(void) {
                 Ti += (temperature[j] - temperature[i]) * w;
             }
         }
-        temperature[i] = b * (lmb * a*Ti + heatFlux[i]);
+        //T[i] = (b * (lmb * a * Ti + heatFlux[i])) * DT;
+        T[i] = b * (a*Ti + heatFlux[i]) * DT;
+        if (T[i] < INITIAL_TEMPERATURE) {
+            T[i] = INITIAL_TEMPERATURE;
+        } 
+    }
+
+    // 温度の更新
+    for (int i = 0; i < NumberOfParticles; i++) {
+        temperature[i] += T[i];
+        if (temperature[i] > 5000) {
+            temperature[i] = 5000;
+        }
     }
 }
