@@ -44,8 +44,9 @@ void calTemperature(void) {
         for (int k = 0; k < (int)neghPar.size(); k++)
         {
             j = neghPar[k]; // particle jの番号
-            if ((j == i) || (position[j].particleType == GHOST))
-                continue;   // その粒子自身とゴースト粒子は計算に含めない
+            if (j == i)
+                continue;   // その粒子自身は計算に含めない
+
             // 粒子間距離の計算
             xij = position[j].x - position[i].x;
             yij = position[j].y - position[i].y;
@@ -65,7 +66,10 @@ void calTemperature(void) {
 
     // 温度の更新
     for (int i = 0; i < NumberOfParticles; i++) {
-        temperature[i] += T[i];
+        temperature[i] += T[i] * DT;
+        if (position[i].particleType == WALL || position[i].particleType == DUMMY_WALL) {
+            temperature[i] = INITIAL_TEMPERATURE;
+        }
         if (temperature[i] < INITIAL_TEMPERATURE) {
             temperature[i] = INITIAL_TEMPERATURE;
         }

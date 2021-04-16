@@ -22,12 +22,18 @@ void inputHeatFlux(void) {
   for(int i = 0; i < NumberOfParticles; i++) {
     heatFlux[i] = 0.0;
     if (DIM == 2)
-    {
+    {      
       double distance2 = (position[i].x - center.x) * (position[i].x - center.x) + (position[i].y - center.y) * (position[i].y - center.y);
       double distance = sqrt(distance2);
       if (distance < LASER_DIAMETER * 0.5 + EPS) {
         heatFlux[i] = Q;
-      }     
+      }
+      /*
+      if (0.5 * x_MAX - EPS < position[i].x && position[i].x < 0.5 * x_MAX + EPS && 0.5 * y_MAX - EPS < position[i].y && position[i].y < 0.5 * y_MAX + EPS)
+      {
+        heatFlux[i] = Q;
+      }
+      */
     }
     else
     {
