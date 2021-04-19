@@ -14,13 +14,13 @@ void calTemperature(void) {
     double xij, yij, zij;
     double rho, c, lmb;
     double a, b;    // 係数
-    double Ti;
+    double Tij;
 
     // 計算用の配列
-    vector<double> T;
-    T.resize(NumberOfParticles);
+    vector<double> dT;
+    dT.resize(NumberOfParticles);
     for(int i = 0; i < NumberOfParticles; i++) {
-        T[i] = temperature[i];
+        dT[i] = 0;
     }
      
     rho = SOLID_DENSITY;        // 相変化を考慮するなら変更する
@@ -38,10 +38,10 @@ void calTemperature(void) {
         if (position[i].particleType == WALL || position[i].particleType == DUMMY_WALL || position[i].particleType == GHOST)
             continue;
 
-        Ti = 0.0;   // これで良いのか？
         searchBucket(i);
         int j;
         for (int k = 0; k < (int)neghPar.size(); k++)
+        //for (int j = 0; j < NumberOfParticles; j++)
         {
             j = neghPar[k]; // particle jの番号
             if (j == i)
@@ -57,16 +57,17 @@ void calTemperature(void) {
             if (distance < Re_forLaplacian)
             {
                 w = weight(distance, Re_forLaplacian); // 重み関数
-                Ti += (temperature[j] - temperature[i]) * w;
+                Tij = (temperature[j] - temperature[i]) / distance2;
+                dT[i] += distance * Tij * w;
             }
         }
         //T[i] = (b * (lmb * a * Ti + heatFlux[i])) * DT;
-        T[i] = b * (a * Ti + heatFlux[i]); 
+        dT[i] = b * (a * dT[i] + heatFlux[i]);
     }
 
     // 温度の更新
     for (int i = 0; i < NumberOfParticles; i++) {
-        temperature[i] += T[i] * DT;
+        temperature[i] += dT[i] * DT;
         if (position[i].particleType == WALL || position[i].particleType == DUMMY_WALL) {
             temperature[i] = INITIAL_TEMPERATURE;
         }

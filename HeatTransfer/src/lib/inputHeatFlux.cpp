@@ -28,12 +28,6 @@ void inputHeatFlux(void) {
       if (distance < LASER_DIAMETER * 0.5 + EPS) {
         heatFlux[i] = Q;
       }
-      /*
-      if (0.5 * x_MAX - EPS < position[i].x && position[i].x < 0.5 * x_MAX + EPS && 0.5 * y_MAX - EPS < position[i].y && position[i].y < 0.5 * y_MAX + EPS)
-      {
-        heatFlux[i] = Q;
-      }
-      */
     }
     else
     {
