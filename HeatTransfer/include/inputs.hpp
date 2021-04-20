@@ -16,7 +16,7 @@ using namespace Eigen;
 /* 定数定義 */
 /* for two-dimensional simulation */
 constexpr int DIM = 2;                      // 次元
-constexpr double PARTICLE_DISTANCE = 30e-6; // 初期粒子間距離 l0 (m)
+constexpr double PARTICLE_DISTANCE = 0.05;  // 初期粒子間距離 l0 (mm)
 constexpr double DT = 0.001;                // 時間刻み幅
 constexpr int OUTPUT_INTERVAL = 20;         // 計算結果のファイル出力の間隔
 
@@ -28,7 +28,7 @@ constexpr double DT = 0.003;
 constexpr int OUTPUT_INTERVAL = 20;
 */
 
-constexpr double FINISH_TIME = 0.5;                       // シミュレーションの終了時刻
+constexpr double FINISH_TIME = 0.05;                     // シミュレーションの終了時刻
 constexpr double KINEMATIC_VISCOSITY = 1.0e-6;            // 動粘性係数
 constexpr double FLUID_DENSITY = 1000.0;                  // 流体の密度
 constexpr double G_X = 0.0;
@@ -62,14 +62,14 @@ constexpr int DIRICHLET_BOUNDARY_IS_CHECKED = 2;            // ディリクレ�
 constexpr double CRT_NUM = 0.1;                             // クーラン数
 
 constexpr double INITIAL_TEMPERATURE = 0.0;                 // 初期温度 (℃)
-constexpr double SOLID_DENSITY = 2700;                      // 固体の密度 (kg/m^3)
-constexpr double SPECIFIC_HEAT_CAPACITY = 917;              // 比熱容量:c (J/kgK)
-constexpr double HEAT_CONDUCTIVITY = 238;                   // 熱伝導率:λ (J/mKs)
+constexpr double SOLID_DENSITY = 2.7e-3;                    // 固体の密度 (g/em^3)
+constexpr double SPECIFIC_HEAT_CAPACITY = 917e-3;           // 比熱容量:c (J/gK)
+constexpr double HEAT_CONDUCTIVITY = 238e-3;                // 熱伝導率:λ (J/mmKs)
 
 /* レーザ諸元・造形条件 */
 constexpr double LASER_POWER = 300;                         // レーザ出力:P (W, J/s)
-constexpr double LASER_DIAMETER = 80e-6;                    // レーザ半径:d (m)
-constexpr double SCAN_SPEED = 1;                            // レーザ走査速度:v (m/s)
+constexpr double LASER_DIAMETER = 0.1;                      // レーザ直径:d (mm)
+constexpr double SCAN_SPEED = 0.1;                          // レーザ走査速度:v (mm/s)
 
 
 /* 粒子の座標，速度，速度を表す構造体 */

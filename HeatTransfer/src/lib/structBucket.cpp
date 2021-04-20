@@ -10,7 +10,7 @@
 
 void structBucket(void)
 {
-    double re = 3.0 * PARTICLE_DISTANCE;    
+    double re = 3.3 * PARTICLE_DISTANCE;    
     DB = re * (1.0 + CRT_NUM);              // バケット一辺の長さ
     DB2 = DB * DB;
     DBinv = 1.0 / DB;

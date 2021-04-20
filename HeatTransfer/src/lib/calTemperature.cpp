@@ -27,16 +27,18 @@ void calTemperature(void) {
     c = SPECIFIC_HEAT_CAPACITY; // 比熱容量
     lmb = HEAT_CONDUCTIVITY;    // 熱伝導率
 
-    a = lmb * (2.0 * DIM) / (N0_forLaplacian * Lambda);
+    a = (2.0 * DIM) / (N0_forLaplacian * Lambda);
     b = 1 / (rho * c);
-
+    
     calBucket(); // 粒子が所属するバケットを計算
 
     for (int i = 0; i < NumberOfParticles; i++)
     {
         // 要検討
+        /*
         if (position[i].particleType == WALL || position[i].particleType == DUMMY_WALL || position[i].particleType == GHOST)
             continue;
+        */
 
         searchBucket(i);
         int j;
@@ -57,12 +59,18 @@ void calTemperature(void) {
             if (distance < Re_forLaplacian)
             {
                 w = weight(distance, Re_forLaplacian); // 重み関数
-                Tij = (temperature[j] - temperature[i]) / distance2;
-                dT[i] += distance * Tij * w;
+                Tij = (temperature[j] - temperature[i]) * w;
+                dT[i] += Tij * lmb;
             }
         }
         //T[i] = (b * (lmb * a * Ti + heatFlux[i])) * DT;
-        dT[i] = b * (a * dT[i] + heatFlux[i]);
+        dT[i] = a * dT[i] + heatFlux[i];
+        dT[i] *= b;
+        
+        if (dT[i] < 0) {
+            cout << "Time:" << Time << " a:" << a << " alpha:" << lmb*b << " dT[i]:"  << dT[i] << endl;
+        }
+        
     }
 
     // 温度の更新
@@ -73,6 +81,7 @@ void calTemperature(void) {
         }
         if (temperature[i] < INITIAL_TEMPERATURE) {
             temperature[i] = INITIAL_TEMPERATURE;
+            //cout << "i:" << i << " completely cooling" << endl;
         }
         if (temperature[i] > 2000) {
             temperature[i] = 2000;
