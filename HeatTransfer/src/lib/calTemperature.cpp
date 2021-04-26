@@ -12,8 +12,8 @@ void calTemperature(void) {
     double distance, distance2;
     double w;
     double xij, yij, zij;
-    double rho, c, lmb;
-    double a, b;    // 係数
+    double rho, c, k;
+    double a, b, alpha;    // 係数
     double Tij;
 
     // 計算用の配列
@@ -25,9 +25,11 @@ void calTemperature(void) {
      
     rho = SOLID_DENSITY;        // 相変化を考慮するなら変更する
     c = SPECIFIC_HEAT_CAPACITY; // 比熱容量
-    lmb = HEAT_CONDUCTIVITY;    // 熱伝導率
+    k = HEAT_CONDUCTIVITY;      // 熱伝導率
+    alpha = k / (rho * c);      // 温度拡散係数
 
-    a = (2.0 * DIM) / (N0_forLaplacian * Lambda);
+    //a = (2.0 * DIM) / (N0_forLaplacian * Lambda);
+    a = (2.0 * DIM) / N0_forLaplacian;
     b = 1 / (rho * c);
     
     calBucket(); // 粒子が所属するバケットを計算
@@ -39,7 +41,7 @@ void calTemperature(void) {
         if (position[i].particleType == WALL || position[i].particleType == DUMMY_WALL || position[i].particleType == GHOST)
             continue;
         */
-
+        Tij = 0.0;
         searchBucket(i);
         int j;
         for (int k = 0; k < (int)neghPar.size(); k++)
@@ -60,15 +62,13 @@ void calTemperature(void) {
             {
                 w = weight(distance, Re_forLaplacian); // 重み関数
                 Tij = (temperature[j] - temperature[i]) * w;
-                dT[i] += Tij * lmb;
+                dT[i] += alpha * Tij / distance2;
             }
         }
-        //T[i] = (b * (lmb * a * Ti + heatFlux[i])) * DT;
-        dT[i] = a * dT[i] + heatFlux[i];
-        dT[i] *= b;
+        dT[i] = a * dT[i] + b * heatFlux[i];
         
         if (dT[i] < 0) {
-            cout << "Time:" << Time << " a:" << a << " alpha:" << lmb*b << " dT[i]:"  << dT[i] << endl;
+            //cout << "Time:" << Time << " a:" << a << " alpha:" << lmb*b << " dT[i]:"  << dT[i] << endl;
         }
         
     }
@@ -81,7 +81,7 @@ void calTemperature(void) {
         }
         if (temperature[i] < INITIAL_TEMPERATURE) {
             temperature[i] = INITIAL_TEMPERATURE;
-            //cout << "i:" << i << " completely cooling" << endl;
+            //cout << "i:" << i << " cooling completely " << endl;
         }
         if (temperature[i] > 2000) {
             temperature[i] = 2000;

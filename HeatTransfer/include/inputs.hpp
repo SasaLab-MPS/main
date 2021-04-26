@@ -28,7 +28,7 @@ constexpr double DT = 0.003;
 constexpr int OUTPUT_INTERVAL = 20;
 */
 
-constexpr double FINISH_TIME = 0.05;                     // シミュレーションの終了時刻
+constexpr double FINISH_TIME = 0.05;                      // シミュレーションの終了時刻
 constexpr double KINEMATIC_VISCOSITY = 1.0e-6;            // 動粘性係数
 constexpr double FLUID_DENSITY = 1000.0;                  // 流体の密度
 constexpr double G_X = 0.0;
@@ -62,7 +62,7 @@ constexpr int DIRICHLET_BOUNDARY_IS_CHECKED = 2;            // ディリクレ�
 constexpr double CRT_NUM = 0.1;                             // クーラン数
 
 constexpr double INITIAL_TEMPERATURE = 0.0;                 // 初期温度 (℃)
-constexpr double SOLID_DENSITY = 2.7e-3;                    // 固体の密度 (g/em^3)
+constexpr double SOLID_DENSITY = 2.7e-3;                    // 固体の密度 (g/mm^3)
 constexpr double SPECIFIC_HEAT_CAPACITY = 917e-3;           // 比熱容量:c (J/gK)
 constexpr double HEAT_CONDUCTIVITY = 238e-3;                // 熱伝導率:λ (J/mmKs)
 
