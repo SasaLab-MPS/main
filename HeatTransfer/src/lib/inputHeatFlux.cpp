@@ -9,6 +9,26 @@
 #include "../../include/inputs.hpp"
 
 void inputHeatFlux(void) {
+  if (Time < 0.002)
+  {
+    for(int i = 0; i < NumberOfParticles; i++) {
+      heatFlux[i] = 0.0;
+      if (y_MAX * 0.5 - EPS < position[i].x && position[i].x < y_MAX * 0.5 + EPS)
+      {
+        heatFlux[i] = LASER_POWER * PARTICLE_DISTANCE * PARTICLE_DISTANCE;
+      }      
+    }  
+  } else {
+    for (int i = 0; i < NumberOfParticles; i++)
+    {
+      heatFlux[i] = 0.0;
+    }
+  }
+  
+  
+  
+  
+  /*
   double area = M_PI * 0.25 * (LASER_DIAMETER * LASER_DIAMETER);
   double piece = area / (M_PI * 0.25 * (PARTICLE_DISTANCE * PARTICLE_DISTANCE));
   double q = (LASER_POWER) / piece;   // W/m^2
@@ -38,4 +58,5 @@ void inputHeatFlux(void) {
       }
     }  
   }
+  */
 }

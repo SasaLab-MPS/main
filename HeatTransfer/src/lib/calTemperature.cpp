@@ -61,11 +61,11 @@ void calTemperature(void) {
             if (distance < Re_forLaplacian)
             {
                 w = weight(distance, Re_forLaplacian); // 重み関数
-                Tij = (temperature[j] - temperature[i]) * w;
-                dT[i] += alpha * Tij / distance2;
+                Tij += alpha * (temperature[j] - temperature[i]) * w / distance2;
+                //dT[i] += alpha * Tij / distance2;
             }
         }
-        dT[i] = a * dT[i] + b * heatFlux[i];
+        dT[i] = a * Tij + b * heatFlux[i];
         
         if (dT[i] < 0) {
             //cout << "Time:" << Time << " a:" << a << " alpha:" << lmb*b << " dT[i]:"  << dT[i] << endl;
