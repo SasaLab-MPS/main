@@ -18,10 +18,7 @@ void calTemperature(void) {
 
     // 計算用の配列
     vector<double> dT;
-    dT.resize(NumberOfParticles);
-    for(int i = 0; i < NumberOfParticles; i++) {
-        dT[i] = 0;
-    }
+    dT.resize(NumberOfParticles, 0.0);
      
     rho = SOLID_DENSITY;        // 相変化を考慮するなら変更する
     c = SPECIFIC_HEAT_CAPACITY; // 比熱容量
@@ -61,16 +58,16 @@ void calTemperature(void) {
             if (distance < Re_forLaplacian)
             {
                 w = weight(distance, Re_forLaplacian); // 重み関数
-                Tij += alpha * (temperature[j] - temperature[i]) * w / distance2;
+                Tij += a * (temperature[j] - temperature[i]) * w / distance2;
                 //dT[i] += alpha * Tij / distance2;
             }
         }
-        dT[i] = a * Tij + b * heatFlux[i];
-        
+        dT[i] = 5 * Tij + b * heatFlux[i];
+        /*
         if (dT[i] < 0) {
-            //cout << "Time:" << Time << " a:" << a << " alpha:" << lmb*b << " dT[i]:"  << dT[i] << endl;
+            cout << "Time:" << Time << " a:" << a << " alpha:" << alpha << " dT[i]:"  << dT[i] << endl;
         }
-        
+        */
     }
 
     // 温度の更新
