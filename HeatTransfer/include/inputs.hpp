@@ -67,7 +67,7 @@ constexpr double SPECIFIC_HEAT_CAPACITY = 500;              // 比熱容量:c (J
 constexpr double HEAT_CONDUCTIVITY = 300;                   // 熱伝導率:λ (J/mmKs)
 
 /* レーザ諸元・造形条件 */
-constexpr double LASER_POWER = 100;                         // レーザ出力:P (W, J/s)
+constexpr double LASER_POWER = 0.1;                         // レーザ出力:P (W, J/s)
 constexpr double LASER_DIAMETER = 0.1;                      // レーザ直径:d (mm)
 constexpr double SCAN_SPEED = 0.1;                          // レーザ走査速度:v (mm/s)
 
@@ -93,6 +93,8 @@ extern VectorXd sourceTerm, pressure;                   // b:右辺係数，x:�
 extern vector<double> temperature;                      // 温度
 //extern vector<double> minimumTemperature;               // ある粒子近傍での最低圧力
 extern vector<double> heatFlux;                         // 熱流束
+extern vector<double> enthalpy;                         // エンタルピー
+
 extern vector<double> numberDensity;                    // 粒子密度
 extern vector<int> boundaryCondition;                   // ディリクレ境界条件を付加するかどうかのフラグ
 extern vector<int> flagForCheckingBoundaryCondition;    // 粒子の集合のどこかにディリクレ境界条件が付加されているかをチェックするためのフラグ

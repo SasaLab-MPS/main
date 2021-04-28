@@ -37,5 +37,6 @@ void calConstantParameter(void) {
   pressure.setZero(NP);
   numberDensity.resize(NP, 0);
   temperature.resize(NP, INITIAL_TEMPERATURE);  // 全粒子に初期温度を与える
-  heatFlux.resize(NP);                          // 熱流束
+  enthalpy.resize(NP, 0);
+  heatFlux.resize(NP, 0); // 熱流束
 }                               

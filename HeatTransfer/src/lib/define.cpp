@@ -16,8 +16,9 @@ MatrixXd coefficientMatrix;         // A:係数行列 = CoefficientMatrix
 VectorXd sourceTerm, pressure;      // b:右辺係数，x:圧力の列ベクトル
 vector<double> numberDensity;       // 粒子密度
 vector<double> temperature;         // 温度
+vector<double> enthalpy;            // エンタルピー
 //vector<double> minimumTemperature;  // 周辺の最低温度
-vector<double> heatFlux;            // 熱流束
+vector<double> heatFlux;                   // 熱流束
 vector<double> minimumPressure;     // ある粒子近傍での最低圧力
 // 境界条件に関わる変数
 vector<int> boundaryCondition;                  // ディリクレ境界条件を付加するかどうかのフラグ
