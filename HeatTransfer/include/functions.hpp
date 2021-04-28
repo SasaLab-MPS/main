@@ -40,6 +40,6 @@ void checkParticle(void);                                      // 計算領域�
 
 void inputHeatFlux(void);                                      // 初期熱流束を与える
 void calTemperature(void);                                     // 温度分布を計算
-void setMinimumTemperature(void);                              // 周辺の最低温度を計算する関数
+//void setMinimumTemperature(void);                              // 周辺の最低温度を計算する関数
 
 #endif // FUNCTIONS_HPP_20210220_222753_
