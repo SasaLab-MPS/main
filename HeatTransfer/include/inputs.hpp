@@ -62,7 +62,7 @@ constexpr int DIRICHLET_BOUNDARY_IS_CHECKED = 2;            // ディリクレ�
 constexpr double CRT_NUM = 0.1;                             // クーラン数
 
 constexpr double INITIAL_TEMPERATURE = 0.0;                 // 初期温度 (℃)
-constexpr double SOLID_DENSITY = 8.0e-3;                    // 固体の密度 (g/mm^3)
+constexpr double SOLID_DENSITY = 8e-3;                      // 固体の密度:ρ (g/mm^3)
 constexpr double SPECIFIC_HEAT_CAPACITY = 500;              // 比熱容量:c (J/gK)
 constexpr double HEAT_CONDUCTIVITY = 300;                   // 熱伝導率:λ (J/mmKs)
 
@@ -91,7 +91,7 @@ extern vector<Acceleration> acceleration;               // 加速度
 extern MatrixXd coefficientMatrix;                      // A:係数行列 = CoefficientMatrix mianLoopで定義
 extern VectorXd sourceTerm, pressure;                   // b:右辺係数，x:圧力の列ベクトル
 extern vector<double> temperature;                      // 温度
-extern vector<double> minimumTemperature;               // ある粒子近傍での最低圧力
+//extern vector<double> minimumTemperature;               // ある粒子近傍での最低圧力
 extern vector<double> heatFlux;                         // 熱流束
 extern vector<double> numberDensity;                    // 粒子密度
 extern vector<int> boundaryCondition;                   // ディリクレ境界条件を付加するかどうかのフラグ
