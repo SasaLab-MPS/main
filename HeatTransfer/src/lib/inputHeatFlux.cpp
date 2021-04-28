@@ -9,6 +9,7 @@
 #include "../../include/inputs.hpp"
 
 void inputHeatFlux(void) {
+  /*
   if (Time < 0.002)
   {
     for(int i = 0; i < NumberOfParticles; i++) {
@@ -24,8 +25,7 @@ void inputHeatFlux(void) {
       heatFlux[i] = 0.0;
     }
   }
-  
-  
+  */
   
   
   /*

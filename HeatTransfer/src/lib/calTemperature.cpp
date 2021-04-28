@@ -74,6 +74,7 @@ void calTemperature(void) {
     for (int i = 0; i < NumberOfParticles; i++) {
         enthalpy[i] += dH[i] * DT;
         temperature[i] = enthalpy[i] * b;
+        /*
         if (position[i].particleType == WALL || position[i].particleType == DUMMY_WALL) {
             temperature[i] = INITIAL_TEMPERATURE;
         }
@@ -84,5 +85,6 @@ void calTemperature(void) {
         if (temperature[i] > 2000) {
             temperature[i] = 2000;
         }
+        */
     }
 }
