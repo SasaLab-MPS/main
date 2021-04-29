@@ -12,7 +12,7 @@ void calTemperature(void) {
     double distance, distance2;
     double w;
     double xij, yij, zij;
-    double rho, c, k;
+    double rho, c, lmb;
     double a, b;    // 係数
     double Tij;
 
@@ -22,7 +22,7 @@ void calTemperature(void) {
      
     rho = SOLID_DENSITY;        // 相変化を考慮するなら変更する
     c = SPECIFIC_HEAT_CAPACITY; // 比熱容量
-    k = HEAT_CONDUCTIVITY;      // 熱伝導率
+    lmb = HEAT_CONDUCTIVITY;    // 熱伝導率
     //alpha = k / (rho * c);      // 温度拡散係数
 
     //a = (2.0 * DIM) / (N0_forLaplacian * Lambda);
@@ -42,7 +42,6 @@ void calTemperature(void) {
         searchBucket(i);
         int j;
         for (int k = 0; k < (int)neghPar.size(); k++)
-        //for (int j = 0; j < NumberOfParticles; j++)
         {
             j = neghPar[k]; // particle jの番号
             if (j == i)
@@ -58,16 +57,11 @@ void calTemperature(void) {
             if (distance < Re_forLaplacian)
             {
                 w = weight(distance, Re_forLaplacian); // 重み関数
-                Tij += k * (temperature[j] - temperature[i]) * w / distance2;
+                Tij += lmb * (temperature[j] - temperature[i]) * w / distance2;
                 //dT[i] += alpha * Tij / distance2;
             }
         }
         dH[i] = a * Tij;
-        /*
-        if (dT[i] < 0) {
-            cout << "Time:" << Time << " a:" << a << " alpha:" << alpha << " dT[i]:"  << dT[i] << endl;
-        }
-        */
     }
 
     // 温度の更新

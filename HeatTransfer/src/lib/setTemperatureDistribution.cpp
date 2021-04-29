@@ -17,13 +17,8 @@ void setTemperatureDistribution(void)
     {
       if (position[i].x < 0.5 * x_MAX)
       {
-        temperature[i] = 500;
-        enthalpy[i] = 500 * SOLID_DENSITY * SPECIFIC_HEAT_CAPACITY;
-      }
-      else
-      {
-        temperature[i] = 300;
-        enthalpy[i] = 300 * SOLID_DENSITY * SPECIFIC_HEAT_CAPACITY;
+        //temperature[i] = 500;
+        enthalpy[i] = LASER_POWER;
       }
     }
   }
