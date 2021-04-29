@@ -18,7 +18,7 @@ vector<double> numberDensity;       // 粒子密度
 vector<double> temperature;         // 温度
 vector<double> enthalpy;            // エンタルピー
 //vector<double> minimumTemperature;  // 周辺の最低温度
-vector<double> heatFlux;                   // 熱流束
+//vector<double> heatFlux;                   // 熱流束
 vector<double> minimumPressure;     // ある粒子近傍での最低圧力
 // 境界条件に関わる変数
 vector<int> boundaryCondition;                  // ディリクレ境界条件を付加するかどうかのフラグ
@@ -37,7 +37,7 @@ double N0_forLaplacian;
 double Lambda;
 double collisionDistance, collisionDistance2;
 double FluidDensity;
-double x_MAX = 1.2, y_MAX = 2.0, z_MAX = 0.1;       // 計算領域の最大値
+double x_MAX = 0.5, y_MAX = 0.5, z_MAX = 0.1;       // 計算領域の最大値
 double Pos_MIN[3] = {0.0, 0.0, 0.0};                // 計算領域の最小値:struktBktで使用
 
 // バケット探索法に関わる変数・配列

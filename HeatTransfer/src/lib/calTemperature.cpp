@@ -13,7 +13,7 @@ void calTemperature(void) {
     double w;
     double xij, yij, zij;
     double rho, c, k;
-    double a, b, alpha;    // 係数
+    double a, b;    // 係数
     double Tij;
 
     // 計算用の配列
@@ -23,7 +23,7 @@ void calTemperature(void) {
     rho = SOLID_DENSITY;        // 相変化を考慮するなら変更する
     c = SPECIFIC_HEAT_CAPACITY; // 比熱容量
     k = HEAT_CONDUCTIVITY;      // 熱伝導率
-    alpha = k / (rho * c);      // 温度拡散係数
+    //alpha = k / (rho * c);      // 温度拡散係数
 
     //a = (2.0 * DIM) / (N0_forLaplacian * Lambda);
     a = (2.0 * DIM) / N0_forLaplacian;
@@ -62,7 +62,7 @@ void calTemperature(void) {
                 //dT[i] += alpha * Tij / distance2;
             }
         }
-        dH[i] = a * Tij + heatFlux[i];
+        dH[i] = a * Tij;
         /*
         if (dT[i] < 0) {
             cout << "Time:" << Time << " a:" << a << " alpha:" << alpha << " dT[i]:"  << dT[i] << endl;

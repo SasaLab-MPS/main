@@ -1,14 +1,34 @@
 /*=====================================================================
-  inputHeatFlux.cpp   
+  setTemperatureDistribution.cpp   
   Yota INOUE (2021) 
   関数実装ファイル 
-  熱流束を与える
+  初期温度分布を与える
   Last update: Mar 15, 2021
 =======================================================================*/
 #include "../../include/functions.hpp"
 #include "../../include/inputs.hpp"
 
-void inputHeatFlux(void) {
+void setTemperatureDistribution(void)
+{
+  int NP = NumberOfParticles;
+  if (Time < 0.002)
+  {
+    for (int i = 0; i < NP; i++)
+    {
+      if (position[i].x < 0.5 * x_MAX)
+      {
+        temperature[i] = 500;
+        enthalpy[i] = 500 * SOLID_DENSITY * SPECIFIC_HEAT_CAPACITY;
+      }
+      else
+      {
+        temperature[i] = 300;
+        enthalpy[i] = 300 * SOLID_DENSITY * SPECIFIC_HEAT_CAPACITY;
+      }
+    }
+  }
+  
+  
   /*
   if (Time < 0.002)
   {

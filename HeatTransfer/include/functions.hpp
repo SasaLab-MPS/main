@@ -38,7 +38,7 @@ void calPressureGradient(void);                                // 圧力勾配�
 void moveParticleUsingPressureGradient(void);                  // 圧力勾配による加速度ベクトルの計算を元に粒子を移動
 void checkParticle(void);                                      // 計算領域外に出た粒子を処理
 
-void inputHeatFlux(void);                                      // 初期熱流束を与える
+void setTemperatureDistribution(void);                         // 初期温度分布を与える
 void calTemperature(void);                                     // 温度分布を計算
 //void setMinimumTemperature(void);                              // 周辺の最低温度を計算する関数
 

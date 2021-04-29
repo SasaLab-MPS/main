@@ -40,19 +40,5 @@ void calConstantParameter(void) {
   // 熱伝導方程式
   temperature.resize(NP, INITIAL_TEMPERATURE);  // 全粒子に初期温度を与える
   enthalpy.resize(NP, 0);
-  heatFlux.resize(NP, 0); // 熱流束
-
-  for (int i = 0; i < NP; i++)
-  {
-    if (position[i].x < 0.5 * x_MAX)
-    {
-      temperature[i] = 500;
-      enthalpy[i] = 500 * SOLID_DENSITY * SPECIFIC_HEAT_CAPACITY;
-    }
-    else
-    {
-      temperature[i] = 300;
-      enthalpy[i] = 300 * SOLID_DENSITY * SPECIFIC_HEAT_CAPACITY;
-    }
-  }
+  //heatFlux.resize(NP, 0); // 熱流束
 }                               

@@ -92,7 +92,7 @@ extern MatrixXd coefficientMatrix;                      // A:係数行列 = Coef
 extern VectorXd sourceTerm, pressure;                   // b:右辺係数，x:圧力の列ベクトル
 extern vector<double> temperature;                      // 温度
 //extern vector<double> minimumTemperature;               // ある粒子近傍での最低圧力
-extern vector<double> heatFlux;                         // 熱流束
+//extern vector<double> heatFlux;                         // 熱流束
 extern vector<double> enthalpy;                         // エンタルピー
 
 extern vector<double> numberDensity;                    // 粒子密度
