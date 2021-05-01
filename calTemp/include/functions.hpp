@@ -42,5 +42,6 @@ void calTemperature(void);                                     // 温度分布�
 void setTemperatureDistribution(void);                         // 初期温度分布を与える
 void calTemperatureLaplacian(void);                            // 温度のラプラシアンを計算
 //void setMinimumTemperature(void);                              // 周辺の最低温度を計算する関数
+void solveTemperatureByCGmethod(void);                         // 温度をCG法により高速解放
 
 #endif // FUNCTIONS_HPP_20210220_222753_

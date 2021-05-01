@@ -60,7 +60,7 @@ void calTemperatureLaplacian(void){
             if (distance < Re_forLaplacian)
             {
                 w = weight(distance, Re_forLaplacian); // 重み関数
-                aij = - beta * (temperature[j] - temperature[i]) * w * DT;
+                aij = - beta * (temperature(j) - temperature(i)) * w * DT;
                 aii += aij;
                 Aij.push_back( Tri(i, j, aij) );
             }
