@@ -23,7 +23,6 @@ vector<int> flagForCheckingBoundaryCondition;   // 粒子の集合のどこか�
 /* ---温度計算--- */
 vector<Tri> Aij;                    // A:係数行列(疎行列)
 VectorXd Tk, temperature;           // Tk:確定している温度，temperature:温度の列ベクトル
-vector<double> enthalpy;            // エンタルピー
 
 
 /* グローバル変数定義 */

@@ -100,7 +100,6 @@ extern vector<double> minimumPressure;                  // ある粒子近傍で
 typedef Triplet<double> Tri;                            // Tripletの省略
 extern vector<Tri> Aij;                                 // A:係数行列(疎行列)
 extern VectorXd Tk, temperature;                        // Tk:確定している温度，temperature:温度の列ベクトル
-extern vector<double> enthalpy;                         // エンタルピー
 
 extern vector<vector<int>> bucket;                      // バケットid，structBktで定義
 extern vector<int> neghPar;                             // 対象の粒子近傍の粒子, initilizationで定義

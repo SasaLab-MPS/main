@@ -43,5 +43,7 @@ void setTemperatureDistribution(void);                         // 初期温度�
 void calTemperatureLaplacian(void);                            // 温度のラプラシアンを計算
 //void setMinimumTemperature(void);                              // 周辺の最低温度を計算する関数
 void solveTemperatureByCGmethod(void);                         // 温度をCG法により高速解放
+void removeNegativeTemperature(void);                          // 温度が最低温度未満になった場合を0処理
+void checkTemperature(void);                                   // 境界条件の設定 = 温度のチェック
 
 #endif // FUNCTIONS_HPP_20210220_222753_

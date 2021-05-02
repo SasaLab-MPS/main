@@ -35,11 +35,6 @@ void calTemperatureLaplacian(void){
 
     for (int i = 0; i < NumberOfParticles; i++)
     {
-        // 要検討
-        /*
-        if (position[i].particleType == WALL || position[i].particleType == DUMMY_WALL || position[i].particleType == GHOST)
-            continue;
-        */
         aij = 0.0;
         aii = 0.0;
         searchBucket(i);

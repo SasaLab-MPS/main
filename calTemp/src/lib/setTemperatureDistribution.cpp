@@ -17,8 +17,8 @@ void setTemperatureDistribution(void)
     {
       if (position[i].x < 0.5 * x_MAX)
       {
-        //temperature[i] = 500;
-        enthalpy[i] = LASER_POWER;
+        temperature(i) = 500;
+        //enthalpy[i] = LASER_POWER;
       }
     }
   }
