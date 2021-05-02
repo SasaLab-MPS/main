@@ -11,7 +11,7 @@
 void checkTemperature(void) {
     for(int i = 0; i < NumberOfParticles; i++) {
         if (position[i].particleType == WALL || position[i].particleType == DUMMY_WALL || position[i].particleType == GHOST) {
-            temperature[i] == INITIAL_TEMPERATURE;
+            temperature[i] = INITIAL_TEMPERATURE;
         }
     }
 }

@@ -13,7 +13,7 @@ void calTemperatureLaplacian(void){
     double w;
     double xij, yij, zij;
     double rho, c, lmb;
-    double a, b;           // 係数
+    double a;           // 係数
     double alpha, beta;    // α：温度伝導率，β：係数
     double aij, aii;       //係数行列の係数
 
@@ -26,7 +26,6 @@ void calTemperatureLaplacian(void){
     lmb = HEAT_CONDUCTIVITY;    // 熱伝導率
 
     a = (2.0 * DIM) / (N0_forLaplacian * Lambda);
-    b = 1 / (rho * c);
 
     alpha = lmb / (rho * c);    // 温度伝導率
     beta = a * alpha;

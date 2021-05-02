@@ -10,6 +10,7 @@
 
 void setTemperatureDistribution(void)
 {
+  /*
   int NP = NumberOfParticles;
   if (Time < 0.002)
   {
@@ -22,7 +23,7 @@ void setTemperatureDistribution(void)
       }
     }
   }
-  
+  */
   
   /*
   if (Time < 0.002)
