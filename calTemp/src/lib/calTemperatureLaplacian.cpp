@@ -13,9 +13,9 @@ void calTemperatureLaplacian(void){
     double w;
     double xij, yij, zij;
     double rho, c, lmb;
-    double a;           // 係数
+    double a;              // ラプラシアンモデルの係数
     double alpha, beta;    // α：温度伝導率，β：係数
-    double aij, aii;       //係数行列の係数
+    double aij, aii;       //係数行列の各値
 
     // 計算用の配列
     //vector<double> dH;
@@ -51,16 +51,17 @@ void calTemperatureLaplacian(void){
             distance2 = (xij * xij) + (yij * yij) + (zij * zij);
             distance = sqrt(distance2);
             // 影響範囲内か
-            if (distance < Re_forLaplacian)
-            {
+            if (distance < Re_forLaplacian) {
                 w = weight(distance, Re_forLaplacian); // 重み関数
-                aij = - beta * (temperature(j) - temperature(i)) * w * DT;
+                //aij = - beta * (temperature(j) - temperature(i)) * w * DT;
+                aij = beta * w * DT;
                 aii += aij;
-                Aij.push_back( Tri(i, j, aij) );
+                Aij.push_back( Tri(i, j, (-1) * aij) );
             }
-            aii += 1;
-            Aij.push_back( Tri(i, i, aii) );
+            //cout << "beta:" << beta;
         }
+        aii += 1;
+        Aij.push_back(Tri(i, i, aii));
         //dH[i] = a * Aij;
     }
 }

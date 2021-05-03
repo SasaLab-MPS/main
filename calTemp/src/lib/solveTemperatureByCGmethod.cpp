@@ -17,7 +17,7 @@ void solveTemperatureByCGmethod(void) {
 
     A.setFromTriplets(Aij.begin(), Aij.end());
     b = temperature;
-    x = temperature;
+    //x = temperature;
 
     // Axを計算
     Ax = A * x;
@@ -41,6 +41,7 @@ void solveTemperatureByCGmethod(void) {
 
         // 誤差が許容範囲以下か?
         if (error < cgEPS) {
+            //cout << "i:" << i << endl;
             break;
         }
         // betaの計算
