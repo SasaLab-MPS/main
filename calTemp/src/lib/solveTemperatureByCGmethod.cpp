@@ -12,12 +12,12 @@ void solveTemperatureByCGmethod(void) {
     int NP = NumberOfParticles;            // 行列・ベクトルサイズ
     int iMAX = 2 * NP;                     // 最大反復計算回数
     SparseMatrix<double> A(NP, NP);        // 係数行列(疎行列)
-    VectorXd b(NP), x(NP);                 // Ax = b
+    VectorXd b(NP), x(NP);         // Ax = b
     VectorXd p(NP), r(NP), Ax(NP), Ap(NP); // 中間変数
 
     A.setFromTriplets(Aij.begin(), Aij.end());
     b = temperature;
-    //x = temperature;
+    x = temperature;
 
     // Axを計算
     Ax = A * x;

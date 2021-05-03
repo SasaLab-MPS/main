@@ -31,6 +31,7 @@ void calTemperatureLaplacian(void){
     beta = a * alpha;
 
     calBucket(); // 粒子が所属するバケットを計算
+    Aij.clear();
 
     for (int i = 0; i < NumberOfParticles; i++)
     {
@@ -53,12 +54,10 @@ void calTemperatureLaplacian(void){
             // 影響範囲内か
             if (distance < Re_forLaplacian) {
                 w = weight(distance, Re_forLaplacian); // 重み関数
-                //aij = - beta * (temperature(j) - temperature(i)) * w * DT;
                 aij = beta * w * DT;
                 aii += aij;
                 Aij.push_back( Tri(i, j, (-1) * aij) );
             }
-            //cout << "beta:" << beta;
         }
         aii += 1;
         Aij.push_back(Tri(i, i, aii));
