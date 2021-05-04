@@ -8,8 +8,10 @@
 #ifndef FUNCTIONS_HPP_20210220_222753_
 #define FUNCTIONS_HPP_20210220_222753_
 
+void conditionInitialization(void);                            // 計算領域の初期化 
 void initializeParticlePositionAndVelocity_for2dim(void);      // t = 0sでの粒子の速度と位置を決定 (2次元)
 void initializeParticlePositionAndVelocity_for3dim(void);      // t = 0sでの粒子の速度と位置を決定 (3次元)
+void initializeTemperatureDistribution(void);                  // 温度分布の初期化 
 void calConstantParameter(void);                               // 影響半径などの定数計算
 void calNZeroAndLambda(void);                                  // 初期粒子密度 n0および lambdaの計算
 double weight(double distance, double re);                     // 重み関数の計算
@@ -37,11 +39,10 @@ void setMinimumPressure(void);                                 // ある粒子�
 void calPressureGradient(void);                                // 圧力勾配による加速度ベクトルの計算
 void moveParticleUsingPressureGradient(void);                  // 圧力勾配による加速度ベクトルの計算を元に粒子を移動
 void checkParticle(void);                                      // 計算領域外に出た粒子を処理
-
+/* --- 熱伝導計算 --- */
 void calTemperature(void);                                     // 温度分布を計算
 void setTemperatureDistribution(void);                         // 初期温度分布を与える
 void calTemperatureLaplacian(void);                            // 温度のラプラシアンを計算
-//void setMinimumTemperature(void);                              // 周辺の最低温度を計算する関数
 void solveTemperatureByCGmethod(void);                         // 温度をCG法により高速解放
 void removeNegativeTemperature(void);                          // 温度が最低温度未満になった場合を0処理
 void checkTemperature(void);                                   // 境界条件の設定 = 温度のチェック

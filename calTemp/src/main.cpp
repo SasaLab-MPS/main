@@ -7,14 +7,7 @@
 int main(int argc, char **argv)
 {
     printf("\n*** START PARTICLE-SIMULATION ***\n");
-    if (DIM == 2)
-    {
-        initializeParticlePositionAndVelocity_for2dim();
-    }
-    else
-    {
-        initializeParticlePositionAndVelocity_for3dim();
-    }
+    conditionInitialization();  // 計算領域の初期化
     calConstantParameter();
     mainLoopOfSimulation();
     printf("*** END ***\n\n");

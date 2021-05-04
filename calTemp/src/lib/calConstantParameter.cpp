@@ -25,19 +25,4 @@ void calConstantParameter(void) {
   collisionDistance2 = collisionDistance * collisionDistance;
   FileNumber = 0;
   Time = 0.0;
-
-  structBucket();  // バケットの構築
-  calBucket();     // バケットに粒子を入れる
-  checkParticle(); // 計算範囲外に出た粒子を処理
-
-  // 行列，ベクトルの設定, 初期化
-  int NP = NumberOfParticles;
-  /* ---圧力計算用--- */
-  coefficientMatrix.resize(NP, NP);
-  sourceTerm.setZero(NP);
-  pressure.setZero(NP);
-  numberDensity.resize(NP, 0);
-  /* ---温度計算用--- */
-  temperature.setZero(NP); // 全粒子に初期温度を与える
-  //enthalpy.resize(NP, 0);
 }                               
