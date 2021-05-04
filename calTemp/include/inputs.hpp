@@ -17,7 +17,7 @@ using namespace Eigen;
 /* 定数定義 */
 /* for two-dimensional simulation */
 constexpr int DIM = 2;                      // 次元
-constexpr double PARTICLE_DISTANCE = 0.02;  // 初期粒子間距離 l0 (mm)
+constexpr double PARTICLE_DISTANCE = 0.04;  // 初期粒子間距離 l0 (mm)
 constexpr double DT = 0.001;                // 時間刻み幅
 constexpr int OUTPUT_INTERVAL = 1;          // 計算結果のファイル出力の間隔
 
@@ -62,7 +62,7 @@ constexpr int DIRICHLET_BOUNDARY_IS_CONNECTED = 1;          // ディリクレ�
 constexpr int DIRICHLET_BOUNDARY_IS_CHECKED = 2;            // ディリクレ条件を満たすことを確認済み
 constexpr double CRT_NUM = 0.1;                             // クーラン数
 
-constexpr double INITIAL_TEMPERATURE = 300;                 // 初期温度 (℃)
+constexpr double INITIAL_TEMPERATURE = 0.0;                 // 初期温度 (℃)
 constexpr double SOLID_DENSITY = 0.008;                     // 固体の密度:ρ (kg/m^3)
 constexpr double SPECIFIC_HEAT_CAPACITY = 500;              // 比熱容量:c (J/kgK)
 constexpr double HEAT_CONDUCTIVITY = 300;                   // 熱伝導率:λ (J/mKs)

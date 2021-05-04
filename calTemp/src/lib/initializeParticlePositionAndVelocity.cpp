@@ -32,7 +32,7 @@ void initializeParticlePositionAndVelocity_for2dim(void)
             y = PARTICLE_DISTANCE * (double)(iY);
             z = 0.0;    // 奥行は0で設定
             flagOfParticleGeneration = OFF;
-
+            
             /* dummy wall region */
             if (((x > -4.0 * PARTICLE_DISTANCE + EPS) && (x <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((y > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (y <= y_MAX + EPS)))
             {
@@ -61,7 +61,7 @@ void initializeParticlePositionAndVelocity_for2dim(void)
                 flagOfParticleGeneration = OFF;
             }
             */
-
+            
             /* solid region：固体領域を設定 */
             if (((x > 0.0 + EPS) && (x <= x_MAX + EPS)) && ((y > 0.0 + EPS) && (y <= y_MAX + EPS)))
             {

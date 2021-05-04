@@ -12,9 +12,9 @@ void initializeTemperatureDistribution(void) {
 
     for (int i = 0; i < NP; i++) {
         temperature(i) = INITIAL_TEMPERATURE;
-        if (position[i].x < 0.5 * x_MAX)
+        if (0.5 * x_MAX - EPS < position[i].x && position[i].x < 0.5 * x_MAX + EPS)
         {
-            temperature(i) = 500;
+            temperature(i) = 10;
             //enthalpy[i] = LASER_POWER;
         }
         if (position[i].particleType == WALL || position[i].particleType == DUMMY_WALL || position[i].particleType == GHOST)
