@@ -25,7 +25,6 @@ vector<int> flagForCheckingBoundaryCondition;   // 粒子の集合のどこか�
 vector<Tri> T_aij;                  // A:係数行列(疎行列)
 VectorXd Tk, temperature;           // Tk:確定している温度，temperature:温度の列ベクトル
 
-
 /* グローバル変数定義 */
 int FileNumber;
 double Time = 0.0;
@@ -41,7 +40,6 @@ double collisionDistance, collisionDistance2;
 double FluidDensity;
 double x_MAX = 0.5, y_MAX = 0.1, z_MAX = 0.1;       // 計算領域の最大値
 double Pos_MIN[3] = {0.0, 0.0, 0.0};                // 計算領域の最小値:struktBktで使用
-
 
 // バケット探索法に関わる変数・配列
 vector<vector<int>> bucket;                     // バケットid，structBktで定義
