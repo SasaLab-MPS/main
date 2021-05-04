@@ -10,15 +10,16 @@
 
 #include <bits/stdc++.h>
 #include <Eigen/Dense>
+#include <Eigen/Sparse>
 using namespace std;
 using namespace Eigen;
 
 /* 定数定義 */
 /* for two-dimensional simulation */
 constexpr int DIM = 2;                      // 次元
-constexpr double PARTICLE_DISTANCE = 0.04;  // 初期粒子間距離 l0 (mm)
+constexpr double PARTICLE_DISTANCE = 0.02;  // 初期粒子間距離 l0 (mm)
 constexpr double DT = 0.001;                // 時間刻み幅
-constexpr int OUTPUT_INTERVAL = 20;         // 計算結果のファイル出力の間隔
+constexpr int OUTPUT_INTERVAL = 1;          // 計算結果のファイル出力の間隔
 
 /* for three-dimensional simulation */
 /*
@@ -28,7 +29,7 @@ constexpr double DT = 0.003;
 constexpr int OUTPUT_INTERVAL = 20;
 */
 
-constexpr double FINISH_TIME = 2;                         // シミュレーションの終了時刻
+constexpr double FINISH_TIME = 0.015;                     // シミュレーションの終了時刻
 constexpr double KINEMATIC_VISCOSITY = 1.0e-6;            // 動粘性係数
 constexpr double FLUID_DENSITY = 1000.0;                  // 流体の密度
 constexpr double G_X = 0.0;
@@ -61,10 +62,10 @@ constexpr int DIRICHLET_BOUNDARY_IS_CONNECTED = 1;          // ディリクレ�
 constexpr int DIRICHLET_BOUNDARY_IS_CHECKED = 2;            // ディリクレ条件を満たすことを確認済み
 constexpr double CRT_NUM = 0.1;                             // クーラン数
 
-constexpr double INITIAL_TEMPERATURE = 0.0;                 // 初期温度 (℃)
-constexpr double SOLID_DENSITY = 8000;                      // 固体の密度:ρ (g/mm^3)
-constexpr double SPECIFIC_HEAT_CAPACITY = 500;              // 比熱容量:c (J/gK)
-constexpr double HEAT_CONDUCTIVITY = 300;                   // 熱伝導率:λ (J/mmKs)
+constexpr double INITIAL_TEMPERATURE = 300;                 // 初期温度 (℃)
+constexpr double SOLID_DENSITY = 0.008;                     // 固体の密度:ρ (kg/m^3)
+constexpr double SPECIFIC_HEAT_CAPACITY = 500;              // 比熱容量:c (J/kgK)
+constexpr double HEAT_CONDUCTIVITY = 300;                   // 熱伝導率:λ (J/mKs)
 
 /* レーザ諸元・造形条件 */
 constexpr double LASER_POWER = 0.1;                         // レーザ出力:P (W, J/s)
@@ -83,22 +84,24 @@ typedef struct
 } Position;
 typedef Position Velocity;                              // 速度:Velocity
 typedef Position Acceleration;                          // 加速度:Acceleration
+typedef Triplet<double> Tri;                            // Tripletの省略
 
 /* 動的配列 */
 extern vector<Position> position;                       // 位置
 extern vector<Velocity> velocity;                       // 速度
 extern vector<Acceleration> acceleration;               // 加速度
-extern MatrixXd coefficientMatrix;                      // A:係数行列 = CoefficientMatrix mianLoopで定義
+/* ---圧力計算--- */
+extern SparseMatrix<double> coefficientMatrix;          // CoefficientMatrix: mianLoopで定義
+extern vector<Tri> P_aij;                               // A:係数行列(疎行列)
 extern VectorXd sourceTerm, pressure;                   // b:右辺係数，x:圧力の列ベクトル
-extern vector<double> temperature;                      // 温度
-//extern vector<double> minimumTemperature;               // ある粒子近傍での最低圧力
-//extern vector<double> heatFlux;                         // 熱流束
-extern vector<double> enthalpy;                         // エンタルピー
-
 extern vector<double> numberDensity;                    // 粒子密度
 extern vector<int> boundaryCondition;                   // ディリクレ境界条件を付加するかどうかのフラグ
 extern vector<int> flagForCheckingBoundaryCondition;    // 粒子の集合のどこかにディリクレ境界条件が付加されているかをチェックするためのフラグ
 extern vector<double> minimumPressure;                  // ある粒子近傍での最低圧力
+/* ---温度計算--- */
+extern vector<Tri> T_aij;                               // A:係数行列(疎行列)
+extern VectorXd Tk, temperature;                        // Tk:確定している温度，temperature:温度の列ベクトル
+
 extern vector<vector<int>> bucket;                      // バケットid，structBktで定義
 extern vector<int> neghPar;                             // 対象の粒子近傍の粒子, initilizationで定義
 

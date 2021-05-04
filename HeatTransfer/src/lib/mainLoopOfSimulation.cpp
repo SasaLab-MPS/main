@@ -21,8 +21,6 @@ void mainLoopOfSimulation(void)
         calGravity();
         calViscosity();
 
-        setTemperatureDistribution();           // 初期温度分布を設定
-        //setMinimumTemperature();                // 粒子i周辺の最低温度を計算
         calTemperature();                       // 温度分布を計算
         
         moveParticle();

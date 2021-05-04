@@ -12,18 +12,18 @@ void setMatrix(void)
 {
     double xij, yij, zij;
     double distance, distance2;
-    double coefficientIJ;
+    double coefficientIJ, coefficientMatrixII;
     double n0 = N0_forLaplacian;
     double a;
-    int NP = NumberOfParticles;
-    coefficientMatrix.setZero(NP, NP);
+
+    P_aij.clear(); // 係数行列の初期化
 
     a = 2.0 * DIM / (n0 * Lambda);
 
     // NxNの正方行列を設定，N:粒子数
     for (int i = 0; i < NumberOfParticles; i++) {
-        if (boundaryCondition[i] != INNER_PARTICLE)
-            continue;
+        coefficientMatrixII = 0.0;
+        if (boundaryCondition[i] != INNER_PARTICLE) continue;
         /* バケット法による粒子の探索効率向上 */
         searchBucket(i);
         // 粒子の所属するバケットのid
@@ -43,10 +43,14 @@ void setMatrix(void)
                 continue;
             coefficientIJ = a * weight(distance, Re_forLaplacian) / FluidDensity;
             // 係数行列の中身を計算
-            coefficientMatrix(i, j) = (-1.0) * coefficientIJ;
-            coefficientMatrix(i, i) += coefficientIJ;
+            P_aij.push_back(Tri(i, j, (-1.0) * coefficientIJ));
+            coefficientMatrixII += coefficientIJ;
         }
-        coefficientMatrix(i, i) += (COMPRESSIBILITY) / (DT * DT);
+        coefficientMatrixII += (COMPRESSIBILITY) / (DT * DT);
+        P_aij.push_back(Tri(i, i, coefficientMatrixII));
     }
+    // 係数行列の設定
+    coefficientMatrix.setFromTriplets(P_aij.begin(), P_aij.end());
+    // 例外処理
     exceptionalProcessingForBoundaryCondition(); // ディリクレ境界条件を満たさない粒子の例外処理
 }

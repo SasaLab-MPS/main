@@ -31,15 +31,19 @@ void exceptionalProcessingForBoundaryCondition(void);          // 自由表面�
 void searchBucket(int i);                                      // 粒子i近傍の粒子を探索する関数
 void checkBoundaryCondition(void);                             // ポアソン方程式のディリクレ境界条件のチェック
 void increaseDiagonalTerm(void);                               // 連立一次方程式の係数行列の対角項を大きくする例外処理
-void solveByCGmethod(void);                                    // CG法による高速解法，calPressureで使用
+void solvePressureByCGmethod(void);                            // CG法による高速解法，calPressureで使用
 void removeNegativePressure(void);                             // 負圧が生じた場合，0 Paに修正
 void setMinimumPressure(void);                                 // ある粒子近傍で最低圧力を記録
 void calPressureGradient(void);                                // 圧力勾配による加速度ベクトルの計算
 void moveParticleUsingPressureGradient(void);                  // 圧力勾配による加速度ベクトルの計算を元に粒子を移動
 void checkParticle(void);                                      // 計算領域外に出た粒子を処理
 
-void setTemperatureDistribution(void);                         // 初期温度分布を与える
 void calTemperature(void);                                     // 温度分布を計算
+void setTemperatureDistribution(void);                         // 初期温度分布を与える
+void calTemperatureLaplacian(void);                            // 温度のラプラシアンを計算
 //void setMinimumTemperature(void);                              // 周辺の最低温度を計算する関数
+void solveTemperatureByCGmethod(void);                         // 温度をCG法により高速解放
+void removeNegativeTemperature(void);                          // 温度が最低温度未満になった場合を0処理
+void checkTemperature(void);                                   // 境界条件の設定 = 温度のチェック
 
 #endif // FUNCTIONS_HPP_20210220_222753_

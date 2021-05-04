@@ -11,18 +11,22 @@
 void setTemperatureDistribution(void)
 {
   int NP = NumberOfParticles;
-  if (Time < 0.002)
-  {
+ 
+  if (Time < 0.002) {
     for (int i = 0; i < NP; i++)
     {
+      temperature(i) = INITIAL_TEMPERATURE;
       if (position[i].x < 0.5 * x_MAX)
       {
-        //temperature[i] = 500;
-        enthalpy[i] = LASER_POWER;
+        temperature(i) = 500;
+        //enthalpy[i] = LASER_POWER;
+      }
+      if (position[i].particleType == WALL || position[i].particleType == DUMMY_WALL || position[i].particleType == GHOST)
+      {
+        temperature[i] = INITIAL_TEMPERATURE;
       }
     }
   }
-  
   
   /*
   if (Time < 0.002)

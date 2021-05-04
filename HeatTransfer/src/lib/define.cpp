@@ -12,17 +12,19 @@ vector<Position> position;         // 位置
 vector<Velocity> velocity;         // 速度
 vector<Acceleration> acceleration; // 加速度
 // constantParameterで定義
-MatrixXd coefficientMatrix;         // A:係数行列 = CoefficientMatrix
-VectorXd sourceTerm, pressure;      // b:右辺係数，x:圧力の列ベクトル
-vector<double> numberDensity;       // 粒子密度
-vector<double> temperature;         // 温度
-vector<double> enthalpy;            // エンタルピー
-//vector<double> minimumTemperature;  // 周辺の最低温度
-//vector<double> heatFlux;                   // 熱流束
-vector<double> minimumPressure;     // ある粒子近傍での最低圧力
+/* ---圧力計算--- */
+SparseMatrix<double> coefficientMatrix; // A:係数行列 = CoefficientMatrix
+vector<Tri> P_aij;                      // A:係数行列(疎行列)
+VectorXd sourceTerm, pressure;          // b:右辺係数，x:圧力の列ベクトル
+vector<double> numberDensity;           // 粒子密度
+vector<double> minimumPressure;         // ある粒子近傍での最低圧力
 // 境界条件に関わる変数
 vector<int> boundaryCondition;                  // ディリクレ境界条件を付加するかどうかのフラグ
 vector<int> flagForCheckingBoundaryCondition;   // 粒子の集合のどこかにディリクレ境界条件が付加されているかをチェックするためのフラグ
+/* ---温度計算--- */
+vector<Tri> T_aij;                  // A:係数行列(疎行列)
+VectorXd Tk, temperature;           // Tk:確定している温度，temperature:温度の列ベクトル
+
 
 /* グローバル変数定義 */
 int FileNumber;
@@ -37,8 +39,9 @@ double N0_forLaplacian;
 double Lambda;
 double collisionDistance, collisionDistance2;
 double FluidDensity;
-double x_MAX = 0.5, y_MAX = 0.5, z_MAX = 0.1;       // 計算領域の最大値
+double x_MAX = 0.5, y_MAX = 0.1, z_MAX = 0.1;       // 計算領域の最大値
 double Pos_MIN[3] = {0.0, 0.0, 0.0};                // 計算領域の最小値:struktBktで使用
+
 
 // バケット探索法に関わる変数・配列
 vector<vector<int>> bucket;                     // バケットid，structBktで定義

@@ -32,13 +32,12 @@ void calConstantParameter(void) {
 
   // 行列，ベクトルの設定, 初期化
   int NP = NumberOfParticles;
-  coefficientMatrix.setZero(NP, NP);
+  /* ---圧力計算用--- */
+  coefficientMatrix.resize(NP, NP);
   sourceTerm.setZero(NP);
   pressure.setZero(NP);
   numberDensity.resize(NP, 0);
-
-  // 熱伝導方程式
-  temperature.resize(NP, INITIAL_TEMPERATURE);  // 全粒子に初期温度を与える
-  enthalpy.resize(NP, 0);
-  //heatFlux.resize(NP, 0); // 熱流束
+  /* ---温度計算用--- */
+  temperature.setZero(NP); // 全粒子に初期温度を与える
+  //enthalpy.resize(NP, 0);
 }                               

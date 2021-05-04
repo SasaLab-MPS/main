@@ -16,7 +16,7 @@ void increaseDiagonalTerm(void)
     {
         if (flagForCheckingBoundaryCondition[i] == DIRICHLET_BOUNDARY_IS_NOT_CONNECTED)
         {
-            coefficientMatrix(i, i) = 2.0 * coefficientMatrix(i, i);
+            coefficientMatrix.coeffRef(i, i) = 2.0 * coefficientMatrix.coeffRef(i, i);
         }
     }
 }
