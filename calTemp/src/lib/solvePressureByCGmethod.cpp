@@ -13,7 +13,7 @@ void solvePressureByCGmethod(void)
 {
     int NP = NumberOfParticles;             // 行列・ベクトルサイズ
     int iMAX = 2*NP;                        // 最大反復計算回数
-    MatrixXd A(NP, NP);                     // 係数行列
+    SparseMatrix<double> A(NP, NP);         // 係数行列
     VectorXd b(NP), x(NP);                  // Ax = bko
     VectorXd p(NP), r(NP), Ax(NP), Ap(NP);  // 中間変数
 

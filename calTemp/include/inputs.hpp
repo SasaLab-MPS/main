@@ -17,7 +17,7 @@ using namespace Eigen;
 /* 定数定義 */
 /* for two-dimensional simulation */
 constexpr int DIM = 2;                      // 次元
-constexpr double PARTICLE_DISTANCE = 0.04;  // 初期粒子間距離 l0 (mm)
+constexpr double PARTICLE_DISTANCE = 0.02;  // 初期粒子間距離 l0 (mm)
 constexpr double DT = 0.001;                // 時間刻み幅
 constexpr int OUTPUT_INTERVAL = 20;         // 計算結果のファイル出力の間隔
 
@@ -84,21 +84,22 @@ typedef struct
 } Position;
 typedef Position Velocity;                              // 速度:Velocity
 typedef Position Acceleration;                          // 加速度:Acceleration
+typedef Triplet<double> Tri;                            // Tripletの省略
 
 /* 動的配列 */
 extern vector<Position> position;                       // 位置
 extern vector<Velocity> velocity;                       // 速度
 extern vector<Acceleration> acceleration;               // 加速度
 /* ---圧力計算--- */
-extern MatrixXd coefficientMatrix;                      // CoefficientMatrix: mianLoopで定義
+extern SparseMatrix<double> coefficientMatrix;          // CoefficientMatrix: mianLoopで定義
+extern vector<Tri> P_aij;                               // A:係数行列(疎行列)
 extern VectorXd sourceTerm, pressure;                   // b:右辺係数，x:圧力の列ベクトル
 extern vector<double> numberDensity;                    // 粒子密度
 extern vector<int> boundaryCondition;                   // ディリクレ境界条件を付加するかどうかのフラグ
 extern vector<int> flagForCheckingBoundaryCondition;    // 粒子の集合のどこかにディリクレ境界条件が付加されているかをチェックするためのフラグ
 extern vector<double> minimumPressure;                  // ある粒子近傍での最低圧力
 /* ---温度計算--- */
-typedef Triplet<double> Tri;                            // Tripletの省略
-extern vector<Tri> Aij;                                 // A:係数行列(疎行列)
+extern vector<Tri> T_aij;                               // A:係数行列(疎行列)
 extern VectorXd Tk, temperature;                        // Tk:確定している温度，temperature:温度の列ベクトル
 
 extern vector<vector<int>> bucket;                      // バケットid，structBktで定義

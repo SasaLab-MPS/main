@@ -30,8 +30,8 @@ void calTemperatureLaplacian(void){
     alpha = lmb / (rho * c);    // 温度伝導率
     beta = a * alpha;
 
-    calBucket(); // 粒子が所属するバケットを計算
-    Aij.clear();
+    calBucket();    // 粒子が所属するバケットを計算
+    T_aij.clear();  // 係数行列の初期化
 
     for (int i = 0; i < NumberOfParticles; i++)
     {
@@ -56,11 +56,11 @@ void calTemperatureLaplacian(void){
                 w = weight(distance, Re_forLaplacian); // 重み関数
                 aij = beta * w * DT;
                 aii += aij;
-                Aij.push_back( Tri(i, j, (-1) * aij) );
+                T_aij.push_back(Tri(i, j, (-1) * aij));
             }
         }
         aii += 1;
-        Aij.push_back(Tri(i, i, aii));
+        T_aij.push_back(Tri(i, i, aii));
         //dH[i] = a * Aij;
     }
 }

@@ -15,7 +15,7 @@ void solveTemperatureByCGmethod(void) {
     VectorXd b(NP), x(NP);         // Ax = b
     VectorXd p(NP), r(NP), Ax(NP), Ap(NP); // 中間変数
 
-    A.setFromTriplets(Aij.begin(), Aij.end());
+    A.setFromTriplets(T_aij.begin(), T_aij.end());
     b = temperature;
     x = temperature;
 

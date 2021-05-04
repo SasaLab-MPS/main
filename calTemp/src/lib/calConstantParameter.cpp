@@ -33,21 +33,11 @@ void calConstantParameter(void) {
   // 行列，ベクトルの設定, 初期化
   int NP = NumberOfParticles;
   /* ---圧力計算用--- */
-  coefficientMatrix.setZero(NP, NP);
+  coefficientMatrix.resize(NP, NP);
   sourceTerm.setZero(NP);
   pressure.setZero(NP);
   numberDensity.resize(NP, 0);
   /* ---温度計算用--- */
   temperature.setZero(NP); // 全粒子に初期温度を与える
   //enthalpy.resize(NP, 0);
-  for (int i = 0; i < NP; i++) {
-    temperature(i) = INITIAL_TEMPERATURE;
-    if (position[i].x < 0.5 * x_MAX) {
-      temperature(i) = 500;
-      //enthalpy[i] = LASER_POWER;
-    }
-    if (position[i].particleType == WALL || position[i].particleType == DUMMY_WALL || position[i].particleType == GHOST) {
-      temperature[i] = INITIAL_TEMPERATURE;
-    }
-  }
 }                               
