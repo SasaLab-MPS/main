@@ -14,7 +14,7 @@ void removeNegativePressure(void)
 
     for (i = 0; i < NumberOfParticles; i++)
     {
-        if (pressure(i) < 0.0)
-            pressure(i) = 0.0;
+        if (pressure(i) < INITIAL_TEMPERATURE)
+            pressure(i) = INITIAL_TEMPERATURE;
     }
 }
