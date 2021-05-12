@@ -31,6 +31,12 @@ main.cpp
             |       |---solveTemperatureByCGmethod      // 共役勾配法による高速解法
             |       |---removeNegativeTemperature       // 温度が最低温度未満になった場合を処理
             |
+            |---calSurfaceTension ?     // 表面張力の計算: sigma, kappa, delta, normal vector, surface tension
+            |       |---calNumberDensity    // 粒子数密度を計算
+            |       |---calNormalVector     // 法線ベクトルの計算: NormalVector
+            |       |---calCurvature        // 曲率の計算: Kappa
+            |       |---delta               // デルタ関数
+            |
             |---moveParticle            // 粒子を仮移動
             |       |---checkParticle       // 計算範囲外に出た粒子を処理(消去)
             |       |---calBucket           // バケットに粒子を投入
