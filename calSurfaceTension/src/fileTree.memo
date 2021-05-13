@@ -35,7 +35,7 @@ main.cpp
             |       |---calNumberDensity    // 粒子数密度を計算
             |       |---calNormalVector     // 法線ベクトルの計算: NormalVector
             |       |---calCurvature        // 曲率の計算: Kappa
-            |       |---delta               // デルタ関数
+            |       |---delta               // デルタ関数(不要?)
             |
             |---moveParticle            // 粒子を仮移動
             |       |---checkParticle       // 計算範囲外に出た粒子を処理(消去)
