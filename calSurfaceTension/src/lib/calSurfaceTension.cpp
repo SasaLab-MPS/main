@@ -9,25 +9,31 @@
 
 void calSurfaceTension(void) {
     double kappa;   // 曲率
-    double delta;   // デルタ関数の値
     double a;       // 係数
     double phi;
+    double beta = THRESHOLD_RATIO_OF_NUMBER_DENSITY;
 
-    calNumberDensity();
-    calNormalVector();
+    calNumberDensity();   // 密度計算
+    calNormalVector();    // 法線ベクトル計算
 
     // 表面張力の計算
     for(int i = 0; i < NumberOfParticles; i++) {
 
-        kappa = calCurvature(i);
-        delta = deltaFunction(phi);
+        surfaceTension[i].x = 0.0;
+        surfaceTension[i].y = 0.0;
+        surfaceTension[i].z = 0.0;
 
-        a = SIGMA * kappa * delta;
+        // 自由表面か ?
+        if (numberDensity[i] < beta * N0_forNumberDensity)
+        {
+          kappa = calCurvature(i);
+          a = SIGMA * kappa;
 
-        // 表面張力計算
-        surfaceTension[i].x = a * normalVector[i].x;
-        surfaceTension[i].y = a * normalVector[i].y;
-        surfaceTension[i].z = a * normalVector[i].z;
+          // 表面張力計算
+          surfaceTension[i].x = a * normalVector[i].x;
+          surfaceTension[i].y = a * normalVector[i].y;
+          surfaceTension[i].z = a * normalVector[i].z;
+        }
     }
     
 }
