@@ -46,5 +46,10 @@ void calTemperatureLaplacian(void);                            // 温度のラ�
 void solveTemperatureByCGmethod(void);                         // 温度をCG法により高速解放
 void removeNegativeTemperature(void);                          // 温度が最低温度未満になった場合を0処理
 void checkTemperature(void);                                   // 境界条件の設定 = 温度のチェック
+/* ---表面張力計算--- */
+void calSurfaceTension(void);                                  // 表面張力計算本体
+void calNormalVector(void);                                    // 表面の法線ベクトル
+double calCurvature(int i);                                    // 表面粒子の曲率, kappa
+double deltaFunction(double phi);                              // デルタ関数
 
 #endif // FUNCTIONS_HPP_20210220_222753_

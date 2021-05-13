@@ -62,32 +62,40 @@ constexpr int DIRICHLET_BOUNDARY_IS_CONNECTED = 1;          // ディリクレ�
 constexpr int DIRICHLET_BOUNDARY_IS_CHECKED = 2;            // ディリクレ条件を満たすことを確認済み
 constexpr double CRT_NUM = 0.1;                             // クーラン数
 
+/* 熱伝導係数等 */
 constexpr double INITIAL_TEMPERATURE = 0.0;                 // 初期温度 (℃)
 constexpr double SOLID_DENSITY = 0.008;                     // 固体の密度:ρ (g/mm^3)
 constexpr double SPECIFIC_HEAT_CAPACITY = 500;              // 比熱容量:c (mJ/gK)
 constexpr double HEAT_CONDUCTIVITY = 300;                   // 熱伝導率:λ (mJ/mmKs)
-
 /* レーザ諸元・造形条件 */
 constexpr double HEAT_INPUT = 100;                          // 初期熱量:Q (mJ/mm^2)
 constexpr double LASER_POWER = 0.1;                         // レーザ出力:P (W, J/s)
 constexpr double LASER_DIAMETER = 0.1;                      // レーザ直径:d (mm)
 constexpr double SCAN_SPEED = 0.1;                          // レーザ走査速度:v (mm/s)
-
+/* 表面張力定数 */
+constexpr double SIGMA = 0.000878;                          // 表面張力係数:σ (N/mm)
 
 /* 粒子の座標，速度，速度を表す構造体 */
-// 座標:Position
-typedef struct
-{
+// 座標:Position，粒子の状態を持つ
+typedef struct {
   double x;
   double y;
   double z;
   int particleType; // 粒子の状態
 } Position;
-typedef Position Velocity;                              // 速度:Velocity
-typedef Position Acceleration;                          // 加速度:Acceleration
+// 座標
+typedef struct {
+  double x;
+  double y;
+  double z;
+} Coordinate;
+
+typedef Coordinate Velocity;                            // 速度:Velocity
+typedef Coordinate Acceleration;                        // 加速度:Acceleration
+typedef Coordinate Force;                               // 力：Force
 typedef Triplet<double> Tri;                            // Tripletの省略
 
-/* 動的配列 */
+/* ---位置・速度・加速度--- */
 extern vector<Position> position;                       // 位置
 extern vector<Velocity> velocity;                       // 速度
 extern vector<Acceleration> acceleration;               // 加速度
@@ -101,8 +109,11 @@ extern vector<int> flagForCheckingBoundaryCondition;    // 粒子の集合のど
 extern vector<double> minimumPressure;                  // ある粒子近傍での最低圧力
 /* ---温度計算--- */
 extern vector<Tri> T_aij;                               // A:係数行列(疎行列)
-extern VectorXd Tk, temperature;                        // Tk:確定している温度，temperature:温度の列ベクトル
-
+extern VectorXd temperature;                            // 確定している温度，temperature:温度の列ベクトル
+/* ---表面張力計算--- */
+extern vector<Coordinate> normalVector;                 // 単位法線ベクトル
+extern vector<Force> surfaceTension;                    // 表面張力
+/* ---バケット法--- */
 extern vector<vector<int>> bucket;                      // バケットid，structBktで定義
 extern vector<int> neghPar;                             // 対象の粒子近傍の粒子, initilizationで定義
 

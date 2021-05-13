@@ -22,8 +22,11 @@ vector<double> minimumPressure;         // ある粒子近傍での最低圧力
 vector<int> boundaryCondition;                  // ディリクレ境界条件を付加するかどうかのフラグ
 vector<int> flagForCheckingBoundaryCondition;   // 粒子の集合のどこかにディリクレ境界条件が付加されているかをチェックするためのフラグ
 /* ---温度計算--- */
-vector<Tri> T_aij;                  // A:係数行列(疎行列)
-VectorXd Tk, temperature;           // Tk:確定している温度，temperature:温度の列ベクトル
+vector<Tri> T_aij;                      // A:係数行列(疎行列)
+VectorXd temperature;                   // Tk:確定している温度，temperature:温度の列ベクトル
+/* ---表面張力計算--- */
+vector<Coordinate> normalVector;        // 単位法線ベクトル
+vector<Force> surfaceTension;           // 表面張力
 
 /* グローバル変数定義 */
 int FileNumber;
