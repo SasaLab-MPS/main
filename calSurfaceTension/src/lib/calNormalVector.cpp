@@ -15,16 +15,16 @@ void calNormalVector(int particleNumber) {
     double normal_x, normal_y, normal_z;
 
     a = DIM / N0_forLaplacian;  // 係数
+    normal_x = 0.0;
+    normal_y = 0.0;
+    normal_z = 0.0;
+
     calBucket();                // 粒子が所属するバケットを計算
 
     int i = particleNumber;
     if (position[i].particleType != FLUID) {
         return;     // 流体でなければ計算終了
     }
-
-    normal_x = 0.0;
-    normal_y = 0.0;
-    normal_z = 0.0;
 
     searchBucket(i);
     int j;
@@ -42,7 +42,7 @@ void calNormalVector(int particleNumber) {
         // 影響範囲か？
         if (distance < Re_forLaplacian) {
             w = weight(distance, Re_forLaplacian); // 重み関数
-            
+            // 法線ベクトルの計算
             normal_x += (numberDensity[j] - N0_forNumberDensity) * xij * w / distance2;
             normal_y += (numberDensity[j] - N0_forNumberDensity) * yij * w / distance2;
             normal_z += (numberDensity[j] - N0_forNumberDensity) * zij * w / distance2;

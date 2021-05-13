@@ -20,9 +20,8 @@ void mainLoopOfSimulation(void)
         // 粒子法計算メイン
         calGravity();
         calViscosity();
-
         calTemperature();                       // 温度分布を計算
-        
+        calSurfaceTension();                    // 表面張力の効果を計算
         moveParticle();
         collision();                            // 剛体衝突判定：粒子同士の異常接近防止のため
         calPressure();

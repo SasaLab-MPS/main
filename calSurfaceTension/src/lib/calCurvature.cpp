@@ -12,7 +12,6 @@ double calCurvature(int particleNumber) {
   double kappa;
 
   theta = 0.5 * M_PI * numberDensity[particleNumber] / N0_forNumberDensity;
-
   kappa = 2 * cos(theta) / RADIUS_FOR_LAPLACIAN;
 
   return kappa;
