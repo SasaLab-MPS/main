@@ -21,6 +21,7 @@ void conditionInitialization(void) {
 
     // 計算に使用する行列，ベクトルの設定, 初期化
     int NP = NumberOfParticles;
+
     /* ---圧力計算用--- */
     coefficientMatrix.resize(NP, NP);
     sourceTerm.setZero(NP);
@@ -30,5 +31,9 @@ void conditionInitialization(void) {
     /* ---温度計算用--- */
     temperature.setZero(NP);                // 全粒子に初期温度を与える
     //enthalpy.resize(NP, 0);
-    initializeTemperatureDistribution();    // 温度分布の初期化
+    //initializeTemperatureDistribution();  // 温度分布の初期化
+
+    /* ---表面張力計算用--- */
+    surfaceTension.resize(NP);
+    normalVector.resize(NP);
 }

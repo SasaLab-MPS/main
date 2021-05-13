@@ -14,18 +14,17 @@ void calSurfaceTension(void) {
     Force f = {0.0, 0.0, 0.0};
 
     calNumberDensity();   // 密度計算
-    surfaceTension.clear();
 
     // 表面張力計算本体
     for(int i = 0; i < NumberOfParticles; i++) 
     {
       // 表面張力の初期化
-      surfaceTension.push_back(f);
+      surfaceTension[i] = f;
+      calNormalVector(i);         // 法線ベクトル計算
 
       // 自由表面ならば表面張力を計算
       if (numberDensity[i] < beta * N0_forNumberDensity)
       {
-        calNormalVector(i);       // 法線ベクトル計算
         kappa = calCurvature(i);  // 曲率
         a = SIGMA * kappa;
         // 表面張力計算
@@ -38,5 +37,6 @@ void calSurfaceTension(void) {
       acceleration[i].x = surfaceTension[i].x / FLUID_DENSITY;
       acceleration[i].y = surfaceTension[i].y / FLUID_DENSITY;
       acceleration[i].z = surfaceTension[i].z / FLUID_DENSITY;
-    }    
+    }
+
 }

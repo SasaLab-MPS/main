@@ -68,9 +68,5 @@ main.cpp
             |       |---searchBucket        // バケット内に粒子を配置
             |       |---weight              // 影響範囲を計算
             |
-            |---calSurfaceTension ?     // 表面張力の計算
-            |       |---calNormalVector     // 法線ベクトルの計算
-            |       |---calCurvature        // 曲率の計算
-            |
             |---moveParticleUsingPressureGradient   // 圧力勾配に従って粒子を移動
                     |---checkParticle                       // 計算範囲外に出た粒子を処理
