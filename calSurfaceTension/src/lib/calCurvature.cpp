@@ -7,13 +7,13 @@
 #include "../../include/functions.hpp"
 #include "../../include/inputs.hpp"
 
-double calCurvature(int i) {
-    double theta;
-    double kappa;
+double calCurvature(int particleNumber) {
+  double theta;
+  double kappa;
 
-    theta = 0.5 * M_PI * numberDensity[i] / N0_forNumberDensity;
+  theta = 0.5 * M_PI * numberDensity[particleNumber] / N0_forNumberDensity;
 
-    kappa = 2 * cos(theta) / RADIUS_FOR_LAPLACIAN;
+  kappa = 2 * cos(theta) / RADIUS_FOR_LAPLACIAN;
 
-    return kappa;
+  return kappa;
 }

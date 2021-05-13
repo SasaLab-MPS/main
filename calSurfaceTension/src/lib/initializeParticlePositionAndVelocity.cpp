@@ -62,11 +62,11 @@ void initializeParticlePositionAndVelocity_for2dim(void)
             }
             */
             
-            /* solid region：固体領域を設定 */
+            /* solid region：流体領域を設定 */
             if (((x > 0.0 + EPS) && (x <= x_MAX + EPS)) && ((y > 0.0 + EPS) && (y <= y_MAX + EPS)))
             {
                 flagOfParticleGeneration = ON;
-                ParticleType = SOLID;               
+                ParticleType = FLUID;               
             }
             // 粒子の生成
             if (flagOfParticleGeneration == ON)
@@ -147,7 +147,7 @@ void initializeParticlePositionAndVelocity_for3dim(void)
                 if ((((x > 0.0 + EPS) && (x <= x_MAX + EPS)) && ((y > 0.0 + EPS) && (y < y_MAX + EPS))) && ((z > 0.0 + EPS) && (z <= z_MAX + EPS)))
                 {
                     flagOfParticleGeneration = ON;
-                    ParticleType = SOLID;
+                    ParticleType = FLUID;
                 }
 
                 if (flagOfParticleGeneration == ON)

@@ -48,7 +48,7 @@ void removeNegativeTemperature(void);                          // 温度が最�
 void checkTemperature(void);                                   // 境界条件の設定 = 温度のチェック
 /* ---表面張力計算--- */
 void calSurfaceTension(void);                                  // 表面張力計算本体
-void calNormalVector(void);                                    // 表面の法線ベクトル
-double calCurvature(int i);                                    // 表面粒子の曲率, kappa
+void calNormalVector(int particleNumber);                      // 表面の法線ベクトル
+double calCurvature(int particleNumber);                       // 表面粒子の曲率, kappa
 
 #endif // FUNCTIONS_HPP_20210220_222753_
