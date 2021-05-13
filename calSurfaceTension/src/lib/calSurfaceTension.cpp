@@ -10,20 +10,18 @@
 void calSurfaceTension(void) {
     double kappa;   // 曲率
     double a;       // 係数
-    double phi;
     double beta = THRESHOLD_RATIO_OF_NUMBER_DENSITY;
+    Force f = {0.0, 0.0, 0.0};
 
     calNumberDensity();   // 密度計算
     calNormalVector();    // 法線ベクトル計算
 
-    // 表面張力の計算
+    // 表面張力計算本体
     for(int i = 0; i < NumberOfParticles; i++) {
+        // 表面張力の初期化
+        surfaceTension.push_back(f);
 
-        surfaceTension[i].x = 0.0;
-        surfaceTension[i].y = 0.0;
-        surfaceTension[i].z = 0.0;
-
-        // 自由表面か ?
+        // 自由表面ならば表面張力を設定
         if (numberDensity[i] < beta * N0_forNumberDensity)
         {
           kappa = calCurvature(i);

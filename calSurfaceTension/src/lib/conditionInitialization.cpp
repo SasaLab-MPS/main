@@ -19,8 +19,8 @@ void conditionInitialization(void) {
     calBucket();     // バケットに粒子を入れる
     checkParticle(); // 計算範囲外に出た粒子を処理
 
-    int NP = NumberOfParticles;
     // 計算に使用する行列，ベクトルの設定, 初期化
+    int NP = NumberOfParticles;
     /* ---圧力計算用--- */
     coefficientMatrix.resize(NP, NP);
     sourceTerm.setZero(NP);
