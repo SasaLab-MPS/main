@@ -27,7 +27,8 @@ void calNZeroAndLambda(void) {
     N0_forNumberDensity = 0.0; // 粒子数密度の初期化
     N0_forGradient = 0.0;
     N0_forLaplacian = 0.0;
-    Lambda = 0.0;
+    N0_forSurfaceTension = 0.0;
+        Lambda = 0.0;
     xi = 0.0;
     yi = 0.0;
     zi = 0.0;
@@ -49,6 +50,7 @@ void calNZeroAndLambda(void) {
                 N0_forNumberDensity += weight(distance, Re_forNumberDensity); // 初期粒子密度の計算
                 N0_forGradient += weight(distance, Re_forGradient);
                 N0_forLaplacian += weight(distance, Re_forLaplacian);
+                N0_forSurfaceTension += weightForSUrfacetension(distance, Re_forLaplacian);
                 Lambda += distance2 * weight(distance, Re_forLaplacian);
             }
         }

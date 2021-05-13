@@ -38,6 +38,7 @@ double Re_forLaplacian, Re2_forLaplacian;       // Re:ラプラシアンモデ�
 double N0_forNumberDensity;                     // 粒子数密度
 double N0_forGradient;
 double N0_forLaplacian;
+double N0_forSurfaceTension;
 double Lambda;
 double collisionDistance, collisionDistance2;
 double FluidDensity;

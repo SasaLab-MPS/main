@@ -50,5 +50,6 @@ void checkTemperature(void);                                   // 境界条件�
 void calSurfaceTension(void);                                  // 表面張力計算本体
 void calNormalVector(int particleNumber);                      // 表面の法線ベクトル
 double calCurvature(int particleNumber);                       // 表面粒子の曲率, kappa
+double weightForSUrfacetension(double distance, double re);    // 表面張力計算用の重み関数
 
 #endif // FUNCTIONS_HPP_20210220_222753_

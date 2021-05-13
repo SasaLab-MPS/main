@@ -11,7 +11,7 @@ void calSurfaceTension(void) {
     double kappa;   // 曲率
     double a;       // 係数
     double beta = THRESHOLD_RATIO_OF_NUMBER_DENSITY;
-    Force f = {0.0, 0.0, 0.0};
+    Force zerof = {0.0, 0.0, 0.0};
 
     calNumberDensity();   // 密度計算
 
@@ -19,7 +19,7 @@ void calSurfaceTension(void) {
     for(int i = 0; i < NumberOfParticles; i++) 
     {
       // 表面張力の初期化
-      surfaceTension[i] = f;
+      surfaceTension[i] = zerof;
       calNormalVector(i);         // 法線ベクトル計算
 
       // 自由表面ならば表面張力を計算

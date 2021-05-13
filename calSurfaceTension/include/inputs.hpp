@@ -127,6 +127,7 @@ extern double Re_forLaplacian, Re2_forLaplacian;        // Re:ラプラシアン
 extern double N0_forNumberDensity;                      // 粒子数密度
 extern double N0_forGradient;
 extern double N0_forLaplacian;
+extern double N0_forSurfaceTension;
 extern double Lambda;
 extern double collisionDistance, collisionDistance2;
 extern double FluidDensity;
