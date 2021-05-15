@@ -13,7 +13,6 @@ void calNormalVector(int particleNumber) {
     double xij, yij, zij;
     double a;
     double normal_x, normal_y, normal_z;
-    Coordinate zero = {0.0, 0.0, 0.0};
 
     a = DIM / N0_forLaplacian;  // 係数
     normal_x = 0.0;
@@ -23,7 +22,9 @@ void calNormalVector(int particleNumber) {
     calBucket();    // 粒子が所属するバケットを計算
 
     int i = particleNumber;
-    normalVector[i] = zero;     // 法線ベクトルの初期化
+    normalVector[i].x = 0.0;     // 法線ベクトルの初期化
+    normalVector[i].y = 0.0;
+    normalVector[i].z = 0.0;
 
     if (position[i].particleType != FLUID) {
         return;     // 流体でなければ計算終了 
@@ -46,9 +47,9 @@ void calNormalVector(int particleNumber) {
         if (distance < Re_forLaplacian) {
             w = weight(distance, Re_forLaplacian); // 重み関数
             // 法線ベクトルの計算
-            normal_x += (numberDensity[j] - N0_forNumberDensity) * xij * w / distance2;
-            normal_y += (numberDensity[j] - N0_forNumberDensity) * yij * w / distance2;
-            normal_z += (numberDensity[j] - N0_forNumberDensity) * zij * w / distance2;
+            normal_x += (numberDensity[j] - numberDensity[i]) * xij * w / distance2;
+            normal_y += (numberDensity[j] - numberDensity[i]) * yij * w / distance2;
+            normal_z += (numberDensity[j] - numberDensity[i]) * zij * w / distance2;
         }
     }
 
@@ -60,7 +61,7 @@ void calNormalVector(int particleNumber) {
     double norm;
     norm = sqrt( (normal_x * normal_x) + (normal_y * normal_y) + (normal_z * normal_z) );
     // 法線ベクトルの単位ベクトル化
-    if (norm > 0.0)
+    if (norm != 0)
     {
         normalVector[i].x = normal_x / norm;
         normalVector[i].y = normal_y / norm;

@@ -37,8 +37,8 @@ double calCurvature(int particleNumber) {
     }
   }
 
-  double theta;
-  double kappa;
+  double theta; // 角度
+  double kappa; // 曲率
 
   theta = 0.5 * M_PI * n_dash / N0_forSurfaceTension;
   kappa = 2 * cos(theta) / RADIUS_FOR_LAPLACIAN;
