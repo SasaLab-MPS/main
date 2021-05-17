@@ -28,17 +28,18 @@ void calSurfaceTension(void) {
       if (numberDensity[i] < beta * N0_forNumberDensity)
       {
         kappa = calCurvature(i);  // 曲率
+        //cout << "kappa:" << kappa << endl;
         a = SIGMA * kappa;
         // 表面張力計算
         surfaceTension[i].x = a * normalVector[i].x;
         surfaceTension[i].y = a * normalVector[i].y;
         surfaceTension[i].z = a * normalVector[i].z;
       }
-
+ 
       // 表面張力による粒子の加速を計算
-      acceleration[i].x = surfaceTension[i].x / FLUID_DENSITY;
-      acceleration[i].y = surfaceTension[i].y / FLUID_DENSITY;
-      acceleration[i].z = surfaceTension[i].z / FLUID_DENSITY;
+      acceleration[i].x += surfaceTension[i].x / FLUID_DENSITY;
+      acceleration[i].y += surfaceTension[i].y / FLUID_DENSITY;
+      acceleration[i].z += surfaceTension[i].z / FLUID_DENSITY;
     }
 
 }
