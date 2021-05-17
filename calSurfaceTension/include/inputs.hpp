@@ -31,7 +31,7 @@ constexpr int OUTPUT_INTERVAL = 20;
 
 constexpr double FINISH_TIME = 0.015;                     // シミュレーションの終了時刻
 constexpr double KINEMATIC_VISCOSITY = 1.0e-6;            // 動粘性係数
-constexpr double FLUID_DENSITY = 1000.0;                  // 流体の密度
+constexpr double FLUID_DENSITY = 0.0027;                  // 流体の密度 (g/mm^3)
 constexpr double G_X = 0.0;
 constexpr double G_Y = 0.0;                               // 重力加速度 (m/s^2)
 constexpr double G_Z = 0.0;
