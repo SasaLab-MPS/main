@@ -12,6 +12,7 @@ void calSurfaceTension(void) {
     double a;       // 係数
     double beta = THRESHOLD_RATIO_OF_NUMBER_DENSITY;
     double delta = 1 / PARTICLE_DISTANCE;   // デルタ関数に相当(1/mm)として次元を合わせる
+    double sigma = SIGMA * 1e3;             // 単位をmm用に変換 (Nの中にmが入っているため)
 
     calNumberDensity();   // 密度計算
     calNormalVector();    // 法線ベクトル
@@ -28,7 +29,7 @@ void calSurfaceTension(void) {
       if (numberDensity[i] < beta * N0_forNumberDensity)
       {
         kappa = calCurvature(i);  // 曲率
-        a = SIGMA * kappa * delta;
+        a = sigma * kappa * delta;
         // 表面張力計算
         surfaceTension[i].x = a * normalVector[i].x;
         surfaceTension[i].y = a * normalVector[i].y;
