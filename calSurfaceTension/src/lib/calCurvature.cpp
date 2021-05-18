@@ -9,7 +9,6 @@
 
 double calCurvature(int particleNumber) {
   double distance, distance2;
-  double w;
   double xij, yij, zij;
   double n_dash;
   int i = particleNumber;
@@ -28,12 +27,11 @@ double calCurvature(int particleNumber) {
     zij = position[j].z - position[i].z;
     distance2 = (xij * xij) + (yij * yij) + (zij * zij);
     distance = sqrt(distance2);
-    // 影響範囲か？
+    // 影響範囲か?
     if (distance < Re_forLaplacian)
     {
-      w = weightForSUrfacetension(distance, Re_forLaplacian); // 重み関数
-      // 法線ベクトルの計算
-      n_dash += w;
+      // 密度の計算
+      n_dash += 1;
     }
   }
 

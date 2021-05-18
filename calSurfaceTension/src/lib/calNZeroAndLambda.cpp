@@ -47,10 +47,10 @@ void calNZeroAndLambda(void) {
                 distance = sqrt(distance2);
 
                 // 影響半径を用いた重み関数の計算
-                N0_forNumberDensity += weight(distance, Re_forNumberDensity); // 初期粒子密度の計算
+                N0_forNumberDensity += weight(distance, Re_forNumberDensity);   // 初期粒子密度の計算
                 N0_forGradient += weight(distance, Re_forGradient);
                 N0_forLaplacian += weight(distance, Re_forLaplacian);
-                N0_forSurfaceTension += weightForSUrfacetension(distance, Re_forLaplacian);
+                N0_forSurfaceTension += (distance < Re_forLaplacian) ? 1 : 0;   // 曲率計算用の密度
                 Lambda += distance2 * weight(distance, Re_forLaplacian);
             }
         }
