@@ -14,29 +14,25 @@ void calSurfaceTension(void) {
     double delta = 1 / PARTICLE_DISTANCE;   // デルタ関数に相当(1/mm)として次元を合わせる
 
     calNumberDensity();   // 密度計算
-    calNormalVector();    // 法線ベクトル計算
+    calNormalVector();    // 法線ベクトル
 
     // 表面張力計算本体
-    for(int i = 0; i < NumberOfParticles; i++) 
+    for (int i = 0; i < NumberOfParticles; i++)
     {
-      kappa = calCurvature(i); // 曲率
-      a = SIGMA * kappa;
       // 表面張力の初期化
       surfaceTension[i].x = 0.0;
       surfaceTension[i].y = 0.0;
       surfaceTension[i].z = 0.0;
 
-      surfaceTension[i].x = a * normalVector[i].x;
-      surfaceTension[i].y = a * normalVector[i].y;
-      surfaceTension[i].z = a * normalVector[i].z;
-
       // 自由表面ならば表面張力を計算
       if (numberDensity[i] < beta * N0_forNumberDensity)
       {
+        kappa = calCurvature(i);  // 曲率
+        a = SIGMA * kappa * delta;
         // 表面張力計算
-        surfaceTension[i].x *= delta;
-        surfaceTension[i].y *= delta;
-        surfaceTension[i].z *= delta;
+        surfaceTension[i].x = a * normalVector[i].x;
+        surfaceTension[i].y = a * normalVector[i].y;
+        surfaceTension[i].z = a * normalVector[i].z;
       }
  
       // 表面張力による粒子の加速を計算
