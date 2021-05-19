@@ -31,7 +31,7 @@ void conditionInitialization(void) {
     /* ---温度計算用--- */
     temperature.setZero(NP);                // 全粒子に初期温度を与える
     //enthalpy.resize(NP, 0);
-    //initializeTemperatureDistribution();  // 温度分布の初期化
+    initializeTemperatureDistribution();  // 温度分布の初期化
 
     /* ---表面張力計算用--- */
     surfaceTension.resize(NP);
