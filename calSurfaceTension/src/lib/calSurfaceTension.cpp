@@ -11,7 +11,7 @@ void calSurfaceTension(void) {
     double kappa;   // 曲率
     double a;       // 係数
     double beta = THRESHOLD_RATIO_OF_NUMBER_DENSITY;
-    double delta = 1 / PARTICLE_DISTANCE;   // デルタ関数に相当(1/mm)として次元を合わせる
+    double delta = 1 / Re_forLaplacian;     // デルタ関数に相当(1/mm)として次元を合わせる
     double sigma = SIGMA * 1e3;             // 単位をmm用に変換 (Nの中にmが入っているため)
 
     calNumberDensity();   // 密度計算
