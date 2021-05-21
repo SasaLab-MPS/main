@@ -18,8 +18,8 @@ using namespace Eigen;
 /* for two-dimensional simulation */
 constexpr int DIM = 2;                      // 次元
 constexpr double PARTICLE_DISTANCE = 0.04;  // 初期粒子間距離 l0 (mm)
-constexpr double DT = 1e-5;                 // 時間刻み幅 (s)
-constexpr int OUTPUT_INTERVAL = 5;          // 計算結果のファイル出力の間隔
+constexpr double DT = 1e-3;                 // 時間刻み幅 (s)
+constexpr int OUTPUT_INTERVAL = 1;          // 計算結果のファイル出力の間隔
 
 /* for three-dimensional simulation */
 /*
@@ -29,12 +29,12 @@ constexpr double DT = 0.003;
 constexpr int OUTPUT_INTERVAL = 20;
 */
 
-constexpr double FINISH_TIME = 0.002;                     // シミュレーションの終了時刻
+constexpr double FINISH_TIME = 0.015;                     // シミュレーションの終了時刻
 constexpr double KINEMATIC_VISCOSITY = 1.0e-6;            // 動粘性係数
 constexpr double FLUID_DENSITY = 0.0027;                  // 流体の密度:ρ_f (g/mm^3)
 constexpr double SOLID_DENSITY = 0.008;                   // 固体の密度:ρ_s (g/mm^3)
 constexpr double G_X = 0.0;
-constexpr double G_Y = 0.0;                               // 重力加速度 (m/s^2)
+constexpr double G_Y = -9.8;                              // 重力加速度 (m/s^2)
 constexpr double G_Z = 0.0;
 constexpr double RADIUS_FOR_NUMBER_DENSITY = (2.1 * PARTICLE_DISTANCE);
 constexpr double RADIUS_FOR_GRADIENT = (2.1 * PARTICLE_DISTANCE);
@@ -64,9 +64,13 @@ constexpr int DIRICHLET_BOUNDARY_IS_CHECKED = 2;            // ディリクレ�
 constexpr double CRT_NUM = 0.1;                             // クーラン数
 
 /* 熱伝導係数等 */
-constexpr double INITIAL_TEMPERATURE = 0.0;                 // 初期温度 (℃)
 constexpr double SPECIFIC_HEAT_CAPACITY = 500;              // 比熱容量:c (mJ/gK)
 constexpr double HEAT_CONDUCTIVITY = 300;                   // 熱伝導率:λ (mJ/mmKs)
+/* 融点・沸点 */
+constexpr double MELTING_TEMPERATURE = 660;                 // 融点:Tm (℃)
+constexpr double BOILING_TEMPERATURE = 2520;                // 沸点:Tb (℃)
+constexpr double HEAT_OF_MELTING = 1071.9;                  // 融解熱:Hm (mJ/mm^3)
+constexpr double HEAT_OF_EVAPORATION = 25876;               // 蒸発熱:Hb (mJ/mm^3)
 /* レーザ諸元・造形条件 */
 constexpr double HEAT_INPUT = 100;                          // 初期熱量:Q (mJ/mm^2)
 constexpr double LASER_POWER = 0.1;                         // レーザ出力:P (W, J/s)
@@ -74,6 +78,9 @@ constexpr double LASER_DIAMETER = 0.1;                      // レーザ直径:d
 constexpr double SCAN_SPEED = 0.1;                          // レーザ走査速度:v (mm/s)
 /* 表面張力定数 */
 constexpr double SIGMA = 0.000878;                          // 表面張力係数:σ (N/mm)
+/* ブシネスク近似 */
+constexpr double LINEAR_EXPANSION_COEFFICIENT = 23.9e-6;    // 線膨張係数 (1/℃) 
+
 
 /* 粒子の座標，速度，速度を表す構造体 */
 // 座標:Position，粒子の状態を持つ
@@ -108,6 +115,7 @@ extern vector<int> boundaryCondition;                   // ディリクレ境界
 extern vector<int> flagForCheckingBoundaryCondition;    // 粒子の集合のどこかにディリクレ境界条件が付加されているかをチェックするためのフラグ
 extern vector<double> minimumPressure;                  // ある粒子近傍での最低圧力
 /* ---温度計算--- */
+constexpr double INITIAL_TEMPERATURE = 0.0;             // 初期温度 (℃)
 extern vector<Tri> T_aij;                               // A:係数行列(疎行列)
 extern VectorXd temperature;                            // 確定している温度，temperature:温度の列ベクトル
 /* ---表面張力計算--- */
