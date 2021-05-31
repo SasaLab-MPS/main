@@ -19,7 +19,7 @@ using namespace Eigen;
 constexpr int DIM = 2;                      // 次元
 constexpr double PARTICLE_DISTANCE = 0.04;  // 初期粒子間距離 l0 (mm)
 constexpr double DT = 0.001;                // 時間刻み幅
-constexpr int OUTPUT_INTERVAL = 1;          // 計算結果のファイル出力の間隔
+constexpr int OUTPUT_INTERVAL = 1;         // 計算結果のファイル出力の間隔
 
 /* for three-dimensional simulation */
 /*
@@ -29,7 +29,7 @@ constexpr double DT = 0.003;
 constexpr int OUTPUT_INTERVAL = 20;
 */
 
-constexpr double FINISH_TIME = 0.015;                     // シミュレーションの終了時刻
+constexpr double FINISH_TIME = 0.020;                     // シミュレーションの終了時刻
 constexpr double KINEMATIC_VISCOSITY = 1.0e-6;            // 動粘性係数
 constexpr double FLUID_DENSITY = 1000.0;                  // 流体の密度
 constexpr double G_X = 0.0;
@@ -43,7 +43,7 @@ constexpr double THRESHOLD_RATIO_OF_NUMBER_DENSITY = 0.97; // 自由表面かを
 constexpr double COEFFICIENT_OF_RESTITUTION = 0.2;         // 剛体衝突の反発係数
 constexpr double COMPRESSIBILITY = 0.45e-9;                // 流体の圧縮率
 constexpr double EPS = (0.01 * PARTICLE_DISTANCE);         // 粒子間隔の100分の1を誤差の判定に利用
-constexpr double cgEPS = 1.0e-8;                           // CG法で許容する誤差の上限
+constexpr double cgEPS = 1.0e-9;                           // CG法で許容する誤差の上限
 constexpr int ON = 1;
 constexpr int OFF = 0;
 constexpr double RELAXATION_COEFFICIENT_FOR_PRESSURE = 0.2; // 計算を安定させるための緩和係数
