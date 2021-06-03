@@ -1,0 +1,79 @@
+粒子法プログラムファイル構成
+
+main.cpp
+    |---conditionInitialization     // 計算領域の初期化
+    |       |---initializeParticlePositionAndVelocity   // 粒子の位置，速度及び加速度の初期化
+    |       |---structBucket                            // バケット法の網目を構築
+    |       |---calBucket                               // バケットに粒子を投入
+    |       |---checkParticle                           // 計算範囲外に出た粒子を処理(消去)
+    |       |---initializeTemperatureDistribution       // 温度分布の初期化
+    |
+    |
+    |---calConstantParameter        // 計算に使用する定数を計算
+    |       |---calNZeroAndLambda   // 初期粒子密度 n0および lambdaの計算
+    |
+    |
+    |---mainLoopOfSimulation        // 計算のメインループ
+            |---calGravity              // 重力加速度を計算
+            |---calViscosity            // 粒子に働く粘度を計算
+            |       |---calBucket       // バケット内に粒子を配置
+            |       |---searchBucket    // 粒子i近辺の粒子を探索
+            |       |---weight          // 重み関数を計算
+            |
+            |---calTemperature      // 温度分布を計算
+            |       |---setTemperatureDistribution      // 初期温度分布を設定
+            |       |---calTemperatureLaplacian         // ラプラシアンモデルに基づいて温度場を計算(方程式右辺の設定, 係数行列の設定)
+            |       |       |---calBucket                   // バケット内に粒子を配置
+            |       |       |---searchBucket                // 粒子i近辺の粒子を探索
+            |       |       |---weight                      // 重み関数を計算
+            |       |
+            |       |---checkTemperature                // 境界条件の設定 = 温度のチェック
+            |       |---solveTemperatureByCGmethod      // 共役勾配法による高速解法
+            |       |---removeNegativeTemperature       // 温度が最低温度未満になった場合を処理
+            |
+            |---calSurfaceTension    // 表面張力の計算: sigma, kappa, delta, normal vector, surface tension
+            |       |---calNumberDensity    // 粒子数密度を計算
+            |       |---calNormalVector     // 法線ベクトルの計算: NormalVector
+            |       |---calCurvature        // 曲率の計算: Kappa
+            |
+            |---moveParticle            // 粒子を仮移動
+            |       |---checkParticle       // 計算範囲外に出た粒子を処理(消去)
+            |       |---calBucket           // バケットに粒子を投入
+            |
+            |---collision               // 衝突判定一
+            |       |---searchBucket        // バケット内に粒子を配置
+            |       |---checkParticle       // 計算範囲外に出た粒子を処理(消去)
+            |       |---calBucket           // 粒子が所属するバケットを更新
+            |
+            |---calPressure             // 圧力の計算
+            |       |---calNumberDensity        // 粒子数密度を計算
+            |       |       |---searchBucket        // バケット内に粒子を配置
+            |       |       |---weight              // 影響範囲を計算
+            |       |
+            |       |---setBoundaryCondition    // 境界条件の設定(ディリクレ条件)
+            |       |---setSourceTerm           // ポアソン方程式の右辺ベクトルの設定
+            |       |---setMatrix               // 係数行列の設定
+            |       |       |---searchBucket        // バケット内に粒子を配置
+            |       |       |---weight              // 影響範囲を計算
+            |       |       |---exceptionalProcessingForBoundaryCondition       // ディリクレ境界条件を満たさない粒子の例外処理
+            |       |               |---checkBoundaryCondition                      // 境界条件を設定
+            |       |               |---increaseDiagonalTerm                        // 連立一次方程式の係数行列の対角項を大きくする(例外処理)
+            |       |
+            |       |---solvePressureByCGmethod // 共役勾配法による高速解法
+            |       |---removeNegativePressure  // 圧力が0未満になった場合を0処理
+            |       |---setMinimumPressure      // 各粒子近傍の最低圧力を計算(圧力勾配の計算に使用)
+            |               |---searchBucket        // バケット内に粒子を配置
+            |
+            |---calPressureGradient     // 圧力勾配を計算
+            |       |---searchBucket        // バケット内に粒子を配置
+            |       |---weight              // 影響範囲を計算
+            |
+            |---moveParticleUsingPressureGradient   // 圧力勾配に従って粒子を移動
+                    |---checkParticle                       // 計算範囲外に出た粒子を処理
+
+
+***追加したいプログラム****
+レーザ走査経路の計算　--> cal scanning pattern
+レーザ照射エネルギー計算　--> laser irradiation
+レーザ強度の分布計算　--> cal laser intensity distribution
+温度に応じた粒子の状態変化　--> cal phase change ?
