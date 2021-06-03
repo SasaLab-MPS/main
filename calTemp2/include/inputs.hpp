@@ -33,7 +33,7 @@ constexpr double FINISH_TIME = 0.020;                     // シミュレーシ�
 constexpr double KINEMATIC_VISCOSITY = 1.0e-6;            // 動粘性係数
 constexpr double FLUID_DENSITY = 1000.0;                  // 流体の密度
 constexpr double G_X = 0.0;
-constexpr double G_Y = 0.0;                               // 重力加速度 (m/s^2)
+constexpr double G_Y = -9.8;                              // 重力加速度 (m/s^2)
 constexpr double G_Z = 0.0;
 constexpr double RADIUS_FOR_NUMBER_DENSITY = (2.1 * PARTICLE_DISTANCE);
 constexpr double RADIUS_FOR_GRADIENT = (2.1 * PARTICLE_DISTANCE);
@@ -47,6 +47,7 @@ constexpr double cgEPS = 1.0e-9;                           // CG法で許容す�
 constexpr int ON = 1;
 constexpr int OFF = 0;
 constexpr double RELAXATION_COEFFICIENT_FOR_PRESSURE = 0.2; // 計算を安定させるための緩和係数
+/* 粒子のID設定 */
 constexpr int GHOST = -1;                                   // 計算に関与しない粒子
 constexpr int SOLID = 0;                                    // 個体粒子
 constexpr int FLUID = 1;                                    // 流体粒子
@@ -62,27 +63,41 @@ constexpr int DIRICHLET_BOUNDARY_IS_CONNECTED = 1;          // ディリクレ�
 constexpr int DIRICHLET_BOUNDARY_IS_CHECKED = 2;            // ディリクレ条件を満たすことを確認済み
 constexpr double CRT_NUM = 0.1;                             // クーラン数
 
-constexpr double INITIAL_TEMPERATURE = 0.0;                 // 初期温度 (℃)
 constexpr double SOLID_DENSITY = 0.008;                     // 固体の密度:ρ (g/mm^3)
 constexpr double SPECIFIC_HEAT_CAPACITY = 500;              // 比熱容量:c (mJ/gK)
 constexpr double HEAT_CONDUCTIVITY = 300;                   // 熱伝導率:λ (mJ/mmKs)
 
+/* 融点・沸点 */
+constexpr double MELTING_TEMPERATURE = 660;                 // 融点:Tm (℃)
+constexpr double BOILING_TEMPERATURE = 2520;                // 沸点:Tb (℃)
+constexpr double HEAT_OF_MELTING = 1071.9;                  // 融解熱:Hm (mJ/mm^3)
+constexpr double HEAT_OF_EVAPORATION = 25876;               // 蒸発熱:Hb (mJ/mm^3)
 /* レーザ諸元・造形条件 */
 constexpr double HEAT_INPUT = 100;                          // 初期熱量:Q (mJ/mm^2)
 constexpr double LASER_POWER = 0.1;                         // レーザ出力:P (W, J/s)
 constexpr double LASER_DIAMETER = 0.1;                      // レーザ直径:d (mm)
 constexpr double SCAN_SPEED = 0.1;                          // レーザ走査速度:v (mm/s)
-
+/* 表面張力定数 */
+constexpr double SIGMA = 0.000878;                          // 表面張力係数:σ (N/mm)
+/* ブシネスク近似 */
+constexpr double LINEAR_EXPANSION_COEFFICIENT = 23.9e-6;    // 線膨張係数 (1/℃)
 
 /* 粒子の座標，速度，速度を表す構造体 */
 // 座標:Position
-typedef struct
-{
+// 座標:Position，粒子の状態を持つ
+typedef struct {
   double x;
   double y;
   double z;
   int particleType; // 粒子の状態
 } Position;
+// 座標
+typedef struct {
+  double x;
+  double y;
+  double z;
+} Coordinate;
+
 typedef Position Velocity;                              // 速度:Velocity
 typedef Position Acceleration;                          // 加速度:Acceleration
 typedef Triplet<double> Tri;                            // Tripletの省略
@@ -100,6 +115,7 @@ extern vector<int> boundaryCondition;                   // ディリクレ境界
 extern vector<int> flagForCheckingBoundaryCondition;    // 粒子の集合のどこかにディリクレ境界条件が付加されているかをチェックするためのフラグ
 extern vector<double> minimumPressure;                  // ある粒子近傍での最低圧力
 /* ---温度計算--- */
+constexpr double INITIAL_TEMPERATURE = 0.0;             // 初期温度 (℃)
 extern vector<Tri> T_aij;                               // A:係数行列(疎行列)
 extern VectorXd Tk, temperature;                        // Tk:確定している温度，temperature:温度の列ベクトル
 
