@@ -82,6 +82,7 @@ constexpr double SIGMA = 0.000878;                          // 表面張力係�
 /* ブシネスク近似 */
 constexpr double LINEAR_EXPANSION_COEFFICIENT = 23.9e-6;    // 線膨張係数 (1/℃)
 
+
 /* 粒子の座標，速度，速度を表す構造体 */
 // 座標:Position
 // 座標:Position，粒子の状態を持つ
