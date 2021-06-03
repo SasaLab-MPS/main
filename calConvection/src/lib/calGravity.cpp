@@ -9,15 +9,19 @@
 #include "../../include/inputs.hpp"
 
 void calGravity(void)
-{ 
+{
+    double beta = 3 * LINEAR_EXPANSION_COEFFICIENT; // 体積膨張率
+    double T_0 = INITIAL_TEMPERATURE;
+
     for (int i = 0; i < NumberOfParticles; i++)
     { // NumberOfParticles:粒子の総数
         if (position[i].particleType == FLUID)
         {
-            // 流体粒子の重力加速度を設定
-            acceleration[i].x = G_X;
-            acceleration[i].y = G_Y;
-            acceleration[i].z = G_Z;
+            double boussinesq = (-1) * beta * (temperature[i] - T_0);
+            // 流体粒子の重力加速度を設定・ブシネスク近似を導入
+            acceleration[i].x = boussinesq * G_X;
+            acceleration[i].y = boussinesq * G_Y;
+            acceleration[i].z = boussinesq * G_Z;
         }
         else
         {

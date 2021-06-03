@@ -75,7 +75,7 @@ constexpr double BOILING_TEMPERATURE = 2520;                // 沸点:Tb (℃)
 constexpr double HEAT_OF_MELTING = 1071.9;                  // 融解熱:Hm (mJ/mm^3)
 constexpr double HEAT_OF_EVAPORATION = 25876;               // 蒸発熱:Hb (mJ/mm^3)
 /* レーザ諸元 */
-  // ガウシアン分布等
+// ガウシアン分布等
 /* 造形条件 */
 constexpr double HEAT_INPUT = 100;                          // 初期熱量:Q (mJ/mm^2)
 constexpr double LASER_POWER = 0.1;                         // レーザ出力:P (W, J/s)
