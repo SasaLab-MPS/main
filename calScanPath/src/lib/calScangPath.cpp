@@ -21,12 +21,13 @@ void calScangPath(string strategy, double length) {
     }
     else if (strategy == "Island") {
         int n = y_MAX / h;           // y方向に繰り返せる最大数
-        repetitionNum /= n; 
-        double y = (double)repetitionNum * h;
+        int m = repetitionNum % n; 
+        double y = (double)m * h;
         
         // レーザの中心座標の計算
-        centerOfLaser.x = (double)n * length;
-        centerOfLaser.y = y
+        centerOfLaser.x = travelDistance - (double)(repetitionNum / n)* length;
+        centerOfLaser.y = y;
+        centerOfLaser.z = z_MAX;
     }
     else {
         /* code */
