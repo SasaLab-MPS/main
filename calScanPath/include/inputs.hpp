@@ -78,9 +78,10 @@ constexpr double HEAT_OF_EVAPORATION = 25876;               // 蒸発熱:Hb (mJ/
 // ガウシアン分布等
 /* 造形条件 */
 constexpr double HEAT_INPUT = 100;                          // 初期熱量:Q (mJ/mm^2)
-constexpr double LASER_POWER = 0.1;                         // レーザ出力:P (W, J/s)
+constexpr double LASER_POWER = 3e2;                         // レーザ出力:P (W, J/s)
 constexpr double LASER_DIAMETER = 0.1;                      // レーザ直径:d (mm)
-constexpr double SCAN_SPEED = 0.1;                          // レーザ走査速度:v (mm/s)
+constexpr double SCAN_SPEED = 1e3;                          // レーザ走査速度:v (mm/s)
+constexpr double SCAN_PITCH = 0.1;                          // 走査ピッチ:h (mm)
 /* 表面張力定数 */
 constexpr double SIGMA = 0.000878;                          // 表面張力係数:σ (N/mm)
 /* ブシネスク近似 */
