@@ -1,5 +1,5 @@
 /*=====================================================================
-  calScangPattern.cpp   
+  calScangPath.cpp   
   Yota INOUE (2021) 
   走査パターンを計算
   Last update: June 3, 2021
@@ -7,9 +7,9 @@
 #include "../../include/functions.hpp"
 #include "../../include/inputs.hpp"
 
-void calScangPath(string strategy, double length) {
+Coordinate calScangPath(string strategy, double length)
+{
     /* レーザの中心座標を返すようにした方が良いか? */
-    double p = DT * LASER_POWER;                    // レーザ出力
     Coordinate centerOfLaser;                       // レーザの中心座標
 
     double travelDistance = Time * SCAN_SPEED;      // 合計の走査距離
@@ -54,5 +54,6 @@ void calScangPath(string strategy, double length) {
     else {
         /* code */
     }
-    
+
+    return centerOfLaser;
 }

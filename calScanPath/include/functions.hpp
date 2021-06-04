@@ -50,7 +50,10 @@ void checkTemperature(void);                                   // 境界条件�
 void calSurfaceTension(void);                                  // 表面張力計算本体
 void calNormalVector(void);                                    // 表面の法線ベクトル
 double calCurvature(int particleNumber);                       // 表面粒子の曲率, kappa
+
 /* 走査パターンの計算 */
-void calScangPath(string strategy, double length);             // 走査経路を計算
+Coordinate calScangPath(string strategy, double length);       // 走査経路を計算
+/* レーザの強度分布を計算 */
+double calLaserIntensity(Coordinate centerOfLaser, Position P);// レーザの強度分布を計算
 
 #endif // FUNCTIONS_HPP_20210220_222753_
