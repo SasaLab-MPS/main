@@ -9,6 +9,8 @@
 
 double calLaserIntensity(Position P)
 {
+    //cout << "call calLaserIntensity" << endl;
+    
     double power = DT * LASER_POWER;    // レーザ出力，WからJに変換
     double intensity = 0.0;
     double a = 0.5 * LASER_DIAMETER;    // レーザ半径，ガウス分布のσに相当

@@ -14,7 +14,7 @@ void mainLoopOfSimulation(void)
 
     writeData_inVtuFormat();
     writeData_inProfFormat();
-    
+
     while (1)
     {
         // 粒子法計算メイン

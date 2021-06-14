@@ -9,6 +9,10 @@
 #include "../../include/inputs.hpp"
 
 void laserRadiation(void) {
-    calScanPath("Island", SCAN_VECTOR_LENGTH);   // 走査パターンの計算
-    
+    cout << "call laserRadiation 1" << endl;
+
+    string strategy = "Island";
+    calScanPath(strategy, SCAN_VECTOR_LENGTH);   // 走査パターンの計算
+
+    cout << "call laserRadiation 2" << endl;
 }
