@@ -10,7 +10,6 @@
 void calScanPath(string strategy, double length)
 {
     /* レーザの中心座標を返すようにした方が良いか? */
-    cout << "call calScanPath" << endl;
 
     double travelDistance = Time * SCAN_SPEED;      // 合計の走査距離
     double hatch = SCAN_PITCH;

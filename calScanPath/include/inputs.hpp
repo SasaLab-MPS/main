@@ -29,7 +29,7 @@ constexpr double DT = 0.003;
 constexpr int OUTPUT_INTERVAL = 20;
 */
 
-constexpr double FINISH_TIME = 0.015;                     // シミュレーションの終了時刻
+constexpr double FINISH_TIME = 0.045;                     // シミュレーションの終了時刻
 constexpr double KINEMATIC_VISCOSITY = 1.0e-6;            // 動粘性係数
 constexpr double FLUID_DENSITY = 0.0027;                  // 流体の密度:ρ_f (g/mm^3)
 constexpr double SOLID_DENSITY = 0.008;                   // 固体の密度:ρ_s (g/mm^3)

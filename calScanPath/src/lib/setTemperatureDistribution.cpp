@@ -13,15 +13,18 @@ void setTemperatureDistribution(void)
   int NP = NumberOfParticles;
   double rho, c;
   double enthalpy;            // エンタルピー，熱含量 (J)
+  double volume, mass;
 
-  rho = SOLID_DENSITY;        // 相変化を考慮するなら変更する
-  c = SPECIFIC_HEAT_CAPACITY; // 比熱容量
+  rho = SOLID_DENSITY;               // 相変化を考慮するなら変更する
+  c = SPECIFIC_HEAT_CAPACITY * 1e-3; // 比熱容量，Jに換算
+  volume = pow(PARTICLE_DISTANCE * 0.5, 3);
+  mass = rho * volume;
 
   // 温度分布の計算
   for(int i = 0; i < NP; i++) {
     enthalpy = calLaserIntensity(position[i]);
     // 温度の計算(溶融・蒸発は考えない 2021.6.11)
-    temperature[i] = enthalpy / (rho*c);
+    temperature[i] += enthalpy / (mass * c);
 
     // 溶融・蒸発を考える場合 2021.6.14
     /*
