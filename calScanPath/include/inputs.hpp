@@ -72,8 +72,7 @@ constexpr double HEAT_CONDUCTIVITY = 300;                   // 熱伝導率:λ (
 /* 融点・沸点等 */
 constexpr double MELTING_TEMPERATURE = 660;                 // 融点:Tm (℃)
 constexpr double BOILING_TEMPERATURE = 2520;                // 沸点:Tb (℃)
-constexpr double HEAT_OF_MELTING = 1071.9;                  // 融解熱:Hm (mJ/mm^3)
-constexpr double HEAT_OF_EVAPORATION = 25876;               // 蒸発熱:Hb (mJ/mm^3)
+constexpr double LATENT_HEAT = 396.0;                       // 潜熱:L (J/g)
 /* レーザ諸元 */
 // ガウシアン分布等
 /* 造形条件 */
@@ -82,6 +81,7 @@ constexpr double LASER_POWER = 3e2;                         // レーザ出力:P
 constexpr double LASER_DIAMETER = 0.1;                      // レーザ直径:d (mm)
 constexpr double SCAN_SPEED = 1e3;                          // レーザ走査速度:v (mm/s)
 constexpr double SCAN_PITCH = 0.1;                          // 走査ピッチ:h (mm)
+constexpr double SCAN_VECTOR_LENGTH = 1;                    // 走査ベクトル長さ (mm)
 /* 表面張力定数 */
 constexpr double SIGMA = 0.000878;                          // 表面張力係数:σ (N/mm)
 /* ブシネスク近似 */
@@ -124,6 +124,7 @@ extern vector<double> minimumPressure;                  // ある粒子近傍で
 constexpr double INITIAL_TEMPERATURE = 0.0;             // 初期温度 (℃)
 extern vector<Tri> T_aij;                               // A:係数行列(疎行列)
 extern VectorXd temperature;                            // 確定している温度，temperature:温度の列ベクトル
+extern Coordinate centerOfLaser;                        // レーザ照射の中心座標
 /* ---表面張力計算--- */
 extern vector<Coordinate> normalVector;                 // 単位法線ベクトル
 extern vector<Force> surfaceTension;                    // 表面張力

@@ -21,13 +21,18 @@ void mainLoopOfSimulation(void)
         calGravity();
         calViscosity();
 
-        calTemperature();                       // 温度分布を計算
-        
+        laserRadiation();                       // レーザ照射中の各パラメータを計算
+
+        calTemperature();                       // 温度分布を計算  
         moveParticle();
         collision();                            // 剛体衝突判定：粒子同士の異常接近防止のため
+
+        /*
+        calSurfaceTension();
         calPressure();
         calPressureGradient();
         moveParticleUsingPressureGradient();    // 粒子位置の修正
+        */
 
         iTimeStep++;
         Time += DT;

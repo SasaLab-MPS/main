@@ -9,11 +9,13 @@
 
 void initializeTemperatureDistribution(void) {
     int NP = NumberOfParticles;
+    /*
     double mass, area, heatFlux;
 
     area = PARTICLE_DISTANCE *PARTICLE_DISTANCE;
     mass = area * PARTICLE_DISTANCE * SOLID_DENSITY;
     heatFlux = area * HEAT_INPUT;
+    */
 
     for (int i = 0; i < NP; i++) {
         temperature(i) = INITIAL_TEMPERATURE;

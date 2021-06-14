@@ -24,6 +24,10 @@ vector<int> flagForCheckingBoundaryCondition;   // 粒子の集合のどこか�
 /* ---温度計算--- */
 vector<Tri> T_aij;                  // A:係数行列(疎行列)
 VectorXd Tk, temperature;           // Tk:確定している温度，temperature:温度の列ベクトル
+Coordinate centerOfLaser;           // レーザの中心座標
+/* ---表面張力計算--- */
+vector<Coordinate> normalVector;    // 単位法線ベクトル
+vector<Force> surfaceTension;       // 表面張力
 
 /* グローバル変数定義 */
 int FileNumber;
@@ -35,10 +39,11 @@ double Re_forLaplacian, Re2_forLaplacian;       // Re:ラプラシアンモデ�
 double N0_forNumberDensity;                     // 粒子数密度
 double N0_forGradient;
 double N0_forLaplacian;
+double N0_forSurfaceTension;
 double Lambda;
 double collisionDistance, collisionDistance2;
 double FluidDensity;
-double x_MAX = 20, y_MAX = 1.2, z_MAX = 0.1;       // 計算領域の最大値
+double x_MAX = 3.0, y_MAX = 3.0, z_MAX = 0.1;       // 計算領域の最大値
 double Pos_MIN[3] = {0.0, 0.0, 0.0};                // 計算領域の最小値:struktBktで使用
 
 // バケット探索法に関わる変数・配列

@@ -9,55 +9,39 @@
 #include "../../include/inputs.hpp"
 
 void setTemperatureDistribution(void)
-{  
-  /*
-  if (Time < 0.002)
-  {
-    for(int i = 0; i < NumberOfParticles; i++) {
-      heatFlux[i] = 0.0;
-      if (y_MAX * 0.5 - EPS < position[i].x && position[i].x < y_MAX * 0.5 + EPS)
-      {
-        heatFlux[i] = LASER_POWER * PARTICLE_DISTANCE * PARTICLE_DISTANCE;
-      }      
-    }  
-  } else {
-    for (int i = 0; i < NumberOfParticles; i++)
+{    
+  int NP = NumberOfParticles;
+  double rho, c;
+  double enthalpy;            // エンタルピー，熱含量 (J)
+
+  rho = SOLID_DENSITY;        // 相変化を考慮するなら変更する
+  c = SPECIFIC_HEAT_CAPACITY; // 比熱容量
+
+  // 温度分布の計算
+  for(int i = 0; i < NP; i++) {
+    enthalpy = calLaserIntensity(position[i]);
+    // 温度の計算(溶融・蒸発は考えない 2021.6.11)
+    temperature[i] = enthalpy / (rho*c);
+
+    // 溶融・蒸発を考える場合 2021.6.14
+    /*
+    double melt = enthalpy * rho * c * MELTING_TEMPERATURE;
+    double vapor = melt + rho * LATENT_HEAT;
+    if (enthalpy < MELTING_TEMPERATURE)
     {
-      heatFlux[i] = 0.0;
+      // 個体のまま
+      position[i].particleType = SOLID;
     }
-  }
-  */
-  
-  
-  /*
-  double area = M_PI * 0.25 * (LASER_DIAMETER * LASER_DIAMETER);
-  double piece = area / (M_PI * 0.25 * (PARTICLE_DISTANCE * PARTICLE_DISTANCE));
-  double q = (LASER_POWER) / piece;   // W/m^2
-  double travelDistance = SCAN_SPEED * Time;
-
-  // レーザの中心, zの座標は要検討
-  Position center;
-  center.x = travelDistance, center.y = y_MAX * 0.5, center.z = z_MAX;
-  
-
-  for(int i = 0; i < NumberOfParticles; i++) {
-    heatFlux[i] = 0.0;
-    if (DIM == 2)
-    {      
-      double distance2 = (position[i].x - center.x) * (position[i].x - center.x) + (position[i].y - center.y) * (position[i].y - center.y);
-      double distance = sqrt(distance2);
-      if (distance < LASER_DIAMETER * 0.5 + EPS) {
-        heatFlux[i] = q;
-      }
+    else if (melt <= enthalpy < melt + vapor)
+    {
+      // 溶融
+      position[i].particleType = FLUID;
     }
     else
     {
-      double distance2 = (position[i].x - center.x) * (position[i].x - center.x) + (position[i].y - center.y) * (position[i].y - center.y) + (position[i].z - center.z) * (position[i].z - center.z);
-      double distance = sqrt(distance2);
-      if (distance < LASER_DIAMETER * 0.5 + EPS) {
-        heatFlux[i] = q;
-      }
-    }  
+      // 蒸発
+      position[i].particleType = GAS;
+    } 
+    */   
   }
-  */
 }

@@ -8,6 +8,8 @@
 #ifndef FUNCTIONS_HPP_20210220_222753_
 #define FUNCTIONS_HPP_20210220_222753_
 
+#include "inputs.hpp"
+
 void conditionInitialization(void);                            // 計算領域の初期化 
 void initializeParticlePositionAndVelocity_for2dim(void);      // t = 0sでの粒子の速度と位置を決定 (2次元)
 void initializeParticlePositionAndVelocity_for3dim(void);      // t = 0sでの粒子の速度と位置を決定 (3次元)
@@ -51,9 +53,9 @@ void calSurfaceTension(void);                                  // 表面張力�
 void calNormalVector(void);                                    // 表面の法線ベクトル
 double calCurvature(int particleNumber);                       // 表面粒子の曲率, kappa
 
-/* 走査パターンの計算 */
-Coordinate calScangPath(string strategy, double length);       // 走査経路を計算
-/* レーザの強度分布を計算 */
-double calLaserIntensity(Coordinate centerOfLaser, Position P);// レーザの強度分布を計算
+/* レーザ照射中の各値を計算 */
+void laserRadiation(void);                                     // レーザ照射中の各パラメータを計算
+void calScanPath(string strategy, double scanVectorLength);    // 走査経路を計算
+double calLaserIntensity(Position point);                      // レーザの強度分布を計算
 
 #endif // FUNCTIONS_HPP_20210220_222753_

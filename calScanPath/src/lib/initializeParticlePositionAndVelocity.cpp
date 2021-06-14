@@ -73,8 +73,8 @@ void initializeParticlePositionAndVelocity_for2dim(void)
             {
                 p = {x, y, z, ParticleType};
                 // 速度，加速度を0で初期化
-                v = {0.0, 0.0, 0.0, ParticleType};
-                a = {0.0, 0.0, 0.0, ParticleType};
+                v = {0.0, 0.0, 0.0};
+                a = {0.0, 0.0, 0.0};
                 // 追加
                 position.push_back(p);
                 velocity.push_back(v);
@@ -154,8 +154,8 @@ void initializeParticlePositionAndVelocity_for3dim(void)
                 {
                     p = {x, y, z, ParticleType};
                     // 速度，加速度を0で初期化
-                    v = {0, 0, 0, ParticleType};
-                    a = {0, 0, 0, ParticleType};
+                    v = {0, 0, 0};
+                    a = {0, 0, 0};
                     // 追加
                     position.push_back(p);
                     velocity.push_back(v);

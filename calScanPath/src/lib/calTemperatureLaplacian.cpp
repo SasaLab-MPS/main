@@ -17,10 +17,6 @@ void calTemperatureLaplacian(void){
     double alpha, beta;    // α：温度伝導率，β：係数
     double aij, aii;       //係数行列の各値
 
-    // 計算用の配列
-    //vector<double> dH;
-    //dH.resize(NumberOfParticles, 0.0);
-     
     rho = SOLID_DENSITY;        // 相変化を考慮するなら変更する
     c = SPECIFIC_HEAT_CAPACITY; // 比熱容量
     lmb = HEAT_CONDUCTIVITY;    // 熱伝導率
@@ -61,6 +57,5 @@ void calTemperatureLaplacian(void){
         }
         aii += 1;
         T_aij.push_back(Tri(i, i, aii));
-        //dH[i] = a * Aij;
     }
 }

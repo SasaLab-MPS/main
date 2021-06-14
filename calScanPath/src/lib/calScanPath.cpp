@@ -7,10 +7,9 @@
 #include "../../include/functions.hpp"
 #include "../../include/inputs.hpp"
 
-Coordinate calScangPath(string strategy, double length)
+void calScanPath(string strategy, double length)
 {
     /* レーザの中心座標を返すようにした方が良いか? */
-    Coordinate centerOfLaser;                       // レーザの中心座標
 
     double travelDistance = Time * SCAN_SPEED;      // 合計の走査距離
     double hatch = SCAN_PITCH;
@@ -20,7 +19,7 @@ Coordinate calScangPath(string strategy, double length)
     if (strategy == "Island")
     {
         int numOfLine = length/hatch;       // アイランド内のライン本数
-        int Lx = x_MAX / length, Ly = y_MAX / length;   // Lx: x方向一列のブロック数, Ly: y方向一列のブロック数
+        int Lx = x_MAX / length;   // Lx: x方向一列のブロック数, Ly: y方向一列のブロック数
         //int nX = Ix, nY = Iy * nX;
         int scanBlocks = totalRepetition / numOfLine;   // 走査済みのアイランド数
         int low = scanBlocks / Lx;          // 走査済みの列数
@@ -74,28 +73,26 @@ Coordinate calScangPath(string strategy, double length)
 
         centerOfLaser.x = x;
         centerOfLaser.y = y;
-    
+        centerOfLaser.z = z_MAX;
     }
     else if (strategy == "Stripe") {
-        int nx; // x 方向に繰り返せる最大数
         int ny; // y 方向に繰り返せる最大数
 
-        int k, l, m;
-        double X = x_MAX, Y = y_MAX;
-        double y = (double)m * hatch;
+        int k, l;
+        double Y = y_MAX;
 
         ny = Y / hatch;
-        m = totalRepetition / ny;       // 短冊の総数
-        k = totalRepetition - m * ny;   // そのストライプの中でレーザが行き来した回数
+        l = totalRepetition / ny;       // 短冊の総数
+        k = totalRepetition - l * ny;   // そのストライプの中でレーザが行き来した回数
         
         /* レーザの中心座標の計算 */
         double tx = travelDistance - (double)totalRepetition * length;
         double ty = (double)k * hatch;
         // x 座標の計算
         if (k % 2 == 1) {
-            centerOfLaser.x = (double)(m+1) * length - tx;
+            centerOfLaser.x = (double)(l+1) * length - tx;
         } else {
-            centerOfLaser.x = (double)m * length + tx;
+            centerOfLaser.x = (double)l * length + tx;
         }
         // y 座標の計算
         if (tx > 0 && tx < Y) {
@@ -109,6 +106,4 @@ Coordinate calScangPath(string strategy, double length)
     else {
         /* code */
     }
-
-    return centerOfLaser;
 }
