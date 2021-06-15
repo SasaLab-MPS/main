@@ -121,6 +121,7 @@ extern vector<int> boundaryCondition;                   // ディリクレ境界
 extern vector<int> flagForCheckingBoundaryCondition;    // 粒子の集合のどこかにディリクレ境界条件が付加されているかをチェックするためのフラグ
 extern vector<double> minimumPressure;                  // ある粒子近傍での最低圧力
 /* ---温度計算--- */
+extern vector<Tri> T_aij;                               // トリプレット
 extern SparseMatrix<double> Tmp;                        // 係数行列(疎行列)                               // A:係数行列(疎行列)
 extern VectorXd temperature;                            // 確定している温度，temperature:温度の列ベクトル
 extern Coordinate centerOfLaser;                        // レーザ照射の中心座標

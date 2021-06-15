@@ -15,6 +15,8 @@ void solveTemperatureByCGmethod(void) {
     VectorXd p(NP), r(NP), Ap(NP);          // 中間変数
     VectorXd r0(NP), e(NP), Ae(NP);         // BiCGStab法のために追加した中間変数
 
+    Tmp.setZero();
+    Tmp.setFromTriplets(T_aij.begin(), T_aij.end());
     b = temperature;
     x = temperature;
 

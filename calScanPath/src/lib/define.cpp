@@ -22,6 +22,7 @@ vector<double> minimumPressure;         // ある粒子近傍での最低圧力
 vector<int> boundaryCondition;                  // ディリクレ境界条件を付加するかどうかのフラグ
 vector<int> flagForCheckingBoundaryCondition;   // 粒子の集合のどこかにディリクレ境界条件が付加されているかをチェックするためのフラグ
 /* ---温度計算--- */
+vector<Tri> T_aij;                      // トリプレット
 SparseMatrix<double> Tmp;               // Tmp:温度の係数行列(疎行列)
 VectorXd Tk, temperature;               // Tk:確定している温度，temperature:温度の列ベクトル
 Coordinate centerOfLaser;               // レーザの中心座標
