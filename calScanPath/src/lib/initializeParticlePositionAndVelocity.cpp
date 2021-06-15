@@ -16,7 +16,7 @@ void initializeParticlePositionAndVelocity_for2dim(void)
     int flagOfParticleGeneration;
     int ParticleType;
     int i = 0;
-    Position p;
+    Particle p;
     Velocity v;
     Acceleration a;
 
@@ -76,7 +76,7 @@ void initializeParticlePositionAndVelocity_for2dim(void)
                 v = {0.0, 0.0, 0.0};
                 a = {0.0, 0.0, 0.0};
                 // 追加
-                position.push_back(p);
+                particle.push_back(p);
                 velocity.push_back(v);
                 acceleration.push_back(a);
                 i++;
@@ -93,7 +93,7 @@ void initializeParticlePositionAndVelocity_for3dim(void)
     int iX, iY, iZ;
     int nX, nY, nZ;
     double x, y, z;
-    Position p;
+    Particle p;
     Velocity v;
     Acceleration a;
     int flagOfParticleGeneration;
@@ -157,7 +157,7 @@ void initializeParticlePositionAndVelocity_for3dim(void)
                     v = {0, 0, 0};
                     a = {0, 0, 0};
                     // 追加
-                    position.push_back(p);
+                    particle.push_back(p);
                     velocity.push_back(v);
                     acceleration.push_back(a);
                     i++;

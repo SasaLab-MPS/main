@@ -28,6 +28,7 @@ void conditionInitialization(void) {
     numberDensity.resize(NP, 0);
 
     /* ---温度計算用--- */
+    Tmp.resize(NP, NP);
     temperature.setZero(NP);                // 全粒子に初期温度を与える
     centerOfLaser = {0.0, 0.0, 0.0};
     initializeTemperatureDistribution();    // 温度分布の初期化

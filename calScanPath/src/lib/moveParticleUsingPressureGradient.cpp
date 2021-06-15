@@ -12,15 +12,15 @@ void moveParticleUsingPressureGradient(void)
 {
     for (int i = 0; i < NumberOfParticles; i++)
     {
-        if (position[i].particleType == FLUID)
+        if (particle[i].particleType == FLUID)
         {
             velocity[i].x += acceleration[i].x * DT;
             velocity[i].y += acceleration[i].y * DT;
             velocity[i].z += acceleration[i].z * DT;
 
-            position[i].x += acceleration[i].x * DT * DT;
-            position[i].y += acceleration[i].y * DT * DT;
-            position[i].z += acceleration[i].z * DT * DT;
+            particle[i].x += acceleration[i].x * DT * DT;
+            particle[i].y += acceleration[i].y * DT * DT;
+            particle[i].z += acceleration[i].z * DT * DT;
         }
         acceleration[i].x = 0.0;
         acceleration[i].y = 0.0;

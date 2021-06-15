@@ -47,7 +47,8 @@ void setTemperatureDistribution(void);                         // 初期温度�
 void calTemperatureLaplacian(void);                            // 温度のラプラシアンを計算
 void solveTemperatureByCGmethod(void);                         // 温度をCG法により高速解放
 void removeNegativeTemperature(void);                          // 温度が最低温度未満になった場合を0処理
-void checkTemperature(void);                                   // 境界条件の設定 = 温度のチェック
+void setTemperatureBoundaryCondition(void);                    // 温度のチェック
+void checkNeumannBoundaryCondition(void);                      // 境界条件の設定(ノイマン境界条件)
 /* ---表面張力計算--- */
 void calSurfaceTension(void);                                  // 表面張力計算本体
 void calNormalVector(void);                                    // 表面の法線ベクトル
@@ -56,6 +57,6 @@ double calCurvature(int particleNumber);                       // 表面粒子�
 /* レーザ照射中の各値を計算 */
 void laserRadiation(void);                                     // レーザ照射中の各パラメータを計算
 void calScanPath(string strategy, double scanVectorLength);    // 走査経路を計算
-double calLaserIntensity(Position point);                      // レーザの強度分布を計算
+double calLaserIntensity(Particle point);                      // レーザの強度分布を計算
 
 #endif // FUNCTIONS_HPP_20210220_222753_

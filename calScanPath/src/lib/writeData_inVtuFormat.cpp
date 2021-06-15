@@ -25,7 +25,7 @@ void writeData_inVtuFormat(void)
     fprintf(fp, "<DataArray NumberOfComponents='3' type='Float32' Name='Position' format='ascii'>\n");
     for (i = 0; i < NumberOfParticles; i++)
     {
-        fprintf(fp, "%lf %lf %lf\n", position[i].x, position[i].y, position[i].z);
+        fprintf(fp, "%lf %lf %lf\n", particle[i].x, particle[i].y, particle[i].z);
     }
     fprintf(fp, "</DataArray>\n");
     fprintf(fp, "</Points>\n");
@@ -33,7 +33,7 @@ void writeData_inVtuFormat(void)
     fprintf(fp, "<DataArray NumberOfComponents='1' type='Int32' Name='ParticleType' format='ascii'>\n");
     for (i = 0; i < NumberOfParticles; i++)
     {
-        fprintf(fp, "%d\n", position[i].particleType);
+        fprintf(fp, "%d\n", particle[i].particleType);
     }
     fprintf(fp, "</DataArray>\n");
     fprintf(fp, "<DataArray NumberOfComponents='1' type='Float32' Name='Velocity' format='ascii'>\n");

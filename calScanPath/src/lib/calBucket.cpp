@@ -17,9 +17,9 @@ void calBucket(void) {
     }
 
     for(int i = 0; i < NumberOfParticles; i++) {
-        int ix = (int)((position[i].x - MIN[0]) * DBinv) + 1;
-        int iy = (int)((position[i].y - MIN[1]) * DBinv) + 1;
-        int iz = (int)((position[i].z - MIN[2]) * DBinv) + 1;
+        int ix = (int)((particle[i].x - MIN[0]) * DBinv) + 1;
+        int iy = (int)((particle[i].y - MIN[1]) * DBinv) + 1;
+        int iz = (int)((particle[i].z - MIN[2]) * DBinv) + 1;
         int id = iz * nBxy + iy *nBx + ix;
 
         bucket[id].emplace_back(i);

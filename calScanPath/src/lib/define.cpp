@@ -8,7 +8,7 @@
 #include "../../include/inputs.hpp"
 
 /* 動的配列 */
-vector<Position> position;         // 位置
+vector<Particle> particle;         // 位置
 vector<Velocity> velocity;         // 速度
 vector<Acceleration> acceleration; // 加速度
 // constantParameterで定義
@@ -22,9 +22,10 @@ vector<double> minimumPressure;         // ある粒子近傍での最低圧力
 vector<int> boundaryCondition;                  // ディリクレ境界条件を付加するかどうかのフラグ
 vector<int> flagForCheckingBoundaryCondition;   // 粒子の集合のどこかにディリクレ境界条件が付加されているかをチェックするためのフラグ
 /* ---温度計算--- */
-vector<Tri> T_aij;                  // A:係数行列(疎行列)
-VectorXd Tk, temperature;           // Tk:確定している温度，temperature:温度の列ベクトル
-Coordinate centerOfLaser;           // レーザの中心座標
+SparseMatrix<double> Tmp;               // Tmp:温度の係数行列(疎行列)
+VectorXd Tk, temperature;               // Tk:確定している温度，temperature:温度の列ベクトル
+Coordinate centerOfLaser;               // レーザの中心座標
+vector<int> NeumannBoundaryCondition;   // ノイマン境界条件
 /* ---表面張力計算--- */
 vector<Coordinate> normalVector;    // 単位法線ベクトル
 vector<Force> surfaceTension;       // 表面張力

@@ -18,7 +18,7 @@ using namespace Eigen;
 /* for two-dimensional simulation */
 constexpr int DIM = 2;                      // 次元
 constexpr double PARTICLE_DISTANCE = 0.04;  // 初期粒子間距離 l0 (mm)
-constexpr double DT = 1e-3;                 // 時間刻み幅 (s)
+constexpr double DT = 5e-4;                 // 時間刻み幅 (s)
 constexpr int OUTPUT_INTERVAL = 1;          // 計算結果のファイル出力の間隔
 
 /* for three-dimensional simulation */
@@ -40,7 +40,7 @@ constexpr double RADIUS_FOR_NUMBER_DENSITY = (2.1 * PARTICLE_DISTANCE);
 constexpr double RADIUS_FOR_GRADIENT = (2.1 * PARTICLE_DISTANCE);
 constexpr double RADIUS_FOR_LAPLACIAN = (3.1 * PARTICLE_DISTANCE);
 constexpr double COLLISION_DISTANCE = (0.5 * PARTICLE_DISTANCE);
-constexpr double THRESHOLD_RATIO_OF_NUMBER_DENSITY = 0.97; // 自由表面かを判定する係数β
+constexpr double THRESHOLD_RATIO_OF_NUMBER_DENSITY = 0.90; // 自由表面かを判定する係数β
 constexpr double COEFFICIENT_OF_RESTITUTION = 0.2;         // 剛体衝突の反発係数
 constexpr double COMPRESSIBILITY = 0.45e-9;                // 流体の圧縮率
 constexpr double EPS = (0.01 * PARTICLE_DISTANCE);         // 粒子間隔の100分の1を誤差の判定に利用
@@ -69,13 +69,13 @@ constexpr double CRT_NUM = 0.1;                             // クーラン数
 /* 熱伝導係数等 */
 constexpr double SPECIFIC_HEAT_CAPACITY = 500;              // 比熱容量:c (mJ/gK)
 constexpr double HEAT_CONDUCTIVITY = 300;                   // 熱伝導率:λ (mJ/mmKs)
-/* 融点・沸点等 */
+constexpr double LASER_ABSORPTION_RATE = 0.20;              // レーザ吸収率(アルミ)
+/* 初期温度・融点・沸点等 */
+constexpr double INITIAL_TEMPERATURE = 20.0;                // 初期温度 (℃)
 constexpr double MELTING_TEMPERATURE = 660;                 // 融点:Tm (℃)
 constexpr double BOILING_TEMPERATURE = 2520;                // 沸点:Tb (℃)
 constexpr double LATENT_HEAT = 396.0;                       // 潜熱:L (J/g)
-/* レーザ諸元 */
-// ガウシアン分布等
-/* 造形条件 */
+/* レーザ諸元・造形条件*/
 constexpr double HEAT_INPUT = 100;                          // 初期熱量:Q (mJ/mm^2)
 constexpr double LASER_POWER = 3e2;                         // レーザ出力:P (W, J/s)
 constexpr double LASER_DIAMETER = 0.1;                      // レーザ直径:d (mm)
@@ -95,7 +95,7 @@ typedef struct {
   double y;
   double z;
   int particleType; // 粒子の状態
-} Position;
+} Particle;
 // 座標
 typedef struct {
   double x;
@@ -109,7 +109,7 @@ typedef Coordinate Force;                               // 力：Force
 typedef Triplet<double> Tri;                            // Tripletの省略
 
 /* ---位置・速度・加速度--- */
-extern vector<Position> position;                       // 位置
+extern vector<Particle> particle;                       // 位置
 extern vector<Velocity> velocity;                       // 速度
 extern vector<Acceleration> acceleration;               // 加速度
 /* ---圧力計算--- */
@@ -121,10 +121,10 @@ extern vector<int> boundaryCondition;                   // ディリクレ境界
 extern vector<int> flagForCheckingBoundaryCondition;    // 粒子の集合のどこかにディリクレ境界条件が付加されているかをチェックするためのフラグ
 extern vector<double> minimumPressure;                  // ある粒子近傍での最低圧力
 /* ---温度計算--- */
-constexpr double INITIAL_TEMPERATURE = 0.0;             // 初期温度 (℃)
-extern vector<Tri> T_aij;                               // A:係数行列(疎行列)
+extern SparseMatrix<double> Tmp;                        // 係数行列(疎行列)                               // A:係数行列(疎行列)
 extern VectorXd temperature;                            // 確定している温度，temperature:温度の列ベクトル
 extern Coordinate centerOfLaser;                        // レーザ照射の中心座標
+extern vector<int> NeumannBoundaryCondition;            // ノイマン境界条件
 /* ---表面張力計算--- */
 extern vector<Coordinate> normalVector;                 // 単位法線ベクトル
 extern vector<Force> surfaceTension;                    // 表面張力

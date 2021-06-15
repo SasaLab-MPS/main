@@ -27,7 +27,7 @@ void calTemperatureLaplacian(void){
     beta = a * alpha;
 
     calBucket();    // 粒子が所属するバケットを計算
-    T_aij.clear();  // 係数行列の初期化
+    Tmp.setZero();  // 係数行列の初期化
 
     for (int i = 0; i < NumberOfParticles; i++)
     {
@@ -42,9 +42,9 @@ void calTemperatureLaplacian(void){
                 continue;   // その粒子自身は計算に含めない
 
             // 粒子間距離の計算
-            xij = position[j].x - position[i].x;
-            yij = position[j].y - position[i].y;
-            zij = position[j].z - position[i].z;
+            xij = particle[j].x - particle[i].x;
+            yij = particle[j].y - particle[i].y;
+            zij = particle[j].z - particle[i].z;
             distance2 = (xij * xij) + (yij * yij) + (zij * zij);
             distance = sqrt(distance2);
             // 影響範囲内か
@@ -52,10 +52,10 @@ void calTemperatureLaplacian(void){
                 w = weight(distance, Re_forLaplacian); // 重み関数
                 aij = beta * w * DT;
                 aii += aij;
-                T_aij.push_back(Tri(i, j, (-1) * aij));
+                Tmp.insert(i, j) = (-1) * aij;
             }
         }
         aii += 1;
-        T_aij.push_back(Tri(i, i, aii));
+        Tmp.insert(i, i) = aii;
     }
 }

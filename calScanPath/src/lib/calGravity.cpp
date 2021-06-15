@@ -15,7 +15,7 @@ void calGravity(void)
 
     for (int i = 0; i < NumberOfParticles; i++)
     { // NumberOfParticles:粒子の総数
-        if (position[i].particleType == FLUID)
+        if (particle[i].particleType == FLUID)
         {
             double boussinesq = (-1) * beta * (temperature[i] - T_0);
             // 流体粒子の重力加速度を設定・ブシネスク近似を導入

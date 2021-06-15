@@ -42,13 +42,13 @@ void checkBoundaryCondition(void)
                 {
                     if (j == i)
                         continue;
-                    if ((position[j].particleType == GHOST) || (position[j].particleType == DUMMY_WALL))
+                    if ((particle[j].particleType == GHOST) || (particle[j].particleType == DUMMY_WALL))
                         continue;
                     if (flagForCheckingBoundaryCondition[j] == DIRICHLET_BOUNDARY_IS_NOT_CONNECTED)
                     {
-                        xij = position[j].x - position[i].x;
-                        yij = position[j].y - position[i].y;
-                        zij = position[j].z - position[i].z;
+                        xij = particle[j].x - particle[i].x;
+                        yij = particle[j].y - particle[i].y;
+                        zij = particle[j].z - particle[i].z;
                         distance2 = (xij * xij) + (yij * yij) + (zij * zij);
                         if (distance2 >= Re2_forLaplacian)
                             continue;

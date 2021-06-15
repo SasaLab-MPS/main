@@ -32,7 +32,9 @@ main.cpp
             |       |       |---searchBucket                // 粒子i近辺の粒子を探索
             |       |       |---weight                      // 重み関数を計算
             |       |
-            |       |---checkTemperature                // 境界条件の設定 = 温度のチェック
+            |       |---setTemperatureBoundaryCondition // 境界条件の設定(ノイマン境界条件)
+            |       |       |---checkNeumannBoundaryCondition
+            |       |
             |       |---solveTemperatureByCGmethod      // 共役勾配法による高速解法
             |       |---removeNegativeTemperature       // 温度が最低温度未満になった場合を処理
             |

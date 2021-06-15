@@ -33,9 +33,9 @@ void setMatrix(void)
             if ((j == i) || (boundaryCondition[j] == GHOST_OR_DUMMY))
                 continue; // その粒子自身とゴースト粒子は計算に含めない
             // 粒子間距離の計算
-            xij = position[j].x - position[i].x;
-            yij = position[j].y - position[i].y;
-            zij = position[j].z - position[i].z;
+            xij = particle[j].x - particle[i].x;
+            yij = particle[j].y - particle[i].y;
+            zij = particle[j].z - particle[i].z;
             distance2 = (xij * xij) + (yij * yij) + (zij * zij);
             distance = sqrt(distance2);
             // 影響範囲内か？

@@ -11,17 +11,15 @@
 void solveTemperatureByCGmethod(void) {
     int NP = NumberOfParticles;             // 行列・ベクトルサイズ
     int iMAX = 2 * NP;                      // 最大反復計算回数
-    SparseMatrix<double> A(NP, NP);         // 係数行列(疎行列)
     VectorXd b(NP), x(NP);                  // Ax = b
     VectorXd p(NP), r(NP), Ap(NP);          // 中間変数
     VectorXd r0(NP), e(NP), Ae(NP);         // BiCGStab法のために追加した中間変数
 
-    A.setFromTriplets(T_aij.begin(), T_aij.end());
     b = temperature;
     x = temperature;
 
     // pとrを計算 p = r := b - Ax
-    r0 = b - A * x; // r0:初期残差ベクトル
+    r0 = b - Tmp * x; // r0:初期残差ベクトル
     r = r0;         // r:残差ベクトル
     p = r0;         // p:探索方向ベクトル
 
@@ -33,13 +31,13 @@ void solveTemperatureByCGmethod(void) {
     // 反復計算
     for (int i = 0; i < iMAX; i++) {
         // alphaの計算
-        Ap = A * p;
+        Ap = Tmp * p;
         tau = r0.dot(Ap);
         alpha = sigma / tau;
 
         // zeta, sigmaの計算
         e = r - alpha * Ap;
-        Ae = A * e;
+        Ae = Tmp * e;
         zeta = e.dot(Ae) / Ae.dot(Ae);
         x += alpha * p + zeta * e;
         r = e - zeta * Ae;

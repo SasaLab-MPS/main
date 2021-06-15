@@ -17,14 +17,14 @@ void setTemperatureDistribution(void)
 
   rho = SOLID_DENSITY;               // 相変化を考慮するなら変更する
   c = SPECIFIC_HEAT_CAPACITY * 1e-3; // 比熱容量，Jに換算
-  volume = pow(PARTICLE_DISTANCE * 0.5, 3);
+  volume = pow(PARTICLE_DISTANCE, 3);
   mass = rho * volume;
 
   // 温度分布の計算，レーザ吸収率を乗じるべき・ノイマン境界条件を設定した方が良い
   for(int i = 0; i < NP; i++) {
-    enthalpy = calLaserIntensity(position[i]);
+    enthalpy = calLaserIntensity(particle[i]);
     // 温度の計算(溶融・蒸発は考えない 2021.6.11)
-    temperature[i] += enthalpy / (mass * c);
+    temperature[i] += LASER_ABSORPTION_RATE * enthalpy / (mass * c);
 
     // 溶融・蒸発を考える場合 2021.6.14
     /*

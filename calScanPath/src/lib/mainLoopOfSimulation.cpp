@@ -15,6 +15,8 @@ void mainLoopOfSimulation(void)
     writeData_inVtuFormat();
     writeData_inProfFormat();
 
+    calNumberDensity();
+
     while (1)
     {
         // 粒子法計算メイン

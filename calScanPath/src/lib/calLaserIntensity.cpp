@@ -7,7 +7,7 @@
 #include "../../include/functions.hpp"
 #include "../../include/inputs.hpp"
 
-double calLaserIntensity(Position P)
+double calLaserIntensity(Particle P)
 {   
     double power = DT * LASER_POWER;    // レーザ出力，WからJに変換
     double intensity = 0.0;

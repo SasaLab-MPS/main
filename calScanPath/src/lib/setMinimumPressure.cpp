@@ -15,7 +15,7 @@ void setMinimumPressure(void)
 
     for (int i = 0; i < NumberOfParticles; i++)
     {
-        if (position[i].particleType == GHOST || position[i].particleType == DUMMY_WALL)
+        if (particle[i].particleType == GHOST || particle[i].particleType == DUMMY_WALL)
             continue;
         minimumPressure[i] = pressure(i);
 
@@ -23,13 +23,13 @@ void setMinimumPressure(void)
         int j;
         for(int k = 0; k < (int)neghPar.size(); k++) {
             j = neghPar[k];
-            if ((j == i) || (position[j].particleType == GHOST))
+            if ((j == i) || (particle[j].particleType == GHOST))
                 continue;
-            if (position[j].particleType == DUMMY_WALL)
+            if (particle[j].particleType == DUMMY_WALL)
                 continue;
-            xij = position[j].x - position[i].x;
-            yij = position[j].y - position[i].y;
-            zij = position[j].z - position[i].z;
+            xij = particle[j].x - particle[i].x;
+            yij = particle[j].y - particle[i].y;
+            zij = particle[j].z - particle[i].z;
             distance2 = (xij * xij) + (yij * yij) + (zij * zij);
             if (distance2 >= Re2_forGradient)
                 continue;

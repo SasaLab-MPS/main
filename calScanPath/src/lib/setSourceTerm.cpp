@@ -16,7 +16,7 @@ void setSourceTerm(void)
     for (int i = 0; i < NumberOfParticles; i++)
     {
         sourceTerm(i) = 0.0;
-        if (position[i].particleType == GHOST || position[i].particleType == DUMMY_WALL)
+        if (particle[i].particleType == GHOST || particle[i].particleType == DUMMY_WALL)
             continue;
         if (boundaryCondition[i] == INNER_PARTICLE)
         {

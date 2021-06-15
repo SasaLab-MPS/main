@@ -17,19 +17,19 @@ void calNumberDensity(void)
     for (int i = 0; i < NumberOfParticles; i++)
     {
         numberDensity[i] = 0.0;
-        if (position[i].particleType == GHOST)
+        if (particle[i].particleType == GHOST)
             continue;
         /* バケット法による粒子の探索効率向上 */
         searchBucket(i);    // 粒子i近傍の粒子をneghParにリスト化
         int j;              // particle j
         for(int k = 0; k < (int)neghPar.size(); k++) {
             j = neghPar[k];
-            if ((j == i) || (position[j].particleType == GHOST))
+            if ((j == i) || (particle[j].particleType == GHOST))
                 continue; // その粒子自身とゴースト粒子は計算に含めない
             // 粒子間距離の計算
-            xij = position[j].x - position[i].x;
-            yij = position[j].y - position[i].y;
-            zij = position[j].z - position[i].z;
+            xij = particle[j].x - particle[i].x;
+            yij = particle[j].y - particle[i].y;
+            zij = particle[j].z - particle[i].z;
             distance2 = (xij * xij) + (yij * yij) + (zij * zij);
             distance = sqrt(distance2);
             // 重み関数の計算

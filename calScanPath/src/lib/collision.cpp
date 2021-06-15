@@ -31,7 +31,7 @@ void collision(void)
     // 粒子同士の衝突を計算
     for (int i = 0; i < NumberOfParticles; i++)
     {
-        if (position[i].particleType == FLUID)
+        if (particle[i].particleType == FLUID)
         {
             mi = FluidDensity;
             // 粒子 iの速度
@@ -44,12 +44,12 @@ void collision(void)
             int j;              // particle j
             for(int k = 0; k < (int)neghPar.size(); k++) {
                 j = neghPar[k];
-                if ((j == i) || (position[j].particleType == GHOST))
+                if ((j == i) || (particle[j].particleType == GHOST))
                     continue; // その粒子自身とゴースト粒子は計算に含めない
                 // 粒子間距離の計算
-                xij = position[j].x - position[i].x;
-                yij = position[j].y - position[i].y;
-                zij = position[j].z - position[i].z;
+                xij = particle[j].x - particle[i].x;
+                yij = particle[j].y - particle[i].y;
+                zij = particle[j].z - particle[i].z;
                 distance2 = (xij * xij) + (yij * yij) + (zij * zij);
                 // 影響範囲内か？
                 if (distance2 < collisionDistance2)
@@ -76,11 +76,11 @@ void collision(void)
     // 速度の更新
     for (int i = 0; i < NumberOfParticles; i++)
     {
-        if (position[i].particleType == FLUID)
+        if (particle[i].particleType == FLUID)
         {
-            position[i].x += (VelocityAfterCollision[i].x - velocity[i].x) * DT;
-            position[i].y += (VelocityAfterCollision[i].y - velocity[i].y) * DT;
-            position[i].z += (VelocityAfterCollision[i].z - velocity[i].z) * DT;
+            particle[i].x += (VelocityAfterCollision[i].x - velocity[i].x) * DT;
+            particle[i].y += (VelocityAfterCollision[i].y - velocity[i].y) * DT;
+            particle[i].z += (VelocityAfterCollision[i].z - velocity[i].z) * DT;
             velocity[i].x = VelocityAfterCollision[i].x;
             velocity[i].y = VelocityAfterCollision[i].y;
             velocity[i].z = VelocityAfterCollision[i].z;

@@ -12,7 +12,7 @@ void moveParticle(void)
 {
     for (int i = 0; i < NumberOfParticles; i++)
     {
-        if (position[i].particleType == FLUID)
+        if (particle[i].particleType == FLUID)
         {
             // 速度の更新:v=at
             velocity[i].x += acceleration[i].x * DT;
@@ -20,9 +20,9 @@ void moveParticle(void)
             velocity[i].z += acceleration[i].z * DT;
 
             // 位置の更新:x=vt
-            position[i].x += velocity[i].x * DT;
-            position[i].y += velocity[i].y * DT;
-            position[i].z += velocity[i].z * DT;
+            particle[i].x += velocity[i].x * DT;
+            particle[i].y += velocity[i].y * DT;
+            particle[i].z += velocity[i].z * DT;
         }
 
         // 加速度の初期化

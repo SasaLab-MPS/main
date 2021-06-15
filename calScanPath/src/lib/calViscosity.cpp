@@ -21,7 +21,7 @@ void calViscosity(void)
 
     for (int i = 0; i < NumberOfParticles; i++)
     {
-        if (position[i].particleType != FLUID)
+        if (particle[i].particleType != FLUID)
             continue;
         // 粘性力による加速度の初期化
         viscosityTerm_x = 0.0;
@@ -32,12 +32,12 @@ void calViscosity(void)
         int j;
         for(int k = 0; k < (int)neghPar.size(); k++) {
             j = neghPar[k];     // particle jの番号
-            if ((j == i) || (position[j].particleType == GHOST))
+            if ((j == i) || (particle[j].particleType == GHOST))
                 continue;       // その粒子自身とゴースト粒子は計算に含めない
             // 粒子間距離の計算
-            xij = position[j].x - position[i].x;
-            yij = position[j].y - position[i].y;
-            zij = position[j].z - position[i].z;
+            xij = particle[j].x - particle[i].x;
+            yij = particle[j].y - particle[i].y;
+            zij = particle[j].z - particle[i].z;
             distance2 = (xij * xij) + (yij * yij) + (zij * zij);
             distance = sqrt(distance2);
             // 影響範囲か？

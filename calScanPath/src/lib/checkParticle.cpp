@@ -21,13 +21,13 @@ void checkParticle(void) {
     z_min = Pos_MIN[2] - PARTICLE_DISTANCE * 4;
 
     for(int i = 0; i < NumberOfParticles; i++) {
-        if (position[i].particleType != FLUID) {
+        if (particle[i].particleType != FLUID) {
             continue;
         }
         
-        if (position[i].x > x_max || position[i].x < x_min || position[i].y > y_max || position[i].y < y_min || position[i].z > z_max || position[i].z < z_min)
+        if (particle[i].x > x_max || particle[i].x < x_min || particle[i].y > y_max || particle[i].y < y_min || particle[i].z > z_max || particle[i].z < z_min)
         {
-            position[i].particleType = GHOST;
+            particle[i].particleType = GHOST;
             pressure[i] = 0.0;
             velocity[i].x = 0.0;
             velocity[i].y = 0.0;
