@@ -20,7 +20,7 @@ void initializeParticlePositionAndVelocity_for2dim(void)
     Velocity v;
     Acceleration a;
 
-    // 計算領域全体の大きさ1.0 m x 0.6 m
+    // 計算領域全体の大きさ
     nX = (int)(x_MAX / PARTICLE_DISTANCE) + 5;
     nY = (int)(y_MAX / PARTICLE_DISTANCE) + 5;
 
@@ -30,7 +30,7 @@ void initializeParticlePositionAndVelocity_for2dim(void)
         {
             x = PARTICLE_DISTANCE * (double)(iX); // 粒子生成候補位置
             y = PARTICLE_DISTANCE * (double)(iY);
-            z = 0.0;    // 奥行は0で設定
+            z = 0.0;    // 厚みは0で設定
             flagOfParticleGeneration = OFF;
             
             /*
@@ -63,7 +63,7 @@ void initializeParticlePositionAndVelocity_for2dim(void)
             */
             
             /* solid region：固体領域を設定 */
-            if (((x > 0.0 + EPS) && (x <= x_MAX + EPS)) && ((y > 0.0 + EPS) && (y <= y_MAX + EPS)))
+            if (((x > 0.0 - EPS) && (x <= x_MAX + EPS)) && ((y > 0.0 - EPS) && (y <= y_MAX + EPS)))
             {
                 flagOfParticleGeneration = ON;
                 ParticleType = SOLID;               
