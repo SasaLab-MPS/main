@@ -23,7 +23,7 @@ void mainLoopOfSimulation(void)
         calGravity();
         calViscosity();
 
-        laserRadiation();                       // レーザ照射中の各パラメータを計算
+        calScanPath(SINGLE);                    // レーザ走査経路を計算
 
         calTemperature();                       // 温度分布を計算  
         moveParticle();

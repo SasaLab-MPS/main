@@ -20,8 +20,9 @@ main.cpp
             |       |---searchBucket    // 粒子i近辺の粒子を探索
             |       |---weight          // 重み関数を計算
             |
-            |---laserRadiation      // レーザ照射中の各パラメータを計算
-            |       |---calScanPath     // レーザ走査経路の計算
+            |---calScanPath         // レーザ走査経路の計算
+            |       |---islandPattern   // アイランドスキャン
+            |       |---stripePattern   // ストライプスキャン
             |
             |---calTemperature      // 温度分布を計算
             |       |---setTemperatureDistribution      // 初期温度分布を設定
