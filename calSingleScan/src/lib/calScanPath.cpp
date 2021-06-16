@@ -7,38 +7,44 @@
 #include "../../include/functions.hpp"
 #include "../../include/inputs.hpp"
 
-void calScanPath(string strategy, double length)
+void calScanPath(int strategy)
 {
     /* レーザの中心座標を返すようにした方が良いか? */
 
     double travelDistance = Time * SCAN_SPEED;      // 合計の走査距離
     double hatch = SCAN_PITCH;
-    int totalRepetition = travelDistance / length;  // レーザが折り返した総数
-    
+    double scanVectorLength = SCAN_VECTOR_LENGTH;
+    int totalRepetition = travelDistance / scanVectorLength;  // レーザが折り返した総数
 
-    if (strategy == "Island")
+    switch (strategy)
     {
-        int numOfLine = length/hatch;       // アイランド内のライン本数
-        int Lx = x_MAX / length;   // Lx: x方向一列のブロック数, Ly: y方向一列のブロック数
+    case 0:     // シングルスキャン
+        centerOfLaser.x = travelDistance;
+        centerOfLaser.y = 0.5 * y_MAX;
+        break;
+
+    case 1: // アイランドスキャン
+        int numOfLine = scanVectorLength / hatch; // アイランド内のライン本数
+        int Lx = x_MAX / scanVectorLength;        // Lx: x方向一列のブロック数, Ly: y方向一列のブロック数
         //int nX = Ix, nY = Iy * nX;
-        int scanBlocks = totalRepetition / numOfLine;   // 走査済みのアイランド数
-        int low = scanBlocks / Lx;          // 走査済みの列数
-        int n = scanBlocks - low * Lx;      // その列での走査済みのブロック数
+        int scanBlocks = totalRepetition / numOfLine; // 走査済みのアイランド数
+        int low = scanBlocks / Lx;                    // 走査済みの列数
+        int n = scanBlocks - low * Lx;                // その列での走査済みのブロック数
 
-        double x, y;    // 基準座標，そのアイランドの左下を基準座標にする
+        double x, y; // 基準座標，そのアイランドの左下を基準座標にする
 
-        x = (double)n * length;
-        y = (double)low * length;
+        x = (double)n * scanVectorLength;
+        y = (double)low * scanVectorLength;
 
-        if (n%2 == 0)   
+        if (n % 2 == 0)
         {
             /* 偶数ならx方向 */
             // そのアイランドでの走査済み本数
             int ix = totalRepetition - scanBlocks * numOfLine;
-            double lx;      // x = x + lx みたいにしたい
-            lx = travelDistance - (double)totalRepetition * length;
+            double lx; // x = x + lx みたいにしたい
+            lx = travelDistance - (double)totalRepetition * scanVectorLength;
 
-            if (ix%2 == 0)
+            if (ix % 2 == 0)
             {
                 /* 偶数なら左方向に走査 */
                 x = x + lx;
@@ -46,17 +52,16 @@ void calScanPath(string strategy, double length)
             else
             {
                 /* 奇数なら右方向に走査 */
-                x = x + length - lx;
+                x = x + scanVectorLength - lx;
             }
             y = y + ix * hatch;
-            
         }
         else
         {
             /* 奇数ならy方向 */
             int iy = totalRepetition - scanBlocks * numOfLine;
-            double ly; 
-            ly = travelDistance - (double)totalRepetition * length;
+            double ly;
+            ly = travelDistance - (double)totalRepetition * scanVectorLength;
 
             if (iy % 2 == 0)
             {
@@ -66,44 +71,57 @@ void calScanPath(string strategy, double length)
             else
             {
                 /* 奇数なら下方向に走査 */
-                y = y + length - ly;
+                y = y + scanVectorLength - ly;
             }
             x = x + iy * hatch;
         }
 
         centerOfLaser.x = x;
         centerOfLaser.y = y;
-        centerOfLaser.z = z_MAX;
-    }
-    else if (strategy == "Stripe") {
+        break;
+
+    case 2: // ストライプスキャン
         int ny; // y 方向に繰り返せる最大数
 
         int k, l;
         double Y = y_MAX;
 
         ny = Y / hatch;
-        l = totalRepetition / ny;       // 短冊の総数
-        k = totalRepetition - l * ny;   // そのストライプの中でレーザが行き来した回数
-        
+        l = totalRepetition / ny;     // 短冊の総数
+        k = totalRepetition - l * ny; // そのストライプの中でレーザが行き来した回数
+
         /* レーザの中心座標の計算 */
-        double tx = travelDistance - (double)totalRepetition * length;
+        double tx = travelDistance - (double)totalRepetition * scanVectorLength;
         double ty = (double)k * hatch;
         // x 座標の計算
-        if (k % 2 == 1) {
-            centerOfLaser.x = (double)(l+1) * length - tx;
-        } else {
-            centerOfLaser.x = (double)l * length + tx;
+        if (k % 2 == 1)
+        {
+            centerOfLaser.x = (double)(l + 1) * scanVectorLength - tx;
+        }
+        else
+        {
+            centerOfLaser.x = (double)l * scanVectorLength + tx;
         }
         // y 座標の計算
-        if (tx > 0 && tx < Y) {
+        if (tx > 0 && tx < Y)
+        {
             centerOfLaser.y = ty + hatch;
-        } else {
+        }
+        else
+        {
             centerOfLaser.y = ty;
         }
-        
+        break;
+
+    default:
+        break;
+    }
+
+    // z座標の設定
+    if (DIM == 2) {
+        centerOfLaser.z = 0.0;
+    } else {
         centerOfLaser.z = z_MAX;
     }
-    else {
-        /* code */
-    }
+        
 }

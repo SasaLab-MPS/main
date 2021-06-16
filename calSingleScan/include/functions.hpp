@@ -56,7 +56,7 @@ double calCurvature(int particleNumber);                       // 表面粒子�
 
 /* レーザ照射中の各値を計算 */
 void laserRadiation(void);                                     // レーザ照射中の各パラメータを計算
-void calScanPath(string strategy, double scanVectorLength);    // 走査経路を計算
+void calScanPath(int strategy);                                // 走査経路を計算
 double calLaserIntensity(Particle point);                      // レーザの強度分布を計算
 
 #endif // FUNCTIONS_HPP_20210220_222753_

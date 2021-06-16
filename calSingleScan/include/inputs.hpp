@@ -75,13 +75,17 @@ constexpr double INITIAL_TEMPERATURE = 20.0;                // 初期温度 (℃
 constexpr double MELTING_TEMPERATURE = 660;                 // 融点:Tm (℃)
 constexpr double BOILING_TEMPERATURE = 2520;                // 沸点:Tb (℃)
 constexpr double LATENT_HEAT = 396.0;                       // 潜熱:L (J/g)
+/* 走査パターン */
+constexpr int SINGLE = 0;                                   // シングルスキャン
+constexpr int ISLAND = 1;                                   // アイランドスキャン
+constexpr int STRIPE = 2;                                   // ストライプスキャン
 /* レーザ諸元・造形条件*/
 constexpr double HEAT_INPUT = 100;                          // 初期熱量:Q (mJ/mm^2)
 constexpr double LASER_POWER = 3e2;                         // レーザ出力:P (W, J/s)
 constexpr double LASER_DIAMETER = 0.1;                      // レーザ直径:d (mm)
 constexpr double SCAN_SPEED = 1e3;                          // レーザ走査速度:v (mm/s)
 constexpr double SCAN_PITCH = 0.1;                          // 走査ピッチ:h (mm)
-constexpr double SCAN_VECTOR_LENGTH = 1;                    // 走査ベクトル長さ (mm)
+constexpr double SCAN_VECTOR_LENGTH = 1.0;                  // 走査ベクトル長さ (mm)
 /* 表面張力定数 */
 constexpr double SIGMA = 0.000878;                          // 表面張力係数:σ (N/mm)
 /* ブシネスク近似 */

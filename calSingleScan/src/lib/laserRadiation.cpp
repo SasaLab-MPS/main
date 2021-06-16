@@ -9,6 +9,6 @@
 #include "../../include/inputs.hpp"
 
 void laserRadiation(void) {
-    string strategy = "Island";
-    calScanPath(strategy, SCAN_VECTOR_LENGTH);   // 走査パターンの計算
+    int strategy = SINGLE;
+    calScanPath(strategy);   // 走査パターンの計算
 }
