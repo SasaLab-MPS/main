@@ -9,6 +9,7 @@
 #define INPUTS_HPP_20210220_220210_
 
 #include <bits/stdc++.h>
+#include <omp.h>
 #include <Eigen/Dense>
 #include <Eigen/Sparse>
 using namespace std;
