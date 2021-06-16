@@ -144,7 +144,7 @@ void initializeParticlePositionAndVelocity_for3dim(void)
                 */
 
                 /* solid region */
-                if ((((x > 0.0 + EPS) && (x <= x_MAX + EPS)) && ((y > 0.0 + EPS) && (y < y_MAX + EPS))) && ((z > 0.0 + EPS) && (z <= z_MAX + EPS)))
+                if ((((x > 0.0 - EPS) && (x <= x_MAX + EPS)) && ((y > 0.0 - EPS) && (y < y_MAX + EPS))) && ((z > 0.0 - EPS) && (z <= z_MAX + EPS)))
                 {
                     flagOfParticleGeneration = ON;
                     ParticleType = SOLID;
