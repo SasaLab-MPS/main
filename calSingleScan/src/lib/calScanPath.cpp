@@ -11,16 +11,16 @@ void calScanPath(int strategy)
 {
     switch (strategy)
     {
-    case 0:     // シングルスキャン
+    case SINGLE:     // シングルスキャン
         centerOfLaser.x = Time * SCAN_SPEED;
         centerOfLaser.y = 0.5 * y_MAX;
         break;
 
-    case 1: // アイランドスキャン
+    case ISLAND:    // アイランドスキャン
         islandPattern();
         break;
 
-    case 2: // ストライプスキャン
+    case STRIPE:    // ストライプスキャン
        stripePattern();
         break;
 
