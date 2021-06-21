@@ -51,6 +51,10 @@ void islandPattern(void) {
                 if (NumOfStrategy % (int)rowX == 0) {
                     P2.x = Pos_MIN[0];
                     P2.y = edgeOfY + hatch;
+                    // 次の走査方向のつじつま合わせ
+                    if (NumOfStrategy % 2 == 1) {
+                        NumOfStrategy++;
+                    }
                 } else {
                     P2.x = P1.x + hatch;
                     P2.y = Ref.y;
@@ -82,6 +86,10 @@ void islandPattern(void) {
                 if (NumOfStrategy % (int)rowX == 0) {
                     P2.x = Pos_MIN[0];
                     P2.y = edgeOfY + hatch;
+                    // 次の走査方向のつじつま合わせ
+                    if (NumOfStrategy % 2 == 1) {
+                        NumOfStrategy++;
+                    }
                 } else {
                     P2.x = edgeOfX + scanVectorLength + hatch;
                     P2.y = Ref.y;
@@ -115,6 +123,10 @@ void islandPattern(void) {
                 if (NumOfStrategy % (int)rowX == 0) {
                     P2.x = Pos_MIN[0];
                     P2.y = edgeOfY + hatch;
+                    // 次の走査方向のつじつま合わせ
+                    if (NumOfStrategy % 2 == 1) {
+                        NumOfStrategy++;
+                    }
                 } else {
                     P2.x = P1.x + hatch;
                     P2.y = Ref.y;
@@ -144,7 +156,11 @@ void islandPattern(void) {
                 NumOfStrategy++;
                 if (NumOfStrategy % (int)rowX == 0) {
                     P2.x = Pos_MIN[0];
-                    P2.y = edgeOfY + scanVectorLength + hatch;
+                    P2.y = edgeOfY + scanVectorLength + hatch;                    
+                    // 次の走査方向のつじつま合わせ
+                    if (NumOfStrategy % 2 == 1) {
+                        NumOfStrategy++;
+                    }                   
                 } else {
                     P2.x = P1.x + hatch;
                     P2.y = Ref.y;
