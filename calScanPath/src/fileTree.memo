@@ -80,7 +80,4 @@ main.cpp
 
 
 ***追加したいプログラム****
-レーザ走査経路の計算　--> cal scanning pattern
-レーザ照射エネルギー計算　--> laser irradiation
-レーザ強度の分布計算　--> cal laser intensity distribution
 温度に応じた粒子の状態変化　--> cal phase change ?
