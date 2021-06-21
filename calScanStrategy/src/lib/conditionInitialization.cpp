@@ -19,17 +19,25 @@ void conditionInitialization(void) {
     calBucket();     // バケットに粒子を入れる
     checkParticle(); // 計算範囲外に出た粒子を処理
 
-    int NP = NumberOfParticles;
     // 計算に使用する行列，ベクトルの設定, 初期化
+    int NP = NumberOfParticles;
     /* ---圧力計算用--- */
     coefficientMatrix.resize(NP, NP);
     sourceTerm.setZero(NP);
     pressure.setZero(NP);
     numberDensity.resize(NP, 0);
-
     /* ---温度計算用--- */
     Tmp.resize(NP, NP);
     temperature.setZero(NP);                // 全粒子に初期温度を与える
-    centerOfLaser = {0.0, 0.0, 0.0};
     initializeTemperatureDistribution();    // 温度分布の初期化
+
+    /* ---走査パターン計算用---*/
+    if (DIM == 2) {
+        centerOfLaser = {0.0, 0.0, 0.0};
+    } else {
+        centerOfLaser = {0.0, 0.0, z_MAX};
+    }  
+    referencePoint = centerOfLaser;
+    NumOfStrategy = 0;
+    ScanDirection = 0;
 }

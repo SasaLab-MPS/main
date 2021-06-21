@@ -25,11 +25,15 @@ vector<int> flagForCheckingBoundaryCondition;   // 粒子の集合のどこか�
 vector<Tri> T_aij;                      // トリプレット
 SparseMatrix<double> Tmp;               // Tmp:温度の係数行列(疎行列)
 VectorXd Tk, temperature;               // Tk:確定している温度，temperature:温度の列ベクトル
-Coordinate centerOfLaser;               // レーザの中心座標
 vector<int> NeumannBoundaryCondition;   // ノイマン境界条件
 /* ---表面張力計算--- */
-vector<Coordinate> normalVector;    // 単位法線ベクトル
-vector<Force> surfaceTension;       // 表面張力
+vector<Coordinate> normalVector;        // 単位法線ベクトル
+vector<Force> surfaceTension;           // 表面張力
+/* ---スキャンストラテジの走査パターン計算--- */
+Coordinate centerOfLaser;               // レーザの中心座標
+Coordinate referencePoint;              // そのStrategyの照射基準点
+int NumOfStrategy;                      // ストラテジーの番号
+int ScanDirection;             // レーザの走査方向
 
 /* グローバル変数定義 */
 int FileNumber;
@@ -45,8 +49,8 @@ double N0_forSurfaceTension;
 double Lambda;
 double collisionDistance, collisionDistance2;
 double FluidDensity;
-double x_MAX = 20, y_MAX = 2, z_MAX = 0.1;          // 計算領域の最大値
-double Pos_MIN[3] = {0.0, 0.0, 0.0};                // 計算領域の最小値:struktBktで使用
+double x_MAX = 3, y_MAX = 3, z_MAX = 0.1;       // 計算領域の最大値
+double Pos_MIN[3] = {0.0, 0.0, 0.0};            // 計算領域の最小値:struktBktで使用
 
 // バケット探索法に関わる変数・配列
 vector<vector<int>> bucket;                     // バケットid，structBktで定義
