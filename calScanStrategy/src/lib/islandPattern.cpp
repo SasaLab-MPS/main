@@ -28,6 +28,7 @@ void islandPattern(void) {
     //columnY = ceil(y_MAX / scanVectorLength);
 
     /* 走査経路の計算 */
+    int direction = ScanDirection;  // レーザの走査方向
     if ( ScanDirection == X_FORWARD )
     {
         // x方向への順走査
@@ -42,21 +43,21 @@ void islandPattern(void) {
             // x方向の端に到達した場合の処理
             P2.x = P1.x;
             P2.y = P1.y + hatch;
-            ScanDirection = X_REVERSE; // 走査方向の更新
+            direction = X_REVERSE; // 走査方向の更新
         }
 
         if ((edgeOfY + EPS) < P2.y || (y_MAX + EPS) < P2.y)
         {
             // y方向の上端に到達した場合の処理，アイランドの移動
             NumOfStrategy += 1;
-            ScanDirection = Y_FORWARD; // 走査方向の更新
+            direction = Y_FORWARD; // 走査方向の更新
             if (NumOfStrategy % (int)rowX == 0) // x列の終端に達した時
             {
                 P2.x = Pos_MIN[0];
                 P2.y = edgeOfY + hatch;
                 // 次の走査方向のつじつま合わせ，x列に並ぶアイランドの個数が偶数のとき
                 if ((int)rowX % 2 == 0) {
-                    ScanDirection = X_FORWARD; // 走査方向の更新
+                    direction = X_FORWARD; // 走査方向の更新
                 }
             }
             else
@@ -68,7 +69,9 @@ void islandPattern(void) {
             // 後処理
             referencePoint.x = P2.x;
             referencePoint.y = P2.y;
+            // ifを抜けたい
         }
+    }
     else if ( ScanDirection == X_REVERSE )
     {
         // x方向への逆走査
@@ -82,21 +85,21 @@ void islandPattern(void) {
         {
             P2.x = Ref.x;
             P2.y = P1.y + hatch;
-            ScanDirection = X_FORWARD; // 走査方向の更新
+            direction = X_FORWARD; // 走査方向の更新
         }
 
         if ((edgeOfY + EPS) < P2.y || (y_MAX + EPS) < P2.y)
         {
             // y方向の上端に到達した場合の処理，アイランドの移動
             NumOfStrategy += 1;
-            ScanDirection = Y_FORWARD; // 走査方向の更新
+            direction = Y_FORWARD; // 走査方向の更新
             if (NumOfStrategy % (int)rowX == 0)
             {
                 P2.x = Pos_MIN[0];
                 P2.y = edgeOfY + hatch;
                 // 次の走査方向のつじつま合わせ
                 if ((int)rowX % 2 == 0) {
-                    ScanDirection = X_FORWARD; // 走査方向の更新
+                    direction = X_FORWARD; // 走査方向の更新
                 }
             }
             else
@@ -123,20 +126,20 @@ void islandPattern(void) {
         {
             P2.x = P1.x + hatch;
             P2.y = P1.y;
-            ScanDirection = Y_REVERSE; // 走査方向の更新
+            direction = Y_REVERSE; // 走査方向の更新
         }
 
         if ((edgeOfX + EPS) < P2.x || (x_MAX + EPS) < P2.x)
         {
             NumOfStrategy += 1;
-            ScanDirection = X_FORWARD; // 走査方向の更新
+            direction = X_FORWARD; // 走査方向の更新
             if (NumOfStrategy % (int)rowX == 0)
             {
                 P2.x = Pos_MIN[0];
                 P2.y = edgeOfY + hatch;
                 // 次の走査方向のつじつま合わせ
                 if ((int)rowX % 2 == 0) {
-                    ScanDirection = Y_FORWARD;
+                    direction = Y_FORWARD;
                 }
             }
             else
@@ -162,20 +165,20 @@ void islandPattern(void) {
         {
             P2.x = P1.x + hatch;
             P2.y = Ref.y;
-            ScanDirection = Y_FORWARD; // 走査方向の更新
+            direction = Y_FORWARD; // 走査方向の更新
         }
 
         if ((edgeOfX + EPS) < P2.x || (x_MAX + EPS) < P2.x)
         {
             NumOfStrategy += 1;
-            ScanDirection = X_FORWARD; // 走査方向の更新
+            direction = X_FORWARD; // 走査方向の更新
             if (NumOfStrategy % (int)rowX == 0)
             {
                 P2.x = Pos_MIN[0];
                 P2.y = edgeOfY + scanVectorLength + hatch;
                 // 次の走査方向のつじつま合わせ
                 if ((int)rowX % 2 == 0) {
-                    ScanDirection = Y_FORWARD;
+                    direction = Y_FORWARD;
                 }
             }
             else
@@ -191,12 +194,14 @@ void islandPattern(void) {
     }
     
 
-    /* 照射中心の更新 */
+    /* 諸々の更新 */
+    ScanDirection = direction;
     centerOfLaser.x = P2.x;
     centerOfLaser.y = P2.y;
     if (DIM == 2) {
         centerOfLaser.z = 0.0;
     } else {
         centerOfLaser.z = z_MAX;
-    }   
+    }  
+
 }

@@ -45,7 +45,7 @@ void stripePattern(void) {
             NumOfStrategy++; // ストライプ番号の更新
             P2.x = Ref.x;
             if (NumOfStrategy % 2 == 1) {
-                ScanDirection = REVERSE;
+                ScanDirection = Y_REVERSE;
                 P2.y = edgeOfY + scanVectorLength;
             } else {
                 ScanDirection = Y_FORWARD;
