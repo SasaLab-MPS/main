@@ -27,12 +27,5 @@ void calScanPath(int strategy)
     default:
         break;
     }
-
-    // z座標の設定
-    if (DIM == 2) {
-        centerOfLaser.z = 0.0;
-    } else {
-        centerOfLaser.z = z_MAX;
-    }
         
 }

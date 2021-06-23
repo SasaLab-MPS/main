@@ -20,7 +20,7 @@ using namespace Eigen;
 constexpr int DIM = 2;                      // 次元
 constexpr double PARTICLE_DISTANCE = 0.05;  // 初期粒子間距離 l0 (mm)
 constexpr double DT = 50e-6;                // 時間刻み幅 (s)
-constexpr int OUTPUT_INTERVAL = 20;         // 計算結果のファイル出力の間隔
+constexpr int OUTPUT_INTERVAL = 5;          // 計算結果のファイル出力の間隔
 
 /* for three-dimensional simulation */
 /*
@@ -30,7 +30,7 @@ constexpr double DT = 0.003;
 constexpr int OUTPUT_INTERVAL = 20;
 */
 
-constexpr double FINISH_TIME = 0.020;                     // シミュレーションの終了時刻
+constexpr double FINISH_TIME = 0.050;                     // シミュレーションの終了時刻
 constexpr double KINEMATIC_VISCOSITY = 1.0e-6;            // 動粘性係数
 constexpr double FLUID_DENSITY = 0.0027;                  // 流体の密度:ρ_f (g/mm^3)
 constexpr double SOLID_DENSITY = 0.008;                   // 固体の密度:ρ_s (g/mm^3)

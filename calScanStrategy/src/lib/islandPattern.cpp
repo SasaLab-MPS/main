@@ -22,10 +22,10 @@ void islandPattern(void) {
     scanVectorLength = SCAN_VECTOR_LENGTH;
 
     // 照射中心の更新
-    double rowX, columnY;       // 行:rowX，列:columnY，それぞれの方向で存在できるストラテジーの個数
+    double rowX;       // 行:rowX，列:columnY，それぞれの方向で存在できるストラテジーの個数
     double edgeOfX, edgeOfY;    // そのストラテジーで照射できるxとy方向の端
     rowX = ceil(x_MAX / scanVectorLength);  // 天井関数を使用
-    columnY = ceil(y_MAX / scanVectorLength);
+    //columnY = ceil(y_MAX / scanVectorLength);
 
     /* 走査経路の計算 */
     if ( NumOfStrategy % 2 == 0 ) {
