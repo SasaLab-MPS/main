@@ -129,13 +129,15 @@ extern vector<int> neghPar;                             // 対象の粒子近傍
 constexpr int SINGLE = 0;                               // シングルスキャン
 constexpr int ISLAND = 1;                               // アイランドスキャン
 constexpr int STRIPE = 2;                               // ストライプスキャン
-constexpr int FORWARD = 0;                              // レーザ走査順方向
-constexpr int REVERSE = 1;                              // レーザ走査逆方向
-extern Coordinate centerOfLaser;                        // レーザ照射の中心座標
-extern Coordinate centerOfLaser;                        // レーザの中心座標
-extern Coordinate referencePoint;                       // そのStrategyの照射基準点
+constexpr int X_FORWARD = 0;                            // レーザ走査x順方向
+constexpr int X_REVERSE = 1;                            // レーザ走査x逆方向
+constexpr int Y_FORWARD = 3;                            // レーザ走査y順方向
+constexpr int Y_REVERSE = 4;                            // レーザ走査y逆方向
 extern int NumOfStrategy;                               // ストラテジーの番号
 extern int ScanDirection;                               // レーザの走査方向
+extern Coordinate referencePoint;                       // そのStrategyの照射基準点
+/* レーザの照射中心点 */
+extern Coordinate centerOfLaser;                        // レーザ照射の中心座標
 /* レーザ諸元・造形条件*/
 constexpr double HEAT_INPUT = 100;                      // 初期熱量:Q (mJ/mm^2)
 constexpr double LASER_POWER = 3e2;                     // レーザ出力:P (W, J/s)

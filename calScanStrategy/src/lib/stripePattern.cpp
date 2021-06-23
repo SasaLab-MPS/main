@@ -26,7 +26,7 @@ void stripePattern(void) {
     /* 走査経路の計算 */
     edgeOfX = x_MAX;
 
-    if (ScanDirection == FORWARD)
+    if (ScanDirection == Y_FORWARD)
     {
         P2.x = P1.x;
         P2.y = P1.y + scanSpeed * DT;
@@ -37,7 +37,7 @@ void stripePattern(void) {
         if ((edgeOfY + EPS) < P2.y || (y_MAX + EPS) < P2.y) {
             P2.x = P1.x + hatch;
             P2.y = P1.y;
-            ScanDirection = REVERSE;
+            ScanDirection = Y_REVERSE;
         }
 
         // xの端に到達したとき
@@ -48,7 +48,7 @@ void stripePattern(void) {
                 ScanDirection = REVERSE;
                 P2.y = edgeOfY + scanVectorLength;
             } else {
-                ScanDirection = FORWARD;
+                ScanDirection = Y_FORWARD;
                 P2.y = edgeOfY;
             }
             
@@ -73,7 +73,7 @@ void stripePattern(void) {
         if (P2.y < (edgeOfY - EPS) || P2.y < (Pos_MIN[1] - EPS)) {
             P2.x = P1.x + hatch;
             P2.y = Ref.y;
-            ScanDirection = FORWARD;
+            ScanDirection = Y_FORWARD;
         }
 
         // xの端に到達したとき
@@ -81,10 +81,10 @@ void stripePattern(void) {
             NumOfStrategy++; // ストライプ番号の更新
             P2.x = Ref.x;
             if (NumOfStrategy % 2 == 1) {
-                ScanDirection = REVERSE;
+                ScanDirection = Y_REVERSE;
                 edgeOfY = edgeOfY + 2 * scanVectorLength;
             } else {
-                ScanDirection = FORWARD;
+                ScanDirection = Y_FORWARD;
                 edgeOfY = edgeOfY + scanVectorLength;
             }
 

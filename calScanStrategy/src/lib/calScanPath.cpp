@@ -17,11 +17,13 @@ void calScanPath(int strategy)
         break;
 
     case ISLAND:    // アイランドスキャン
+        ScanDirection = X_FORWARD;  // 最初の走査方向
         islandPattern();
         break;
 
     case STRIPE:    // ストライプスキャン
-       stripePattern();
+        ScanDirection = Y_FORWARD;  // 最初の走査方向
+        stripePattern();
         break;
 
     default:

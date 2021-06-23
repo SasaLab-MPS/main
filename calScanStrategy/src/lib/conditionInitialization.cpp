@@ -39,5 +39,5 @@ void conditionInitialization(void) {
     }  
     referencePoint = centerOfLaser;
     NumOfStrategy = 0;
-    ScanDirection = 0;
+    //ScanDirection = FORWARD;
 }
