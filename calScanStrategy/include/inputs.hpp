@@ -30,10 +30,10 @@ constexpr double DT = 0.003;
 constexpr int OUTPUT_INTERVAL = 20;
 */
 
-constexpr double FINISH_TIME = 0.050;                     // シミュレーションの終了時刻
+constexpr double FINISH_TIME = 0.100;                     // シミュレーションの終了時刻
 constexpr double KINEMATIC_VISCOSITY = 1.0e-6;            // 動粘性係数
 constexpr double FLUID_DENSITY = 0.0027;                  // 流体の密度:ρ_f (g/mm^3)
-constexpr double SOLID_DENSITY = 0.008;                   // 固体の密度:ρ_s (g/mm^3)
+constexpr double SOLID_DENSITY = 0.0027;                  // 固体の密度:ρ_s (g/mm^3)
 constexpr double G_X = 0.0;
 constexpr double G_Y = -9.8;                              // 重力加速度 (m/s^2)
 constexpr double G_Z = 0.0;
@@ -68,8 +68,8 @@ constexpr int DIRICHLET_BOUNDARY_IS_CHECKED = 2;            // ディリクレ�
 constexpr double CRT_NUM = 0.1;                             // クーラン数
 
 /* 熱伝導係数等 */
-constexpr double SPECIFIC_HEAT_CAPACITY = 500;              // 比熱容量:c (mJ/gK)
-constexpr double HEAT_CONDUCTIVITY = 300;                   // 熱伝導率:λ (mJ/mmKs)
+constexpr double SPECIFIC_HEAT_CAPACITY = 917;              // 比熱容量:c (mJ/gK)
+constexpr double HEAT_CONDUCTIVITY = 238;                   // 熱伝導率:λ (mJ/mmKs)
 constexpr double LASER_ABSORPTION_RATE = 0.20;              // レーザ吸収率(アルミ)
 /* 初期温度・融点・沸点等 */
 constexpr double INITIAL_TEMPERATURE = 20.0;                // 初期温度 (℃)

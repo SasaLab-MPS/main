@@ -20,11 +20,11 @@ void setTemperatureDistribution(void)
   volume = pow(PARTICLE_DISTANCE, 3);
   mass = rho * volume;
 
-  // 温度分布の計算，レーザ吸収率を乗じるべき・ノイマン境界条件を設定した方が良い
+  // 温度分布の計算，レーザ吸収率を乗じる・ノイマン境界条件を設定(setNeumann にて)
   for(int i = 0; i < NP; i++) {
     enthalpy = calLaserIntensity(particle[i]);
     // 温度の計算(溶融・蒸発は考えない 2021.6.11)
-    temperature[i] += LASER_ABSORPTION_RATE * enthalpy / (mass * c);
+    temperature[i] += enthalpy / (mass * c);
 
     // 溶融・蒸発を考える場合 2021.6.14
     /*

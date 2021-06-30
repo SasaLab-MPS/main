@@ -22,6 +22,7 @@ void stripePattern(void) {
 
     // 照射中心の更新
     double edgeOfX, edgeOfY;               // そのストラテジーで照射できるxとy方向の端
+    int direction = ScanDirection;         // レーザ走査方向
    
     /* 走査経路の計算 */
     edgeOfX = x_MAX;
@@ -37,7 +38,7 @@ void stripePattern(void) {
         if ((edgeOfY + EPS) < P2.y || (y_MAX + EPS) < P2.y) {
             P2.x = P1.x + hatch;
             P2.y = P1.y;
-            ScanDirection = Y_REVERSE;
+            direction = Y_REVERSE;
         }
 
         // xの端に到達したとき
@@ -45,22 +46,21 @@ void stripePattern(void) {
             NumOfStrategy++; // ストライプ番号の更新
             P2.x = Ref.x;
             if (NumOfStrategy % 2 == 1) {
-                ScanDirection = Y_REVERSE;
-                P2.y = edgeOfY + scanVectorLength;
+                direction = Y_REVERSE;
+                P2.y = NumOfStrategy * scanVectorLength + scanVectorLength;
             } else {
-                ScanDirection = Y_FORWARD;
-                P2.y = edgeOfY;
+                direction = Y_FORWARD;
+                P2.y = NumOfStrategy * scanVectorLength;
             }
-            
-            if (P2.y > y_MAX) {
+
+            if (P2.y > (y_MAX + EPS) ) {
                 P2.y = y_MAX;
-            }           
-            
+            }
+
             // 後処理
             referencePoint.x = P2.x;
-            referencePoint.y = P2.y;
+            referencePoint.y += scanVectorLength;                              
         }
-
     }
     else
     {
@@ -73,7 +73,7 @@ void stripePattern(void) {
         if (P2.y < (edgeOfY - EPS) || P2.y < (Pos_MIN[1] - EPS)) {
             P2.x = P1.x + hatch;
             P2.y = Ref.y;
-            ScanDirection = Y_FORWARD;
+            direction = Y_FORWARD;
         }
 
         // xの端に到達したとき
@@ -81,25 +81,26 @@ void stripePattern(void) {
             NumOfStrategy++; // ストライプ番号の更新
             P2.x = Ref.x;
             if (NumOfStrategy % 2 == 1) {
-                ScanDirection = Y_REVERSE;
-                edgeOfY = edgeOfY + 2 * scanVectorLength;
+                direction = Y_REVERSE;
+                P2.y = NumOfStrategy * scanVectorLength + scanVectorLength;
             } else {
-                ScanDirection = Y_FORWARD;
-                edgeOfY = edgeOfY + scanVectorLength;
+                direction = Y_FORWARD;
+                P2.y = NumOfStrategy * scanVectorLength;
             }
 
-            if (P2.y > y_MAX) {
+            if (P2.y > (y_MAX + EPS) ) {
                 P2.y = y_MAX;
             }
 
             // 後処理         
             referencePoint.x = P2.x;
-            referencePoint.y = P2.y;
+            referencePoint.y += scanVectorLength;
         }
     }
     
    
     // 照射中心の更新
+    ScanDirection = direction;
     centerOfLaser.x = P2.x;
     centerOfLaser.y = P2.y;
     if (DIM == 2) {
