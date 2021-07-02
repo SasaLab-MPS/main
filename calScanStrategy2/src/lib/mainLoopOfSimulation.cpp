@@ -12,8 +12,10 @@ void mainLoopOfSimulation(void)
 {
     int iTimeStep = 0; // タイムステップカウント
 
+    /*
     writeData_inVtuFormat();
     writeData_inProfFormat();
+    */
 
     calNumberDensity();
 
@@ -23,7 +25,7 @@ void mainLoopOfSimulation(void)
         calGravity();
         calViscosity();
 
-        calScanPath(STRIPE);                    // レーザ走査経路を計算
+        calScanPath(SINGLE);                    // レーザ走査経路を計算
 
         calTemperature();                       // 温度分布を計算  
         moveParticle();
@@ -36,9 +38,6 @@ void mainLoopOfSimulation(void)
         moveParticleUsingPressureGradient();    // 粒子位置の修正
         */
 
-        iTimeStep++;
-        Time += DT;
-
         // 20ステップ毎に計算結果をファイルに出力
         if ((iTimeStep % OUTPUT_INTERVAL) == 0)
         {
@@ -50,5 +49,8 @@ void mainLoopOfSimulation(void)
         {
             break;
         }
+
+        iTimeStep++;
+        Time += DT;
     }
 }
