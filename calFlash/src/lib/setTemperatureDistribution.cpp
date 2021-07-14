@@ -21,13 +21,16 @@ void setTemperatureDistribution(void)
   mass = rho * volume;
 
   // 温度分布の計算，レーザ吸収率を乗じる・ノイマン境界条件を設定(setNeumann にて)
-  for(int i = 0; i < NP; i++) {
-    enthalpy = calLaserIntensity(particle[i]);
-    // 温度の計算(溶融・蒸発は考えない 2021.6.11)
-    temperature[i] += enthalpy / (mass * c);
+  if (FLASH == 0)
+  {
+    for (int i = 0; i < NP; i++)
+    {
+      enthalpy = calLaserIntensity(particle[i]);
+      // 温度の計算(溶融・蒸発は考えない 2021.6.11)
+      temperature[i] += enthalpy / (mass * c);
 
-    // 溶融・蒸発を考える場合 2021.6.14
-    /*
+      // 溶融・蒸発を考える場合 2021.6.14
+      /*
     double melt = enthalpy * rho * c * MELTING_TEMPERATURE;
     double vapor = melt + rho * LATENT_HEAT;
     if (enthalpy < MELTING_TEMPERATURE)
@@ -45,6 +48,39 @@ void setTemperatureDistribution(void)
       // 蒸発
       position[i].particleType = GAS;
     } 
-    */   
+    */
+    }
+  }
+  else if (FLASH == LINE)
+  {
+    for (int i = 0; i < NP; i++) {
+      enthalpy = 0.0;
+      if (Time == 0.0 && particle[i].x > x_MAX * 0.5 - EPS && particle[i].x < x_MAX * 0.5 + EPS) {
+        if (DIM == 3) {
+          if (particle[i].z == z_MAX) {
+            enthalpy = HEAT_INPUT;
+          }         
+        } else {
+          enthalpy = HEAT_INPUT;
+        }       
+      }
+      temperature[i] += enthalpy / (mass * c);
+    }
+  }
+  else
+  {
+    for (int i = 0; i < NP; i++) {
+      enthalpy = 0.0;
+      if (Time == 0.0 && particle[i].x > x_MAX * 0.5 - EPS && particle[i].x < x_MAX * 0.5 + EPS && particle[i].y > y_MAX * 0.5 - EPS && particle[i].y < y_MAX * 0.5 + EPS) {
+        if (DIM == 3) {
+          if (particle[i].z == z_MAX) {
+            enthalpy = HEAT_INPUT;
+          }
+        } else {
+          enthalpy = HEAT_INPUT;
+        }
+      }
+      temperature[i] += enthalpy / (mass * c);
+    }
   }
 }

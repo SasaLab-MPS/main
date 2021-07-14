@@ -129,6 +129,10 @@ extern vector<int> neghPar;                             // 対象の粒子近傍
 constexpr int SINGLE = 0;                               // シングルスキャン
 constexpr int ISLAND = 1;                               // アイランドスキャン
 constexpr int STRIPE = 2;                               // ストライプスキャン
+constexpr int LINE = 11;                                // 瞬間熱源(直線)
+constexpr int POINT = 12;                               // 瞬間熱源(点)
+extern int FLASH;                                       // 瞬間熱源の形態
+/* 走査方向 */
 constexpr int X_FORWARD = 0;                            // レーザ走査x順方向
 constexpr int X_REVERSE = 1;                            // レーザ走査x逆方向
 constexpr int Y_FORWARD = 3;                            // レーザ走査y順方向

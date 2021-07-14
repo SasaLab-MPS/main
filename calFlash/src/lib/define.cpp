@@ -33,7 +33,8 @@ vector<Force> surfaceTension;           // 表面張力
 Coordinate centerOfLaser;               // レーザの中心座標
 Coordinate referencePoint;              // そのStrategyの照射基準点
 int NumOfStrategy;                      // ストラテジーの番号
-int ScanDirection;             // レーザの走査方向
+int ScanDirection;                      // レーザの走査方向
+int FLASH = 0;                          // 瞬間熱源の形態
 
 /* グローバル変数定義 */
 int FileNumber;

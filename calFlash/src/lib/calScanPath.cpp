@@ -24,6 +24,14 @@ void calScanPath(int strategy)
         stripePattern();
         break;
 
+    case LINE:      // 瞬間熱源(直線)
+        FLASH = LINE;
+        break;
+
+    case POINT:     // 瞬間熱源(点)
+        FLASH = POINT;
+        break;
+
     default:
         break;
     }
