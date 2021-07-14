@@ -21,8 +21,7 @@ void setTemperatureDistribution(void)
   mass = rho * volume;
 
   // 温度分布の計算，レーザ吸収率を乗じる・ノイマン境界条件を設定(setNeumann にて)
-  if (FLASH == 0)
-  {
+  if (FLASH == 0) { // 通常の走査の場合
     for (int i = 0; i < NP; i++)
     {
       enthalpy = calLaserIntensity(particle[i]);
@@ -51,8 +50,7 @@ void setTemperatureDistribution(void)
     */
     }
   }
-  else if (FLASH == LINE)
-  {
+  else if (FLASH == LINE) { // 瞬間熱源の場合
     for (int i = 0; i < NP; i++) {
       enthalpy = 0.0;
       if (Time == 0.0 && particle[i].x > x_MAX * 0.5 - EPS && particle[i].x < x_MAX * 0.5 + EPS) {
@@ -66,9 +64,7 @@ void setTemperatureDistribution(void)
       }
       temperature[i] += enthalpy / (mass * c);
     }
-  }
-  else
-  {
+  } else {
     for (int i = 0; i < NP; i++) {
       enthalpy = 0.0;
       if (Time == 0.0 && particle[i].x > x_MAX * 0.5 - EPS && particle[i].x < x_MAX * 0.5 + EPS && particle[i].y > y_MAX * 0.5 - EPS && particle[i].y < y_MAX * 0.5 + EPS) {
@@ -83,4 +79,5 @@ void setTemperatureDistribution(void)
       temperature[i] += enthalpy / (mass * c);
     }
   }
+  
 }
