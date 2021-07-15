@@ -20,6 +20,8 @@ void initializeParticlePositionAndVelocity_for2dim(void)
     Velocity v;
     Acceleration a;
 
+    cout << "call Dim 2" << endl;
+
     // 計算領域全体の大きさ
     nX = (int)(x_MAX / PARTICLE_DISTANCE) + 5;
     nY = (int)(y_MAX / PARTICLE_DISTANCE) + 5;
@@ -99,6 +101,8 @@ void initializeParticlePositionAndVelocity_for3dim(void)
     int flagOfParticleGeneration;
     int ParticleType;
     int i = 0;
+
+    cout << "call Dim 3" << endl;
 
     nX = (int)(x_MAX / PARTICLE_DISTANCE) + 5;
     nY = (int)(y_MAX / PARTICLE_DISTANCE) + 5;

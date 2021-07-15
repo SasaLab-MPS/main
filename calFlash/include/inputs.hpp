@@ -17,18 +17,18 @@ using namespace Eigen;
 
 /* 定数定義 */
 /* for two-dimensional simulation */
+/*
 constexpr int DIM = 2;                      // 次元
-constexpr double PARTICLE_DISTANCE = 0.05;  // 初期粒子間距離 l0 (mm)
-constexpr double DT = 50e-6;                // 時間刻み幅 (s)
-constexpr int OUTPUT_INTERVAL = 20;         // 計算結果のファイル出力の間隔
+constexpr double PARTICLE_DISTANCE = 0.1;   // 初期粒子間距離 l0 (mm)
+constexpr double DT = 1e-3;                 // 時間刻み幅 (s)
+constexpr int OUTPUT_INTERVAL = 1;          // 計算結果のファイル出力の間隔
+*/
 
 /* for three-dimensional simulation */
-/*
 constexpr int DIM = 3;
-constexpr double PARTICLE_DISTANCE = 0.075;
-constexpr double DT = 0.003;
-constexpr int OUTPUT_INTERVAL = 20;
-*/
+constexpr double PARTICLE_DISTANCE = 0.1;
+constexpr double DT = 0.001;
+constexpr int OUTPUT_INTERVAL = 1;
 
 constexpr double FINISH_TIME = 0.020;                     // シミュレーションの終了時刻
 constexpr double KINEMATIC_VISCOSITY = 1.0e-6;            // 動粘性係数

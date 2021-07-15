@@ -25,7 +25,7 @@ void mainLoopOfSimulation(void)
         calGravity();
         calViscosity();
 
-        calScanPath(LINE);                      // レーザ走査経路を計算
+        calScanPath(POINT);                     // レーザ走査経路を計算
 
         calTemperature();                       // 温度分布を計算  
         moveParticle();
