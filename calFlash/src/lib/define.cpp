@@ -50,7 +50,7 @@ double N0_forSurfaceTension;
 double Lambda;
 double collisionDistance, collisionDistance2;
 double FluidDensity;
-double x_MAX = 4, y_MAX = 4, z_MAX = 4;         // 計算領域の最大値
+double x_MAX = 4, y_MAX = 4, z_MAX = 1;         // 計算領域の最大値
 double Pos_MIN[3] = {0.0, 0.0, 0.0};            // 計算領域の最小値:struktBktで使用
 
 // バケット探索法に関わる変数・配列

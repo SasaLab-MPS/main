@@ -10,6 +10,7 @@
 
 void setTemperatureBoundaryCondition(void)
 {    
+    /*
     checkNeumannBoundaryCondition();    // ノイマン境界条件の設定
 
     // ノイマン境界条件に基づいた熱の流入・流出の設定
@@ -31,4 +32,5 @@ void setTemperatureBoundaryCondition(void)
             temperature[i] += alpha;    // 境界条件は係数行列ではなく，右辺に追加される
         }        
     }   
+    */
 }

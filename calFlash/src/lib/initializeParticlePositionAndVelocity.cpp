@@ -118,29 +118,29 @@ void initializeParticlePositionAndVelocity_for3dim(void)
                 z = PARTICLE_DISTANCE * iZ;
                 flagOfParticleGeneration = OFF;
 
-                /* dummy wall region */
+                // dummy wall region
+                /* 
                 if ((((x > -4.0 * PARTICLE_DISTANCE + EPS) && (x <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((y > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (y <= y_MAX + EPS))) && ((z > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (z <= z_MAX + 4.0 * PARTICLE_DISTANCE + EPS)))
                 {
                     flagOfParticleGeneration = ON;
                     ParticleType = DUMMY_WALL;
                 }
 
-                /* wall region */
+                // wall region
                 if ((((x > -2.0 * PARTICLE_DISTANCE + EPS) && (x <= x_MAX + 2.0 * PARTICLE_DISTANCE + EPS)) && ((y > 0.0 - 2.0 * PARTICLE_DISTANCE + EPS) && (y <= y_MAX + EPS))) && ((z > 0.0 - 2.0 * PARTICLE_DISTANCE + EPS) && (z <= z_MAX + 2.0 * PARTICLE_DISTANCE + EPS)))
                 {
                     flagOfParticleGeneration = ON;
                     ParticleType = WALL;
                 }
 
-                /* wall region */
+                // wall region 
                 if ((((x > -4.0 * PARTICLE_DISTANCE + EPS) && (x <= x_MAX + 4.0 * PARTICLE_DISTANCE + EPS)) && ((y > y_MAX - 2.0 * PARTICLE_DISTANCE + EPS) && (y <= y_MAX + EPS))) && ((z > 0.0 - 4.0 * PARTICLE_DISTANCE + EPS) && (z <= z_MAX + 4.0 * PARTICLE_DISTANCE + EPS)))
                 {
                     flagOfParticleGeneration = ON;
                     ParticleType = WALL;
                 }
 
-                /* empty region */
-                /*
+                // empty region 
                 if ((((x > 0.0 + EPS) && (x <= x_MAX + EPS)) && (y > 0.0 + EPS)) && ((z > 0.0 + EPS) && (z <= z_MAX + EPS)))
                 {
                     flagOfParticleGeneration = OFF;
@@ -148,7 +148,7 @@ void initializeParticlePositionAndVelocity_for3dim(void)
                 */
 
                 /* solid region */
-                if ((((x > 0.0 + EPS) && (x <= x_MAX + EPS)) && ((y > 0.0 + EPS) && (y < y_MAX + EPS))) && ((z > 0.0 + EPS) && (z <= z_MAX + EPS)))
+                if ((((x > 0.0 - EPS) && (x <= x_MAX + EPS)) && ((y > 0.0 - EPS) && (y < y_MAX + EPS))) && ((z > 0.0 - EPS) && (z <= z_MAX + EPS)))
                 {
                     flagOfParticleGeneration = ON;
                     ParticleType = SOLID;

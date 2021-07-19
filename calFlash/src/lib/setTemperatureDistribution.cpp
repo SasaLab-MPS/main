@@ -70,10 +70,10 @@ void setTemperatureDistribution(void)
       if (Time == 0.0 && particle[i].x > x_MAX * 0.5 - EPS && particle[i].x < x_MAX * 0.5 + EPS && particle[i].y > y_MAX * 0.5 - EPS && particle[i].y < y_MAX * 0.5 + EPS) {
         if (DIM == 3) {
           if (particle[i].z == z_MAX) {
-            enthalpy = HEAT_INPUT * 1e-3 * pow(PARTICLE_DISTANCE, 2);
+            enthalpy = HEAT_INPUT * 1e-3;
           }
         } else {
-          enthalpy = HEAT_INPUT * 1e-3 * pow(PARTICLE_DISTANCE, 2);
+          enthalpy = HEAT_INPUT * 1e-3;
         }
       }
       temperature[i] += enthalpy / (mass * c);

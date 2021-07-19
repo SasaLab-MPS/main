@@ -23,7 +23,7 @@ void calTemperatureLaplacian(void){
 
     a = (2.0 * DIM) / (N0_forLaplacian * Lambda);
 
-    alpha = lmb / (rho * c);    // 温度伝導率
+    alpha = lmb / (rho * c);    // 温度伝導率・熱拡散率 [mm^2/s]
     beta = a * alpha;
 
     calBucket();    // 粒子が所属するバケットを計算
