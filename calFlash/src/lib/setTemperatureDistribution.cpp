@@ -12,11 +12,11 @@ void setTemperatureDistribution(void)
 {    
   int NP = NumberOfParticles;
   double rho, c;
-  double enthalpy;            // エンタルピー，熱含量 (J)
+  double enthalpy;                   // エンタルピー，熱含量 [J]
   double volume, mass;
 
   rho = SOLID_DENSITY;               // 相変化を考慮するなら変更する
-  c = SPECIFIC_HEAT_CAPACITY * 1e-3; // 比熱容量，Jに換算
+  c = SPECIFIC_HEAT_CAPACITY * 1e-3; // 比熱容量，Jに換算 [J/gK]
   volume = pow(PARTICLE_DISTANCE, 3);
   mass = rho * volume;
 

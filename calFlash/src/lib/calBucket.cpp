@@ -16,7 +16,7 @@ void calBucket(void) {
         MIN[i] = Pos_MIN[i] - PARTICLE_DISTANCE * 4;
     }
 
-    for(int i = 0; i < NumberOfParticles; i++) {
+    for (int i = 0; i < NumberOfParticles; i++) {
         int ix = (int)((particle[i].x - MIN[0]) * DBinv) + 1;
         int iy = (int)((particle[i].y - MIN[1]) * DBinv) + 1;
         int iz = (int)((particle[i].z - MIN[2]) * DBinv) + 1;
