@@ -69,7 +69,7 @@ void setTemperatureDistribution(void)
       enthalpy = 0.0;
       if (Time == 0.0 && particle[i].x > x_MAX * 0.5 - EPS && particle[i].x < x_MAX * 0.5 + EPS && particle[i].y > y_MAX * 0.5 - EPS && particle[i].y < y_MAX * 0.5 + EPS) {
         if (DIM == 3) {
-          if (particle[i].z == z_MAX) {
+          if (0.5 * z_MAX - EPS < particle[i].z && particle[i].z < 0.5 * z_MAX + EPS) {
             enthalpy = HEAT_INPUT * 1e-3;
           }
         } else {
