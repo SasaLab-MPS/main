@@ -26,7 +26,7 @@ constexpr int OUTPUT_INTERVAL = 1;          // 計算結果のファイル出力
 
 /* for three-dimensional simulation */
 constexpr int DIM = 3;
-constexpr double PARTICLE_DISTANCE = 0.1;
+constexpr double PARTICLE_DISTANCE = 0.08;
 constexpr double DT = 1e-3;
 constexpr int OUTPUT_INTERVAL = 1;
 
