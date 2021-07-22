@@ -108,5 +108,11 @@ void stripePattern(void) {
     } else {
         centerOfLaser.z = z_MAX;
     }
-    
+
+    /* 計算領域の端に到達したときの処理(右上に到達した場合の処理) */
+    int max_strategyNum = (int)(x_MAX / scanVectorLength);
+    if (NumOfStrategy > max_strategyNum) {
+        centerOfLaser.x = 10 * x_MAX;
+        centerOfLaser.y = 10 * y_MAX;
+    }
 }

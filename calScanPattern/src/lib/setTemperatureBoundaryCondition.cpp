@@ -10,7 +10,6 @@
 
 void setTemperatureBoundaryCondition(void)
 {    
-    /*
     checkNeumannBoundaryCondition();    // ノイマン境界条件の設定
 
     // ノイマン境界条件に基づいた熱の流入・流出の設定
@@ -22,15 +21,26 @@ void setTemperatureBoundaryCondition(void)
 
     k = lmb / (rho * c);
 
-    int NP = NumberOfParticles;    
-    for(int i = 0; i < NP; i++) {
-        if (NeumannBoundaryCondition[i] == SURFACE_PARTICLE)
-        {
-            double dT = INITIAL_TEMPERATURE - temperature[i];
-            double dx = PARTICLE_DISTANCE;
-            double alpha = k * (dT / dx) * DT; 
-            temperature[i] += alpha;    // 境界条件は係数行列ではなく，右辺に追加される
-        }        
-    }   
-    */
+    int NP = NumberOfParticles;
+
+    if (DIM == 2) {
+        for (int i = 0; i < NP; i++) {
+            if (NeumannBoundaryCondition[i] == SURFACE_PARTICLE) {
+                double dT = INITIAL_TEMPERATURE - temperature[i];
+                double dx = PARTICLE_DISTANCE;
+                double alpha = k * (dT / dx) * DT;
+                temperature[i] += alpha; // 境界条件は係数行列ではなく，右辺に追加される
+            }
+        }
+    } else {
+        for (int i = 0; i < NP; i++) {
+            if (NeumannBoundaryCondition[i] == SURFACE_PARTICLE && particle[i].z == Pos_MIN[2]) {
+                double dT = INITIAL_TEMPERATURE - temperature[i];
+                double dx = PARTICLE_DISTANCE;
+                double alpha = k * (dT / dx) * DT;
+                temperature[i] += alpha; // 境界条件は係数行列ではなく，右辺に追加される
+            }
+        }
+    }
+         
 }
