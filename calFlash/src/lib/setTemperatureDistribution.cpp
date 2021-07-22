@@ -12,19 +12,20 @@ void setTemperatureDistribution(void)
 {    
   int NP = NumberOfParticles;
   double rho, c;
-  double enthalpy;                   // エンタルピー，熱含量 [J]
-  double volume, mass;
+  double enthalpy;                    // エンタルピー，熱含量 [J]
+  double volume, mass, eps;
 
-  rho = SOLID_DENSITY;               // 相変化を考慮するなら変更する
-  c = SPECIFIC_HEAT_CAPACITY * 1e-3; // 比熱容量，Jに換算 [J/gK]
+  rho = SOLID_DENSITY;                // 相変化を考慮するなら変更する
+  c = SPECIFIC_HEAT_CAPACITY * 1e-3;  // 比熱容量，Jに換算 [J/gK]
   volume = pow(PARTICLE_DISTANCE, 3);
+  eps = LASER_ABSORPTION_RATE;        // レーザ吸収率
   mass = rho * volume;
 
   // 温度分布の計算，レーザ吸収率を乗じる・ノイマン境界条件を設定(setNeumann にて)
   if (FLASH == 0) { // 通常の走査の場合
     for (int i = 0; i < NP; i++)
     {
-      enthalpy = calLaserIntensity(particle[i]);
+      enthalpy = eps * calLaserIntensity(particle[i]);
       // 温度の計算(溶融・蒸発は考えない 2021.6.11)
       temperature[i] += enthalpy / (mass * c);
 
