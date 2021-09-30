@@ -6,7 +6,7 @@
   Last update: Feb 12, 2021
 =======================================================================*/
 #include "../../include/functions.hpp"
-#include "../../include/inputs.hpp"
+#include "../../include/constants.hpp"
 
 void writeData_inProfFormat(void)
 {

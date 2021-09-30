@@ -70,8 +70,9 @@ constexpr double CRT_NUM = 0.1;                             // クーラン数
 
 /* 熱伝導係数等 */
 constexpr double SPECIFIC_HEAT_CAPACITY = 917;              // 比熱容量:c (mJ/gK)
-constexpr double HEAT_CONDUCTIVITY = 238;                   // 熱伝導率:λ (mJ/mmKs)
+constexpr double HEAT_CONDUCTIVITY = 110;                   // 熱伝導率:λ (mJ/mmKs) = (W/mK)
 constexpr double LASER_ABSORPTION_RATE = 0.20;              // レーザ吸収率(アルミ)
+constexpr double STEFAN_BOLTZMANN_CONSTANT = 5.67037*10e-8; // ステファン・ボルツマン定数 (W/m^2・K^-4)
 /* 初期温度・融点・沸点等 */
 constexpr double INITIAL_TEMPERATURE = 20.0;                // 初期温度 (℃)
 constexpr double MELTING_TEMPERATURE = 660;                 // 融点:Tm (℃)

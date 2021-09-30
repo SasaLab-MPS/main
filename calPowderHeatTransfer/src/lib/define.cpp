@@ -5,7 +5,7 @@
   Last update: Mar 30, 2021
 =======================================================================*/
 #include "../../include/functions.hpp"
-#include "../../include/inputs.hpp"
+#include "../../include/constants.hpp"
 
 /* 動的配列 */
 vector<Particle> particle;         // 位置

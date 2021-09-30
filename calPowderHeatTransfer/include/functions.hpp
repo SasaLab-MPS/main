@@ -8,7 +8,7 @@
 #ifndef FUNCTIONS_HPP_20210220_222753_
 #define FUNCTIONS_HPP_20210220_222753_
 
-#include "inputs.hpp"
+#include "constants.hpp"
 
 void conditionInitialization(void);                            // 計算領域の初期化 
 void initializeParticlePositionAndVelocity_for2dim(void);      // t = 0sでの粒子の速度と位置を決定 (2次元)
