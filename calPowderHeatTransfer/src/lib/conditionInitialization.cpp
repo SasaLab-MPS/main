@@ -30,6 +30,8 @@ void conditionInitialization(void) {
     Tmp.resize(NP, NP);
     temperature.setZero(NP);                // 全粒子に初期温度を与える
     initializeTemperatureDistribution();    // 温度分布の初期化
+    ThermalConductivity.resize(NP);         // 熱伝導率の設定
+    initializeThermalConductivity();        // 熱伝導率の初期化
 
     /* ---走査パターン計算用---*/
     // 初期設定，レーザの中心は左下

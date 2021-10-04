@@ -63,5 +63,6 @@ double calLaserIntensity(Particle point);                      // レーザの�
 
 /* ---粉末の熱伝導率を計算--- */
 double calPowderHeatTransfer(double tmp);                      // 粉末の熱伝導率を計算
+void initializeThermalConductivity(void);                      // 熱伝導率の初期化
 
 #endif // FUNCTIONS_HPP_20210220_222753_
