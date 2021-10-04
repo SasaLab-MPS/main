@@ -121,6 +121,7 @@ extern vector<Tri> T_aij;                               // トリプレット
 extern SparseMatrix<double> Tmp;                        // 係数行列(疎行列)                               // A:係数行列(疎行列)
 extern VectorXd temperature;                            // 確定している温度，temperature:温度の列ベクトル
 extern vector<int> NeumannBoundaryCondition;            // ノイマン境界条件
+extern vector<double> ThermalConductivity;              // 熱伝導率
 /* ---表面張力計算--- */
 extern vector<Coordinate> normalVector;                 // 単位法線ベクトル
 extern vector<Force> surfaceTension;                    // 表面張力

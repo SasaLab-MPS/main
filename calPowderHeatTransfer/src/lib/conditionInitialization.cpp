@@ -32,6 +32,7 @@ void conditionInitialization(void) {
     initializeTemperatureDistribution();    // 温度分布の初期化
 
     /* ---走査パターン計算用---*/
+    // 初期設定，レーザの中心は左下
     if (DIM == 2) {
         centerOfLaser = {0.0, 0.0, 0.0};
     } else {

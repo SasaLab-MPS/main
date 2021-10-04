@@ -70,6 +70,14 @@ void initializeParticlePositionAndVelocity_for2dim(void)
                 flagOfParticleGeneration = ON;
                 ParticleType = SOLID;               
             }
+
+            /* powder region：粉末領域を設定 */
+            if (z == z_MAX)
+            {
+                ParticleType = POWDER;
+            }
+            
+
             // 粒子の生成
             if (flagOfParticleGeneration == ON)
             {
@@ -152,6 +160,12 @@ void initializeParticlePositionAndVelocity_for3dim(void)
                 {
                     flagOfParticleGeneration = ON;
                     ParticleType = SOLID;
+                }
+
+                /* powder region：粉末領域を設定 */
+                if (z == z_MAX)
+                {
+                    ParticleType = POWDER;
                 }
 
                 if (flagOfParticleGeneration == ON)

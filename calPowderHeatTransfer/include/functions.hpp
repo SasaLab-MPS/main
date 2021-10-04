@@ -55,10 +55,13 @@ void calSurfaceTension(void);                                  // 表面張力�
 void calNormalVector(void);                                    // 表面の法線ベクトル
 double calCurvature(int particleNumber);                       // 表面粒子の曲率, kappa
 
-/* レーザ照射中の各値を計算 */
+/* ---レーザ照射中の各値を計算--- */
 void calScanPath(int strategy);                                // 走査経路を計算
 void islandPattern(void);                                      // アイランドスキャン
 void stripePattern(void);                                      // ストライプスキャン
 double calLaserIntensity(Particle point);                      // レーザの強度分布を計算
+
+/* ---粉末の熱伝導率を計算--- */
+double calPowderHeatTransfer(double tmp);                      // 粉末の熱伝導率を計算
 
 #endif // FUNCTIONS_HPP_20210220_222753_

@@ -26,6 +26,7 @@ vector<Tri> T_aij;                      // トリプレット
 SparseMatrix<double> Tmp;               // Tmp:温度の係数行列(疎行列)
 VectorXd Tk, temperature;               // Tk:確定している温度，temperature:温度の列ベクトル
 vector<int> NeumannBoundaryCondition;   // ノイマン境界条件
+vector<double> ThermalConductivity;     // 熱伝導率
 /* ---表面張力計算--- */
 vector<Coordinate> normalVector;        // 単位法線ベクトル
 vector<Force> surfaceTension;           // 表面張力
