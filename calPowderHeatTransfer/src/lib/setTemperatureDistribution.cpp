@@ -22,15 +22,15 @@ void setTemperatureDistribution(void)
   mass = rho * volume;
 
   // 温度分布の計算，レーザ吸収率を乗じる・ノイマン境界条件を設定(setNeumann にて)
-  if (FLASH == 0) { // 通常の走査の場合
+  if (FLASH == 0) { // 通常の連続走査の場合
     for (int i = 0; i < NP; i++)
     {
       enthalpy = eps * calLaserIntensity(particle[i]);
       // 温度の計算(溶融・蒸発は考えない 2021.6.11)
       temperature[i] += enthalpy / (mass * c);
 
-      // 溶融・蒸発を考える場合 2021.6.14
-      /*
+    // 溶融・蒸発を考える場合 2021.6.14
+    /*
     double melt = enthalpy * rho * c * MELTING_TEMPERATURE;
     double vapor = melt + rho * LATENT_HEAT;
     if (enthalpy < MELTING_TEMPERATURE)
@@ -65,7 +65,7 @@ void setTemperatureDistribution(void)
       }
       temperature[i] += enthalpy / (mass * c);
     }
-  } else {
+  } else {    // シングルスキャン
     for (int i = 0; i < NP; i++) {
       enthalpy = 0.0;
       if (Time == 0.0 && particle[i].x > x_MAX * 0.5 - EPS && particle[i].x < x_MAX * 0.5 + EPS && particle[i].y > y_MAX * 0.5 - EPS && particle[i].y < y_MAX * 0.5 + EPS) {

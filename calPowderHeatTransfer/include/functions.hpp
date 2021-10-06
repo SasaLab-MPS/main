@@ -56,13 +56,15 @@ void calNormalVector(void);                                    // 表面の法�
 double calCurvature(int particleNumber);                       // 表面粒子の曲率, kappa
 
 /* ---レーザ照射中の各値を計算--- */
+double calLaserIntensity(Particle point);                      // レーザの強度分布を計算
 void calScanPath(int strategy);                                // 走査経路を計算
 void islandPattern(void);                                      // アイランドスキャン
 void stripePattern(void);                                      // ストライプスキャン
-double calLaserIntensity(Particle point);                      // レーザの強度分布を計算
+void twoZonePattern(void);                                     // 2 Zoneスキャン
 
 /* ---粉末の熱伝導率を計算--- */
 double calPowderHeatTransfer(double tmp);                      // 粉末の熱伝導率を計算
 void initializeThermalConductivity(void);                      // 熱伝導率の初期化
+void calThermalConductivity(int i);                            // 熱伝導率の計算
 
 #endif // FUNCTIONS_HPP_20210220_222753_

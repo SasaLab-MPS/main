@@ -35,7 +35,7 @@ Coordinate centerOfLaser;               // レーザの中心座標
 Coordinate referencePoint;              // そのStrategyの照射基準点
 int NumOfStrategy;                      // ストラテジーの番号
 int ScanDirection;                      // レーザの走査方向
-int FLASH = 0;                          // 瞬間熱源の形態
+int FLASH = 0;                          // 瞬間熱源の形態，ガウシアン・連続照射
 
 /* グローバル変数定義 */
 int FileNumber;
@@ -51,7 +51,7 @@ double N0_forSurfaceTension;
 double Lambda;
 double collisionDistance, collisionDistance2;
 double FluidDensity;
-double x_MAX = 10, y_MAX = 10, z_MAX = 0.48;    // 計算領域の最大値
+double x_MAX = 8, y_MAX = 8, z_MAX = 0.48;    // 計算領域の最大値
 double Pos_MIN[3] = {0.0, 0.0, 0.0};            // 計算領域の最小値:struktBktで使用
 
 // バケット探索法に関わる変数・配列

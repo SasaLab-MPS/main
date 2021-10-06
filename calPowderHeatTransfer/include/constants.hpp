@@ -75,7 +75,7 @@ constexpr double LASER_ABSORPTION_RATE = 0.20;              // レーザ吸収�
 constexpr double STEFAN_BOLTZMANN_CONSTANT = 5.67037*1e-8;  // ステファン・ボルツマン定数 (W/m^2・K^-4)
 /* 初期温度・融点・沸点等 */
 constexpr double INITIAL_TEMPERATURE = 20.0;                // 初期温度 (℃)
-constexpr double MELTING_TEMPERATURE = 660;                 // 融点:Tm (℃)
+constexpr double MELTING_TEMPERATURE = 580;                 // 融点:Tm (℃)
 constexpr double BOILING_TEMPERATURE = 2520;                // 沸点:Tb (℃)
 constexpr double LATENT_HEAT = 396.0;                       // 潜熱:L (J/g)
 /* 表面張力定数 */
@@ -132,9 +132,10 @@ extern vector<int> neghPar;                             // 対象の粒子近傍
 constexpr int SINGLE = 0;                               // シングルスキャン
 constexpr int ISLAND = 1;                               // アイランドスキャン
 constexpr int STRIPE = 2;                               // ストライプスキャン
+constexpr int TWOZONE = 3;                              // 2-Zoneスキャン
 constexpr int LINE = 11;                                // 瞬間熱源(直線)
 constexpr int POINT = 12;                               // 瞬間熱源(点)
-extern int FLASH;                                       // 瞬間熱源の形態
+extern int FLASH;                                       // 瞬間熱源の形態，0:ガウシアン
 /* 走査方向 */
 constexpr int X_FORWARD = 0;                            // レーザ走査x順方向
 constexpr int X_REVERSE = 1;                            // レーザ走査x逆方向

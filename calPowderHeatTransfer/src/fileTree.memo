@@ -32,6 +32,9 @@ main.cpp
             |       |
             |       |---calTemperatureLaplacian         // ラプラシアンモデルに基づいて温度場を計算(方程式右辺の設定, 係数行列の設定)
             |       |       |---calBucket                   // バケット内に粒子を配置
+            |       |       |---calThermalConductivity      // 熱伝導率を計算
+            |       |       |       |---calPowderHeatTransfer           // 粉末の熱伝導率を計算          
+            |       |       |
             |       |       |---searchBucket                // 粒子i近辺の粒子を探索
             |       |       |---weight                      // 重み関数を計算
             |       |

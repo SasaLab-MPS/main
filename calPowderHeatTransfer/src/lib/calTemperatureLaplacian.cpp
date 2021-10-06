@@ -12,25 +12,28 @@ void calTemperatureLaplacian(void){
     double distance, distance2;
     double w;
     double xij, yij, zij;
-    double rho, c, lmb;
+    double rho, c, lmb;    // lmb:熱伝導率
     double a;              // ラプラシアンモデルの係数
     double alpha, beta;    // α：温度伝導率，β：係数
     double aij, aii;       //係数行列の各値
 
     rho = SOLID_DENSITY;        // 相変化を考慮するなら変更する
     c = SPECIFIC_HEAT_CAPACITY; // 比熱容量
-    lmb = HEAT_CONDUCTIVITY;    // 熱伝導率
-
-    a = (2.0 * DIM) / (N0_forLaplacian * Lambda);
-
-    alpha = lmb / (rho * c);    // 温度伝導率・熱拡散率 [mm^2/s]
-    beta = a * alpha;
+    
 
     calBucket();    // 粒子が所属するバケットを計算
     T_aij.clear();  // 係数行列の初期化
 
     for (int i = 0; i < NumberOfParticles; i++)
     {
+        // 係数計算
+        calThermalConductivity(i);
+        lmb = ThermalConductivity[i];                 // 熱伝導率
+        a = (2.0 * DIM) / (N0_forLaplacian * Lambda); // 係数
+        alpha = lmb / (rho * c);                      // 温度伝導率・熱拡散率 [mm^2/s]
+        beta = a * alpha;
+
+        // 計算本体
         aij = 0.0;
         aii = 0.0;
         searchBucket(i);

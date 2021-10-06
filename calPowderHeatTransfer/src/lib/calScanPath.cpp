@@ -24,6 +24,10 @@ void calScanPath(int strategy)
         stripePattern();
         break;
 
+    case TWOZONE:   // 2-Zoneスキャン
+        //twoZonePattern();
+        break;
+
     case LINE:      // 瞬間熱源(直線)
         FLASH = LINE;
         break;
