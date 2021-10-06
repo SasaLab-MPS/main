@@ -25,7 +25,7 @@ void calScanPath(int strategy)
         break;
 
     case TWOZONE:   // 2-Zoneスキャン
-        //twoZonePattern();
+        twoZonePattern();
         break;
 
     case LINE:      // 瞬間熱源(直線)

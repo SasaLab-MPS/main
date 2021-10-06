@@ -25,7 +25,7 @@ void mainLoopOfSimulation(void)
         calGravity();
         calViscosity();
 
-        calScanPath(STRIPE);                    // レーザ走査経路を計算
+        calScanPath(TWOZONE);                   // レーザ走査経路を計算
 
         calTemperature();                       // 温度分布を計算  
         moveParticle();
@@ -44,7 +44,7 @@ void mainLoopOfSimulation(void)
             printf("TimeStepNumber: %5d   Time: %lf(s)   NumberOfParticless: %d\n", iTimeStep, Time, NumberOfParticles);
             // writeData_inVtuFormat();            // ParaViewのファイル形式(.vtu)で出力
             // writeData_inProfFormat();           // 独自のファイル形式(.prof)で出力
-            writeData_inTemperatureFormat();    // 温度をcsv出力
+            writeData_inCSVFormat();    // 温度をcsv出力
         }
         if (Time >= FINISH_TIME)
         {

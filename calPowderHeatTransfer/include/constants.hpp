@@ -31,7 +31,7 @@ constexpr double DT = 80e-6;
 constexpr int OUTPUT_INTERVAL = 1;
 
 
-constexpr double FINISH_TIME = 1050e-3;                   // シミュレーションの終了時刻 (ms)
+constexpr double FINISH_TIME = 100e-3;                    // シミュレーションの終了時刻 (ms)
 constexpr double KINEMATIC_VISCOSITY = 1.0e-6;            // 動粘性係数
 constexpr double FLUID_DENSITY = 0.0027;                  // 流体の密度:ρ_f (g/mm^3)
 constexpr double SOLID_DENSITY = 0.0027;                  // 固体の密度:ρ_s (g/mm^3)
@@ -151,8 +151,8 @@ constexpr double HEAT_INPUT = 10;                       // 初期熱量:Q 線熱
 constexpr double LASER_POWER = 3e2;                     // レーザ出力:P (W, J/s)
 constexpr double LASER_DIAMETER = 80e-3;                // レーザ直径:d (mm)
 constexpr double SCAN_SPEED = 1e3;                      // レーザ走査速度:v (mm/s)
-constexpr double SCAN_PITCH = 0.1;                      // 走査ピッチ:h (mm)
-constexpr double SCAN_VECTOR_LENGTH = 5.0;              // 走査ベクトル長さ (mm)
+constexpr double SCAN_PITCH = 0.2;                      // 走査ピッチ:h (mm)
+constexpr double SCAN_VECTOR_LENGTH = 1.0;              // 走査ベクトル長さ (mm)
 
 /* グローバル変数定義 */
 extern int FileNumber;

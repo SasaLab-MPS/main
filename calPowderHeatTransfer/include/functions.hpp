@@ -22,7 +22,7 @@ void calBucket(void);                                          // 粒子の所�
 void mainLoopOfSimulation(void);                               // メインループ
 void writeData_inProfFormat(void);                             // 計算結果の出力(独自ファイル形式)
 void writeData_inVtuFormat(void);                              // 計算結果をファイル出力(ParaViewのvtuファイル形式)
-void writeData_inTemperatureFormat(void);                      // 計算結果をファイル出力(csvファイル形式)
+void writeData_inCSVFormat(void);                              // 計算結果をファイル出力(csvファイル形式)
 void calGravity(void);                                         // NS方程式右辺第三項を計算，重力による粒子の加速を計算
 void calViscosity(void);                                       // NS方程式右辺第二項を計算，粘性による粒子の加速を計算
 void moveParticle(void);                                       // 粒子の移動を計算

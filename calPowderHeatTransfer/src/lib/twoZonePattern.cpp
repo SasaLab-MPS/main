@@ -22,8 +22,11 @@ void twoZonePattern(void) {
     // 照射中心の更新
     double edgeOfX, edgeOfY;       // そのストラテジーで照射できるxとy方向の端
     int direction = ScanDirection; // レーザ走査方向
+    int max_strategyNum = (int)(y_MAX / scanVectorLength);  // 走査領域の最大数
 
     /* 走査経路の計算 */
+    int NOS = NumOfStrategy % max_strategyNum;
+    int flag = 0;    // 走査領域が切り替わったかを判定 
     edgeOfX = x_MAX;
 
     if (ScanDirection == Y_FORWARD)
@@ -31,7 +34,7 @@ void twoZonePattern(void) {
         P2.x = P1.x;
         P2.y = P1.y + scanSpeed * DT;
 
-        edgeOfY = NumOfStrategy * scanVectorLength + scanVectorLength;
+        edgeOfY = NOS * scanVectorLength + scanVectorLength;
 
         // yの端に到達したとき
         if ((edgeOfY + EPS) < P2.y || (y_MAX + EPS) < P2.y) {
@@ -43,15 +46,16 @@ void twoZonePattern(void) {
         // xの端に到達したとき
         if ((edgeOfX + EPS) < P2.x) {
             NumOfStrategy++; // ストライプ番号の更新
+            flag = 1;        // 走査領域の更新があった
             P2.x = Ref.x;
-            if (NumOfStrategy % 2 == 1) {
+            if (NOS % 2 == 1) {
                 direction = Y_REVERSE;
-                P2.y = NumOfStrategy * scanVectorLength + scanVectorLength;
+                P2.y = NOS * scanVectorLength + scanVectorLength;
             }
             else
             {
                 direction = Y_FORWARD;
-                P2.y = NumOfStrategy * scanVectorLength;
+                P2.y = NOS * scanVectorLength;
             }
 
             if (P2.y > (y_MAX + EPS)) {
@@ -68,7 +72,7 @@ void twoZonePattern(void) {
         P2.x = P1.x;
         P2.y = P1.y - scanSpeed * DT;
 
-        edgeOfY = NumOfStrategy * scanVectorLength;
+        edgeOfY = NOS * scanVectorLength;
 
         // yの端に到達したとき
         if (P2.y < (edgeOfY - EPS) || P2.y < (Pos_MIN[1] - EPS)) {
@@ -78,18 +82,18 @@ void twoZonePattern(void) {
         }
 
         // xの端に到達したとき
-        if ((edgeOfX + EPS) < P2.x)
-        {
+        if ((edgeOfX + EPS) < P2.x) {
             NumOfStrategy++; // ストライプ番号の更新
+            flag = 1;        // 走査領域の更新があった
             P2.x = Ref.x;
-            if (NumOfStrategy % 2 == 1) {
+            if (NOS % 2 == 1) {
                 direction = Y_REVERSE;
-                P2.y = NumOfStrategy * scanVectorLength + scanVectorLength;
+                P2.y = NOS * scanVectorLength + scanVectorLength;
             }
             else
             {
                 direction = Y_FORWARD;
-                P2.y = NumOfStrategy * scanVectorLength;
+                P2.y = NOS * scanVectorLength;
             }
 
             if (P2.y > (y_MAX + EPS)) {
@@ -113,9 +117,8 @@ void twoZonePattern(void) {
     }
 
     /* 例外処理 */
-    int max_strategyNum = (int)(y_MAX / scanVectorLength);
     // 二度目の照射を開始するとき(左下の原点に戻る)
-    if (NumOfStrategy >= max_strategyNum) {
+    if (flag == 1 && NumOfStrategy == max_strategyNum) {
         centerOfLaser.x = hatch; // テキトウな場所に中心を飛ばす
         centerOfLaser.y = 0;
         ScanDirection = Y_FORWARD;

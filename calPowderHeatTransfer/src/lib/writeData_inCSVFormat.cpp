@@ -1,5 +1,5 @@
 /*=====================================================================
-  writeData_inTemperatureFormat.cpp   
+  writeData_inCSVFormat.cpp   
   Yota INOUE (2021) 
   関数実装ファイル 
   計算結果の出力(csvファイル形式)
@@ -8,7 +8,7 @@
 #include "../../include/functions.hpp"
 #include "../../include/constants.hpp"
 
-void writeData_inTemperatureFormat(void)
+void writeData_inCSVFormat(void)
 {
     int i;
     FILE *fp;
